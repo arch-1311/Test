@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <title>மருத்துவ அவசரநிலை</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome CSS -->
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /* .content {
+            margin: 2rem 0;
+        } */
+        /* .table-responsive {
+            margin-top: 2rem;
+        } */
+        th, td {
+            text-align: center; /* Center-align text in table */
+        }
+        th {
+            background-color: #f8f8f8;
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff; /* Background color for the scroll button */
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            padding: 10px 15px;
+            font-size: 18px;
+            display: none; /* Hidden by default */
+            cursor: pointer;
+            z-index: 1000; /* On top of other content */
+        }
+        .scroll-to-top:hover {
+            background-color: #0056b3; /* Darker shade on hover */
+        }
+        @media (min-width: 768px) { /* Adjust the breakpoint as needed */
+            .banner-img {
+                width: 80%; /* Set the desired width for desktop view */
+                max-width: 800px; /* Optional: Set a max width */
+            }
+        }
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
+
+        .align-items-center {
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Banner Image -->
+        <div class="text-center">
+            <a href="index.html">
+                <img src="NOC2024.png" alt="Banner" class="img-fluid banner-img" />
+            </a>
+        </div>
+        <center>
+            <div class="d-flex justify-content-between align-items-center mb-3" style="max-width: 250px">
+                <a href="index-ta.html" style="text-decoration: none; font-size: 14px;">
+                    <div class="icon-circle">
+                        <i class="fas fa-home"></i>
+                    </div>
+                </a>
+                <a href="medical-emergency.html">
+                    <button class="btn btn-link">
+                        Switch to English Version
+                    </button>
+                </a>
+            </div>
+        </center>
+
+        <!-- Helpline Table Section -->
+        <div class="content">
+            <p style="font-size: 22px;color:black;font-weight:bold;text-align: center;">மருத்துவ அவசரநிலை - ஹெல்ப்லைன் எண்கள்
+            </p>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>சேவை</th>
+                            <th>தொலைபேசி எண்</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>அரசு ஆம்புலன்ஸ்</td>
+                            <td><a href="tel:108">108</a></td>
+                        </tr>
+                        <tr>
+                            <td>தமிழ்நாடு மருத்துவ உதவி எண்</td>
+                            <td><a href="tel:104">104</a></td>
+                        </tr>
+                        <tr>
+                            <td>செயின்ட் ஜான்ஸ் ஆம்புலன்ஸ்</td>
+                            <td><a href="tel:04428194630">04428194630</a></td>
+                        </tr>
+                        <tr>
+                            <td>அப்பல்லோ மருத்துவமனை</td>
+                            <td><a href="tel:1066">1066</a></td>
+                        </tr>
+                        <tr>
+                            <td>குளோபல் மருத்துவமனை</td>
+                            <td><a href="tel:04446242424">04446242424</a></td>
+                        </tr>
+                        <tr>
+                            <td>செட்டிநாடு மருத்துவமனை</td>
+                            <td><a href="tel:105757">105757</a></td>
+                        </tr>
+                        <tr>
+                            <td>எம்ஜிஎம் மலர் மருத்துவமனை</td>
+                            <td><a href="tel:04449334933">04449334933</a></td>
+                        </tr>
+                        <tr>
+                            <td>அரசு பொது மருத்துவமனை</td>
+                            <td><a href="tel:04425305000">04425305000</a></td>
+                        </tr>
+                        <tr>
+                            <td>கீழ்ப்பாக்கம் அரசு மருத்துவமனை</td>
+                            <td><a href="tel:04428364951">04428364951</a></td>
+                        </tr>
+                        <tr>
+                            <td>ராயப்பேட்டை அரசு மருத்துவமனை</td>
+                            <td><a href="tel:04428483051">04428483051</a></td>
+                        </tr>
+                        <tr>
+                            <td>அரசு ஸ்டான்லி மருத்துவமனை</td>
+                            <td><a href="tel:04425281347">04425281347</a></td>
+                        </tr>
+                        <tr>
+                            <td>கஸ்தூர்பா பெண்களுக்கான மருத்துவமனை</td>
+                            <td><a href="tel:04428545449">04428545449</a></td>
+                        </tr>
+                        <tr>
+                            <td>குழந்தைகள் சுகாதார மற்றும் மருத்துவமனை நிறுவனம்	</td>
+                            <td><a href="tel:04428191135">04428191135</a></td>
+                        </tr>
+                        <tr>
+                            <td>பெண்கள் மற்றும் குழந்தைகளுக்கான அரசு மருத்துவமனை</td>
+                            <td><a href="tel:04428191982">04428191982</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p style="font-size: 12px;font-style: italic;">*கடைசியாக புதுப்பிக்கப்பட்டது: அக்டோபர் 17 10:05 AM அன்று சென்னை நியூஸ் மூலம் இந்தப் பட்டியல் தொகுக்கப்பட்டு சரிபார்க்கப்பட்டது.</p>
+            </div>
+        </div>
+
+        <!-- CPR Information Section -->
+        <div class="content">
+            <h2>CPR மற்றும் AED ஐ எவ்வாறு பயன்படுத்துவது</h2>
+            <p><strong>எச்சரிக்கை:</strong> CPR செய்வதற்கு முன் <a href="tel:108">108</a> / ஆம்புலன்ஸை அழைக்கவும்</p>
+            <p>CPR அல்லது கார்டியோபுல்மோனரி புத்துயிர் என்பது சுவாசத்தை நிறுத்திய ஒருவரை உயிர்ப்பிப்பதற்கான எளிய முதலுதவி செயல்முறையாகும். ஒரு வயது வந்தவர் சுவாசிக்காதபோது அல்லது அவர்கள் எப்போதாவது மூச்சுத் திணறும்போது, ​​கேள்விகளுக்கு பதிலளிக்காதபோது அல்லது தோளில் தட்டும்போது CPR ஐப் பயன்படுத்தவும்.</p>
+            <p>மாரடைப்பு, பக்கவாதம், மின்சாரம், நீரில் மூழ்குதல் அல்லது விஷம் காரணமாக இது நிகழலாம். இந்த சூழ்நிலையில், அவர்களின் இதயம் துடிப்பதை நிறுத்துகிறது. CPR அவர்களின் சுவாசம் மற்றும் இதயத் துடிப்பை மீண்டும் தொடங்க உதவும்.</p>
+
+            <div class="text-center mb-4">
+                <img src="https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/lg8rylY1M5lhl0asGKvJ/pub/EbnKbMRCVPrnWB7kaSqU.png" alt="CPR Steps" class="img-fluid">
+            </div>
+            <div class="text-center mb-4">
+                <img src="https://storage.googleapis.com/glide-prod.appspot.com/uploads-v2/lg8rylY1M5lhl0asGKvJ/pub/4YY3Jp8AQF6PPt12oiaD.jpeg" alt="AED Usage" class="img-fluid">
+            </div>
+
+            <h3>டிஃபிப்ரிலேட்டரை (AED) பயன்படுத்துவது எப்படி - இங்கே பார்க்கவும்</h3>
+            <p>டிஃபிபிரிலேட்டரை (AED) பயன்படுத்துவதற்கான விரிவான வழிகாட்டுதலுக்கு, பின்வரும் ஆதாரங்களைப் பார்க்கவும்:</p>
+            <a href="https://www.youtube.com/results?search_query=how+to+use+aed" target="_blank" class="btn btn-primary">AED டுடோரியலைப் பாருங்கள்</a>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Show scroll to top button when scrolled down
+        window.onscroll = function() {
+            var button = document.querySelector('.scroll-to-top');
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                button.style.display = "block";
+            } else {
+                button.style.display = "none";
+            }
+        };
+
+        // Function to scroll to top
+        function scrollToTop() {
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+    </script>
+    <!-- Footer -->
+    <footer class="text-center mt-5" style="font-size: 12px;">
+        <hr>
+        <p> <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">வாட்ஸ்அப் சேனலில் </a> சேரவும் | 
+            <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, 
+            <a href="https://x.com/newsofchennai">Twitter</a>, 
+            <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & 
+            <a href="https://www.facebook.com/newsofchennai">Facebook</a> இல் பின்தொடரவும் | தொடர்புக்கு - 
+            newsofchennai@pm.me <br>
+            News of Chennai, 2020 முதல் செயல்பட்டு வரும் குடிமக்கள் சேவையாகும், இது தேவைப்படும் நேரங்களில் குடிமக்களுக்கு நம்பகமான மற்றும் சரிபார்க்கப்பட்ட தகவல்களை வழங்குகிறது.
+        </p>
+    </footer>
+</body>
+</html>
