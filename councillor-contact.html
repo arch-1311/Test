@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Chennai Councillors Contact</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+
     <style>
         .accordion-button {
             display: flex;
@@ -43,6 +45,29 @@
                 font-size: 10px;
             }
         }
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
+
+        .align-items-center {
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -55,9 +80,18 @@
             </a>
         </div>
         <center>
-        <a href="index.html" style="text-decoration: none; font-size: 14px;">
-            <i class="fas fa-home" style="margin-right: 8px;"></i>HOME
-        </a>
+            <div class="d-flex justify-content-between align-items-center mb-3" style="max-width: 430px">
+                <a href="index.html" style="text-decoration: none; font-size: 14px;">
+                    <div class="icon-circle">
+                        <i class="fas fa-home"></i>
+                    </div>
+                </a>
+                <a href="councillor-contact-ta.html">
+                    <button id="tamil-button" class="btn btn-link">
+                        தமிழில் படிக்க இங்கே கிளிக் செய்யவும்
+                    </button>
+                </a>
+            </div>
         
     <h2 style="font-size: 22px;font-weight:bold;color: black;">Chennai Councillors Contact</h2>
     <p>To know your zone and ward - <a href="know-you-ward.html">Click here</a></p>

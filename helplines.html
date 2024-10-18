@@ -140,6 +140,29 @@
         .close-btn:hover {
             color: #0056b3;
         }
+        .icon-circle {
+            width: 40px;
+            height: 40px;
+            background-color: #007bff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+        }
+
+        .d-flex {
+            display: flex;
+        }
+
+        .justify-content-between {
+            justify-content: space-between;
+        }
+
+        .align-items-center {
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -154,9 +177,18 @@
 <!-- Main Content -->
 <div class="container" style="padding-left: 1rem;">
     <center>        
-        <a href="index.html" style="text-decoration: none;font-size: 14px">
-            <i class="fas fa-home" style="margin-right: 8px;"></i>HOME
-        </a>                
+        <div class="d-flex justify-content-between align-items-center mb-3" style="max-width: 430px">
+            <a href="index.html" style="text-decoration: none; font-size: 14px;">
+                <div class="icon-circle">
+                    <i class="fas fa-home"></i>
+                </div>
+            </a>
+            <a href="helplines-ta.html">
+                <button id="tamil-button" class="btn btn-link">
+                    தமிழில் படிக்க இங்கே கிளிக் செய்யவும்
+                </button>
+            </a>
+        </div>               
         <p style="font-size: 22px;color:black;font-weight:bold;">Chennai Rains - Verified Helplines</p>
         <p id="some-help" style="font-weight: bold;color:crimson;max-width: 800px;">Some helplines may not be available during periods of high call volume. An alternative option is to reach out to your area councillor or designated IAS officer appointed by TN Govt.</p>
         <div style="border: 2px solid #ccc; padding: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; max-width: 600px; margin: 0 auto;font-size: 14px;">
@@ -514,7 +546,7 @@
             </tr>
         </tbody>
     </table>
-    <p style="font-size: 12px;font-style: italic;">*Last updated: This list was collated and verified by News of Chennai on Oct 16 01:00 PM</p>
+    <p style="font-size: 12px;font-style: italic;">*Last updated: This list was collated and verified by News of Chennai on Oct 18 01:15 PM</p>
     </div>
     
     <!-- Scroll to Top Button -->
