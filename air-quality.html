@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chennai Air Quality</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #station-select {
+            margin-bottom: 20px;
+        }
+        .aqi-info {
+            margin-top: 20px;
+        }
+        .fill-bar {
+            height: 30px; /* Height of the fill bar */
+            width: 100%; /* Full width */
+            background-color: lightgrey; /* Background color of the bar */
+            border-radius: 5px; /* Rounded corners */
+            overflow: hidden; /* Hide overflow for smooth fill */
+            position: relative; /* For positioning the fill */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            margin-bottom: 10px; /* Space below the fill bar */
+        }
+        .fill {
+            height: 100%; /* Full height */
+            width: 0; /* Initial width (will animate) */
+            border-radius: 5px; /* Match the fill bar */
+            transition: width 2s ease; /* Smooth filling animation */
+        }
+        /* Color classes based on AQI */
+        .good { background-color: #55a84f; }
+        .satisfactory { background-color: #a3c853; }
+        .moderate { background-color: #fff833; }
+        .poor { background-color: #f29c33; }
+        .very-poor { background-color: #e93f33; }
+        .severe { background-color: #af2d24; }
+        .indicator {
+            font-size: 12px;
+            display: flex; /* Align indicators side by side */
+            justify-content: space-between; /* Space out indicators */
+            margin: 0; /* Remove margin */
+        }
+        #aqi-details {
+            border: 1px solid #ddd; /* Border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 15px; /* Padding inside the details box */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            background-color: white; /* Background color */
+        }
+        @media (max-width: 600px) {
+            #station-select {
+                width :100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Chennai Air Quality and Sub-Stations</h1>
+
+    <label for="station-select">Chennai Stations: </label>
+    <select id="station-select" class="form-control w-50 w-sm-100">
+        <option value="H13740">Arumbakkam</option>
+        <option value="H12431">Alandur Bus Depot</option>
+        <option value="H14701">Chengalpattu</option>
+        <option value="H7023">Chennai US Consulate</option>
+        <option value="H11279">Velachery Res. Area</option>
+        <option value="H8185">Manali</option>
+        <option value="H11859">Manali Village</option>
+        <option value="H13739">Kodungaiyur</option>
+        <option value="H13737">Royapuram</option>
+    </select>
+
+    <div class="aqi-info row mt-4">
+        <div class="col-md-6" id="aqi-metric">
+            <div class="fill-bar">
+                <div class="fill" id="aqi-fill"></div>
+            </div>
+            <div class="indicator">
+                <p>0</p>
+                <p>500</p>
+            </div>
+            <p id="aqi-level" style="color:#007bff"></p>
+        </div>
+        <div class="col-md-6" id="aqi-details">
+            <!-- AQI info will be displayed here -->
+        </div>
+    </div>
+    
+    <table class="table table-bordered mt-5">
+        <thead class="thead-light">
+            <tr>
+                <th>AQI</th>
+                <th>Remark</th>
+                <th>Color Code</th>
+                <th>Possible Health Impacts</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0-50</td>
+                <td>Good</td>
+                <td style="background-color: #55a84f;"></td>
+                <td>Minimal impact</td>
+            </tr>
+            <tr>
+                <td>51-100</td>
+                <td>Satisfactory</td>
+                <td style="background-color: #a3c853;"></td>
+                <td>Minor breathing discomfort to sensitive people</td>
+            </tr>
+            <tr>
+                <td>101-200</td>
+                <td>Moderate</td>
+                <td style="background-color: #fff833;"></td>
+                <td>Breathing discomfort to people with lungs, asthma, and heart diseases</td>
+            </tr>
+            <tr>
+                <td>201-300</td>
+                <td>Poor</td>
+                <td style="background-color: #f29c33;"></td>
+                <td>Breathing discomfort to most people on prolonged exposure</td>
+            </tr>
+            <tr>
+                <td>301-400</td>
+                <td>Very Poor</td>
+                <td style="background-color: #e93f33;"></td>
+                <td>Respiratory illness on prolonged exposure</td>
+            </tr>
+            <tr>
+                <td>401-500</td>
+                <td>Severe</td>
+                <td style="background-color: #af2d24;"></td>
+                <td>Affects healthy people and seriously impacts those with existing diseases</td>
+            </tr>
+        </tbody>
+    </table>
+    <div> Data sourced from <a href="https://aqicn.org/city/chennai//us-consulate/">Chennai - Air Quality Index (AQI)</a></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script>
+    const apiKey = '9eaa5b53392b2983fdc8e5e67bc0c7fdc28e38fd';
+    const baseApiUrl = 'https://api.waqi.info/feed/@';
+
+    const stationUrls = {
+        "H13740": `${baseApiUrl}H13740/?token=${apiKey}`,
+        "H12431": `${baseApiUrl}H12431/?token=${apiKey}`,
+        "H14701": `${baseApiUrl}H14701/?token=${apiKey}`,
+        "H7023": `${baseApiUrl}H7023/?token=${apiKey}`,
+        "H11279": `${baseApiUrl}H11279/?token=${apiKey}`,
+        "H8185": `${baseApiUrl}H8185/?token=${apiKey}`,
+        "H11859": `${baseApiUrl}H11859/?token=${apiKey}`,
+        "H13739": `${baseApiUrl}H13739/?token=${apiKey}`,
+        "H13737": `${baseApiUrl}H13737/?token=${apiKey}`,
+    };
+
+    async function getAQIData(stationId) {
+        const url = stationUrls[stationId];
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.status === 'ok') {
+            return data.data;
+        } else {
+            throw new Error(`Error fetching AQI data for station ${stationId}`);
+        }
+    }
+    
+    function updateAQIDisplay(aqiData) {
+        const aqiFill = document.getElementById('aqi-fill');
+        const aqiLevel = document.getElementById('aqi-level');
+        const aqiDetails = document.getElementById('aqi-details');
+
+        let aqiValue = aqiData.aqi;
+        let aqiClass = '';
+
+        if (aqiValue <= 50) {
+            aqiClass = 'good';
+        } else if (aqiValue <= 100) {
+            aqiClass = 'satisfactory';
+        } else if (aqiValue <= 200) {
+            aqiClass = 'moderate';
+        } else if (aqiValue <= 300) {
+            aqiClass = 'poor';
+        } else if (aqiValue <= 400) {
+            aqiClass = 'very-poor';
+        } else {
+            aqiClass = 'severe';
+        }
+
+        // Update fill class and width
+        aqiFill.className = `fill ${aqiClass}`;
+        aqiFill.style.width = `${(aqiValue / 500) * 100}%`; // Set width based on AQI value
+
+        aqiLevel.innerHTML = `<h3>AQI Level: ${aqiValue} - ${aqiClass.charAt(0).toUpperCase() + aqiClass.slice(1)}</h3>`;
+        
+        aqiDetails.innerHTML = `
+            <h3>${aqiData.city.name} Air Quality</h3>
+            <p><strong>PM2.5:</strong> ${aqiData.iaqi.pm25 ? aqiData.iaqi.pm25.v : 'N/A'} µg/m³</p>
+            <p><strong>PM10:</strong> ${aqiData.iaqi.pm10 ? aqiData.iaqi.pm10.v : 'N/A'} µg/m³</p>
+            <p><strong>O3:</strong> ${aqiData.iaqi.o3 ? aqiData.iaqi.o3.v : 'N/A'} µg/m³</p>
+            <p><strong>NO2:</strong> ${aqiData.iaqi.no2 ? aqiData.iaqi.no2.v : 'N/A'} µg/m³</p>
+            <p><strong>SO2:</strong> ${aqiData.iaqi.so2 ? aqiData.iaqi.so2.v : 'N/A'} µg/m³</p>
+            <p><strong>Last updated:</strong> ${new Date(aqiData.time.s).toLocaleString()}</p>
+        `;
+    }
+
+    document.getElementById('station-select').addEventListener('change', async (event) => {
+        const selectedStation = event.target.value;
+        try {
+            const aqiData = await getAQIData(selectedStation);
+            updateAQIDisplay(aqiData);
+        } catch (error) {
+            console.error(error);
+        }
+    });
+
+    // Load initial AQI data for the default selected station
+    document.addEventListener('DOMContentLoaded', async () => {
+        const initialStation = document.getElementById('station-select').value;
+        try {
+            const aqiData = await getAQIData(initialStation);
+            updateAQIDisplay(aqiData);
+        } catch (error) {
+            console.error(error);
+        }
+    });
+</script>
+
+</body>
+</html>
