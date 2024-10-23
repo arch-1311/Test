@@ -296,6 +296,8 @@
             const rainIntensityIndex = headers.indexOf('Rain Intensity (mm/h)');
             const rainAccumulationIndex = headers.indexOf('Rain Accumulation (mm)');
             const lastFetched = headers.indexOf('Last Fetched');
+            const formattedLastFetched = Utilities.formatDate(lastFetched, Session.getScriptTimeZone(), "dd-MM-yyyy h:mm a"); // Format date
+
 
             let found = false;
             for (const row of weatherData) {
@@ -314,7 +316,7 @@
                         <i class="fas fa-tint"></i> ஈரப்பதம்: <span style="margin-right: 15px;">${row[humidityIndex]}%</span><br><br>
                         <i class="fas fa-wind"></i> காற்றின் வேகம்: <span style="margin-right: 15px;">${row[windSpeedIndex]} m/s</span><br><br>
                         <i class="fas fa-cloud-showers-heavy"></i> மழை சேகரிப்பு: <span style="margin-right: 15px;">${row[rainAccumulationIndex]} mm</span><br><br>
-                        புதுப்பிக்கப்பட்ட நேரம்: <span style="margin-right: 15px;">${row[lastFetched]}</span>
+                        புதுப்பிக்கப்பட்ட நேரம்: <span style="margin-right: 15px;">${row[formattedLastFetched]}</span>
                     </div>
                 `;
                 document.getElementById('weatherContent').innerHTML = weatherContent;
