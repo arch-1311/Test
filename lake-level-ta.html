@@ -11,54 +11,13 @@
         body {
             padding: 5px;
         }
-        /* Container for banner and ribbon in one row */
-        .banner-ribbon-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-/* .banner-left {
-    flex: 1; /* Take space on the left 
-} */
-
-.banner-center {
-    flex: 3; /* Center with more space */
-    text-align: center;
-}
-
-.top-ribbon {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex: 1; /* Right-side icons */
-    justify-content: flex-end; /* Align to the right */
-}
-
-.top-ribbon .social-icons {
-    display: flex;
-    gap: 10px;
-}
-.top-ribbon i {
-color:#0044cc;
-}
-.top-ribbon .icon-circle {
-    color: black;
-    background-color: white;
-    font-size: 20px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: background-color 0.3s;
-}
-
-.banner-img {
-    max-width: 40px; /* Adjust logo size */
-}
-
+        .top-ribbon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-size: 14px;
+        }
         h2 {
             font-weight: bold;
             margin-bottom: 20px;
@@ -153,25 +112,14 @@ color:#0044cc;
             p {
                 font-size: 14px;
             }
-            .top-ribbon {
-                max-width : 10%;
-                flex-wrap: wrap;
-                padding-top: 10px;
-            }
-            .top-ribbon .icon-circle {
-                width: 15px;
-                height: 15px;
-                font-size: 15px;
-                background-color: transparent;
-            }
         }
         @media (min-width: 768px) {
             .banner-img {
-                width: 50%; /* Set the desired width for desktop view */
+                width: 80%; /* Set the desired width for desktop view */
                 max-width: 800px; /* Optional: Set a max width */
             }
         }
-        
+
         /* Dark Mode styles */
         body.dark-mode {
             background-color: #333;
@@ -204,7 +152,7 @@ color:#0044cc;
         }
 
         .dark-mode .btn {
-            background-color: white;
+            background-color: #444;
             color: #f1f1f1;
         }
         .icon-circle {
@@ -215,135 +163,104 @@ color:#0044cc;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: black;
-            font-size: 18px;
+            color:  #013aae;
+            font-size: 20px;
             transition: background-color 0.3s;
         }
-        .banner-left {
-            text-align: left;
-        }
 
-        .banner-center {
-            flex: 3; /* Takes 60% width */
-            text-align: center;
+        /* Responsive styles for icons */
+        @media (max-width: 600px) {
+            .icon-circle {
+                width: 30px;
+                height: 30px;
+                font-size: 14px; /* Smaller icon size for mobile */
+            }
         }
-
-        .top-ribbon {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
+        hr {
+            margin : 10px 0;
         }
-        
     </style>
 </head>
 <body>
+   
+    
     <div class="container">
-        <div class="banner-ribbon-container">
-            <!-- Left: Logo -->
-            <div class="banner-left">
+        <!-- Banner Image -->
+        <div class="container">
+            <div class="text-center">
                 <a href="index.html">
-                    <img src="NOC.png" alt="Banner" class="img-fluid banner-img" />
+                    <img src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
                 </a>
-            </div>
-        
-            <!-- Center: Headings -->
-            <div class="banner-center">
-                <img src="2024.png" alt="Banner" class="img-fluid" />
-            </div>
-        
-            <!-- Right: Icons and Hamburger -->
-            <div class="top-ribbon">
-                <a href="index-ta.html" class="btn btn-link icon-circle" aria-label="Home">
-                    <i class="fas fa-home"></i>
-                </a>
-                <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="btn icon-circle" id="language-toggle"><i class="fa fa-language" aria-hidden="true"></i></button>
-            </div>
-        
-            <!-- Hamburger Menu for Mobile -->
-            <div class="hamburger-menu">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
-        </div>
-        
-        <hr>
-            
-        <h2>சென்னை ஏரியின் நிலை</h2>
-
-        <!-- Dropdown for selecting reservoir -->
-        <div class="reservoir-details">
-            <div class="dropdown">
-                <label for="reservoir-select">ஏரியைத் தேர்வுசெய்க:</label>
-                <select id="reservoir-select">
-                    <option value="CHEMBARAMBAKKAM" data-current="36.65">செம்பரம்பாக்கம்</option>
-                    <option value="CHOLAVARAM" data-current="19.52">சோளவரம்</option>
-                    <option value="KANNANKOTTAI THERVOY KANDIGAI" data-current="62.60">கண்ணாங்கோட்டை தெர்வாய் கண்டிகை</option>
-                    <option value="POONDI" data-current="15.20">பூண்டி</option>
-                    <option value="PUZHAL" data-current="73.24">புழல்</option>
-                    <option value="VEERANAM" data-current="85.57">வீராணம்</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Water level for the selected reservoir -->
-        <center>
-            <div class="water-level">
-                <h6>சேமிப்பு நிலை (100%)</h6>
-                <div class="water-container">
-                    <div class="water" id="water-level">
-                        <div class="water-wave"></div> <!-- Subtle wave animation -->
-                    </div>
+                 <!-- Top Ribbon -->
+                <div class="top-ribbon">
+                    <!-- <div class="left-options"> -->
+                        <a href="index-ta.html" class="btn icon-circle" aria-label="Home">
+                            <i class="fas fa-home"></i>
+                        </a>
+                        <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="btn icon-circle" id="language-toggle"><i class="fa fa-language" aria-hidden="true"></i>
+                        </button>
+                        <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <!-- </div> -->
                 </div>
-                <p>தற்போதைய நிலை: <br><span id="current-level">9.13</span>%</p>
             </div>
-            <div class="date-info">
-                <!-- *As observed on: <span id="current-date"></span> -->
-                ஏரியின் நிலை - <a href="https://cmwssb.tn.gov.in/lake-level"><span id="current-date"></span></a> தேதியன்று
-            </div>
-        </center>
-
-        <!-- Footer -->
-        <footer class="text-center mt-5" style="font-size: 12px;">
             <hr>
-            <p>
-                <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">வாட்ஸ்அப் சேனலில் </a> சேரவும் | 
-                <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, 
-                <a href="https://x.com/newsofchennai">Twitter</a>, 
-                <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & 
-                <a href="https://www.facebook.com/newsofchennai">Facebook</a> இல் பின்தொடரவும் | தொடர்புக்கு - 
-                newsofchennai@pm.me <br>
-                News of Chennai, 2020 முதல் செயல்பட்டு வரும் குடிமக்கள் சேவையாகும், இது தேவைப்படும் நேரங்களில் குடிமக்களுக்கு நம்பகமான மற்றும் சரிபார்க்கப்பட்ட தகவல்களை வழங்குகிறது.
-            </p>
-        </footer>
+            
+            <h2>சென்னை ஏரியின் நிலை</h2>
+
+            <!-- Dropdown for selecting reservoir -->
+            <div class="reservoir-details">
+                <div class="dropdown">
+                    <label for="reservoir-select">ஏரியைத் தேர்வுசெய்க:</label>
+                    <select id="reservoir-select">
+                        <option value="CHEMBARAMBAKKAM" data-current="36.65">செம்பரம்பாக்கம்</option>
+                        <option value="CHOLAVARAM" data-current="19.52">சோளவரம்</option>
+                        <option value="KANNANKOTTAI THERVOY KANDIGAI" data-current="62.60">கண்ணாங்கோட்டை தெர்வாய் கண்டிகை</option>
+                        <option value="POONDI" data-current="15.20">பூண்டி</option>
+                        <option value="PUZHAL" data-current="73.24">புழல்</option>
+                        <option value="VEERANAM" data-current="85.57">வீராணம்</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Water level for the selected reservoir -->
+            <center>
+                <div class="water-level">
+                    <h6>சேமிப்பு நிலை (100%)</h6>
+                    <div class="water-container">
+                        <div class="water" id="water-level">
+                            <div class="water-wave"></div> <!-- Subtle wave animation -->
+                        </div>
+                    </div>
+                    <p>தற்போதைய நிலை: <br><span id="current-level">9.13</span>%</p>
+                </div>
+                <div class="date-info">
+                    <!-- *As observed on: <span id="current-date"></span> -->
+                    ஏரியின் நிலை - <a href="https://cmwssb.tn.gov.in/lake-level"><span id="current-date"></span></a> தேதியன்று
+                </div>
+            </center>
+
+            <!-- Footer -->
+            <footer class="text-center mt-5" style="font-size: 12px;">
+                <hr>
+                <p>
+                    <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">வாட்ஸ்அப் சேனலில் </a> சேரவும் | 
+                    <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, 
+                    <a href="https://x.com/newsofchennai">Twitter</a>, 
+                    <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & 
+                    <a href="https://www.facebook.com/newsofchennai">Facebook</a> இல் பின்தொடரவும் | தொடர்புக்கு - 
+                    newsofchennai@pm.me <br>
+                    News of Chennai, 2020 முதல் செயல்பட்டு வரும் குடிமக்கள் சேவையாகும், இது தேவைப்படும் நேரங்களில் குடிமக்களுக்கு நம்பகமான மற்றும் சரிபார்க்கப்பட்ட தகவல்களை வழங்குகிறது.
+                </p>
+            </footer>
+        </div>
     </div>
 
     <script>
-        const hamburgerMenu = document.querySelector('.hamburger-menu');
-        const nav = document.querySelector('nav');
-
-        hamburgerMenu.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            hamburgerMenu.classList.toggle('active');
-        });
-
-        // Smooth scroll and close menu on click
-        document.querySelectorAll('nav ul li a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                nav.classList.remove('active');
-                hamburgerMenu.classList.remove('active');
-            });
-        });
-
-
         const languageToggle = document.getElementById('language-toggle');
         languageToggle.addEventListener('click', () => {
             if (languageToggle.textContent === 'தமிழ்') {
@@ -406,3 +323,4 @@ color:#0044cc;
     </script>
 </body>
 </html>
+
