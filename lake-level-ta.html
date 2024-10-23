@@ -11,6 +11,54 @@
         body {
             padding: 5px;
         }
+        /* Container for banner and ribbon in one row */
+        .banner-ribbon-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .banner-left {
+    flex: 1; /* Take space on the left 
+} */
+
+.banner-center {
+    flex: 3; /* Center with more space */
+    text-align: center;
+}
+
+.top-ribbon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1; /* Right-side icons */
+    justify-content: flex-end; /* Align to the right */
+}
+
+.top-ribbon .social-icons {
+    display: flex;
+    gap: 10px;
+}
+.top-ribbon i {
+color:#0044cc;
+}
+.top-ribbon .icon-circle {
+    color: black;
+    background-color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.banner-img {
+    max-width: 40px; /* Adjust logo size */
+}
+
         h2 {
             font-weight: bold;
             margin-bottom: 20px;
@@ -105,97 +153,165 @@
             p {
                 font-size: 14px;
             }
+            .top-ribbon {
+                max-width : 10%;
+                flex-wrap: wrap;
+                padding-top: 10px;
+            }
+            .top-ribbon .icon-circle {
+                width: 15px;
+                height: 15px;
+                font-size: 15px;
+                background-color: transparent;
+            }
         }
         @media (min-width: 768px) {
             .banner-img {
-                width: 80%; /* Set the desired width for desktop view */
+                width: 50%; /* Set the desired width for desktop view */
                 max-width: 800px; /* Optional: Set a max width */
             }
+        }
+        
+        /* Dark Mode styles */
+        body.dark-mode {
+            background-color: #333;
+            color: #f1f1f1;
+        }
+
+        .dark-mode h2, .dark-mode p, .dark-mode label {
+            color: #f1f1f1;
+        }
+
+        .dark-mode .water-container {
+            background-color: #555;
+            border-color: #444;
+        }
+
+        .dark-mode .social-icons a {
+            color: #f1f1f1;
+        }
+
+        .dark-mode .water {
+            background-color: #0044cc;
+        }
+
+        .dark-mode .water-wave {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3), transparent);
+        }
+
+        .dark-mode .icon-circle {
+            background-color: #555;
+        }
+
+        .dark-mode .btn {
+            background-color: white;
+            color: #f1f1f1;
         }
         .icon-circle {
             width: 40px;
             height: 40px;
-            background-color: #007bff;
+            background-color: white;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            color: white;
+            color: black;
             font-size: 18px;
+            transition: background-color 0.3s;
+        }
+        .banner-left {
+            text-align: left;
         }
 
-        .d-flex {
+        .banner-center {
+            flex: 3; /* Takes 60% width */
+            text-align: center;
+        }
+
+        .top-ribbon {
+            flex: 1;
             display: flex;
-        }
-
-        .justify-content-between {
-            justify-content: space-between;
-        }
-
-        .align-items-center {
             align-items: center;
+            justify-content: flex-end;
         }
+        
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Banner Image -->
-        <div class="container">
-            <div class="text-center">
+        <div class="banner-ribbon-container">
+            <!-- Left: Logo -->
+            <div class="banner-left">
                 <a href="index.html">
-                    <img src="NOC2024.png" alt="Banner" class="img-fluid banner-img" />
+                    <img src="NOC.png" alt="Banner" class="img-fluid banner-img" />
                 </a>
             </div>
-            <center>
-                <div class="d-flex justify-content-between align-items-center mb-3" style="max-width: 250px">
-                    <a href="index-ta.html" style="text-decoration: none; font-size: 14px;">
-                        <div class="icon-circle">
-                            <i class="fas fa-home"></i>
-                        </div>
-                    </a>
-                    <a href="lake-level.html">
-                        <button class="btn btn-link">
-                            Switch to English Version
-                        </button>
-                    </a>
-                </div>
-            </center>
-            <h2>சென்னை ஏரியின் நிலை</h2>
-<!-- Dropdown for selecting reservoir -->
-<div class="reservoir-details">
-    <div class="dropdown">
-        <label for="reservoir-select">ஏரியைத் தேர்வுசெய்க:</label>
-        <select id="reservoir-select">
-            <option value="CHEMBARAMBAKKAM" data-current="36.65">செம்பரம்பாக்கம்</option>
-            <option value="CHOLAVARAM" data-current="19.52">சோளவரம்</option>
-            <option value="KANNANKOTTAI THERVOY KANDIGAI" data-current="62.60">கண்ணாங்கோட்டை தெர்வாய் கண்டிகை</option>
-            <option value="POONDI" data-current="15.20">பூண்டி</option>
-            <option value="PUZHAL" data-current="73.24">புழல்</option>
-            <option value="VEERANAM" data-current="85.57">வீராணம்</option>
-        </select>
-    </div>
-</div>
-<!-- Water level for the selected reservoir -->
-<center>
-    <div class="water-level">
-        <h6>சேமிப்பு நிலை (100%)</h6>
-        <div class="water-container">
-            <div class="water" id="water-level">
-                <div class="water-wave"></div> <!-- Subtle wave animation -->
+        
+            <!-- Center: Headings -->
+            <div class="banner-center">
+                <img src="2024.png" alt="Banner" class="img-fluid" />
+            </div>
+        
+            <!-- Right: Icons and Hamburger -->
+            <div class="top-ribbon">
+                <a href="index-ta.html" class="btn btn-link icon-circle" aria-label="Home">
+                    <i class="fas fa-home"></i>
+                </a>
+                <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn icon-circle" id="language-toggle"><i class="fa fa-language" aria-hidden="true"></i></button>
+            </div>
+        
+            <!-- Hamburger Menu for Mobile -->
+            <div class="hamburger-menu">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
             </div>
         </div>
-        <p>தற்காலிக நிலை: <br><span id="current-level">9.13</span>%</p>
-    </div>
-    <div class="date-info">
-        <!-- *As observed on: <span id="current-date"></span> -->
-        ஏரியின் நிலை - <a href="https://cmwssb.tn.gov.in/lake-level"><span id="current-date"></span></a> தேதியன்று
-    </div>    
-</center>
+        
+        <hr>
+            
+        <h2>சென்னை ஏரியின் நிலை</h2>
+
+        <!-- Dropdown for selecting reservoir -->
+        <div class="reservoir-details">
+            <div class="dropdown">
+                <label for="reservoir-select">ஏரியைத் தேர்வுசெய்க:</label>
+                <select id="reservoir-select">
+                    <option value="CHEMBARAMBAKKAM" data-current="36.65">செம்பரம்பாக்கம்</option>
+                    <option value="CHOLAVARAM" data-current="19.52">சோளவரம்</option>
+                    <option value="KANNANKOTTAI THERVOY KANDIGAI" data-current="62.60">கண்ணாங்கோட்டை தெர்வாய் கண்டிகை</option>
+                    <option value="POONDI" data-current="15.20">பூண்டி</option>
+                    <option value="PUZHAL" data-current="73.24">புழல்</option>
+                    <option value="VEERANAM" data-current="85.57">வீராணம்</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Water level for the selected reservoir -->
+        <center>
+            <div class="water-level">
+                <h6>சேமிப்பு நிலை (100%)</h6>
+                <div class="water-container">
+                    <div class="water" id="water-level">
+                        <div class="water-wave"></div> <!-- Subtle wave animation -->
+                    </div>
+                </div>
+                <p>தற்காலிக நிலை: <br><span id="current-level">9.13</span>%</p>
+            </div>
+            <div class="date-info">
+                <!-- *As observed on: <span id="current-date"></span> -->
+                ஏரியின் நிலை - <a href="https://cmwssb.tn.gov.in/lake-level"><span id="current-date"></span></a> தேதியன்று
+            </div>
+        </center>
 
         <!-- Footer -->
         <footer class="text-center mt-5" style="font-size: 12px;">
             <hr>
-            <p> <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">வாட்ஸ்அப் சேனலில் </a> சேரவும் | 
+            <p>
+                <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">வாட்ஸ்அப் சேனலில் </a> சேரவும் | 
                 <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, 
                 <a href="https://x.com/newsofchennai">Twitter</a>, 
                 <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & 
@@ -205,33 +321,88 @@
             </p>
         </footer>
     </div>
+
     <script>
-        // Function to update water levels based on selected reservoir
-        function updateWaterLevels() {
-            const select = document.getElementById('reservoir-select');
-            const selectedOption = select.options[select.selectedIndex];
-            const currentLevel = selectedOption.getAttribute('data-current');
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const nav = document.querySelector('nav');
 
-            // Update the water level displayed
-            document.getElementById('current-level').textContent = currentLevel;
-
-            // Set the heights of the water level relative to the container height
-            const containerHeight = 150; // height of the water container
-            const percentageHeight = (currentLevel / 100) * containerHeight; // calculate height based on percentage
-            document.getElementById('water-level').style.height = `${percentageHeight}px`; // set height
-        }
-
-        // Set current date
-        const currentDate = '17/10/2024';//new Date().toLocaleDateString();
-        document.getElementById('current-date').textContent = currentDate;
-
-        // Update water levels on page load
-        updateWaterLevels();
-
-        // Add event listener to update water levels on dropdown change
-        document.getElementById('reservoir-select').addEventListener('change', () => {
-            updateWaterLevels();
+        hamburgerMenu.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            hamburgerMenu.classList.toggle('active');
         });
+
+        // Smooth scroll and close menu on click
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                nav.classList.remove('active');
+                hamburgerMenu.classList.remove('active');
+            });
+        });
+
+
+        const languageToggle = document.getElementById('language-toggle');
+        languageToggle.addEventListener('click', () => {
+            if (languageToggle.textContent === 'தமிழ்') {
+                window.location.href = 'lake-level-ta.html'; // Redirect to Tamil page
+            } else {
+                window.location.href = 'lake-level.html'; // Redirect to English page
+            }
+        });
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        themeToggle.addEventListener('click', () => {
+            const body = document.body;
+            body.classList.toggle('dark-mode');
+
+            // Toggle icon based on dark mode state
+            if (body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon'); // Remove moon icon
+                themeIcon.classList.add('fa-sun');     // Add sun icon for light mode
+            } else {
+                themeIcon.classList.remove('fa-sun');  // Remove sun icon
+                themeIcon.classList.add('fa-moon');     // Add moon icon for dark mode
+            }
+        });
+
+
+
+        // Update the water level based on the selected reservoir
+        const selectElement = document.getElementById('reservoir-select');
+        const currentLevelElement = document.getElementById('current-level');
+        const waterLevelElement = document.getElementById('water-level');
+
+        selectElement.addEventListener('change', function() {
+            const selectedOption = selectElement.options[selectElement.selectedIndex];
+            const currentLevel = selectedOption.getAttribute('data-current');
+            currentLevelElement.textContent = currentLevel;
+
+            // Adjust water level height according to the percentage
+            const waterHeight = `${currentLevel}%`;
+            waterLevelElement.style.height = waterHeight;
+        });
+
+        // Set initial values on page load
+        window.onload = function() {
+            const initialOption = selectElement.options[selectElement.selectedIndex];
+            const currentLevel = initialOption.getAttribute('data-current');
+            currentLevelElement.textContent = currentLevel;
+
+            // Adjust water level height according to the percentage
+            const waterHeight = `${currentLevel}%`;
+            waterLevelElement.style.height = waterHeight;
+
+            // Set the current date
+            const date = new Date();
+            const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+            document.getElementById('current-date').textContent = formattedDate;
+        };
     </script>
 </body>
 </html>
