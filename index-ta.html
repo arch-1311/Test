@@ -155,12 +155,12 @@
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-4 mb-2"> <!-- Full width on mobile, half on larger screens -->
                         <a href="helplines-ta.html" target="" class="btn btn-primary w-100" style="font-size: 14px;">
-                            <i class="fa-solid fa-phone"></i> சென்னை மழை உறுதிப்படுத்தப்பட்ட உதவி எண்கள்
+                            <i class="fa-solid fa-phone"></i> சென்னை - சரிபார்க்கப்பட்ட உதவி எண்கள்
                         </a>
                     </div>
                     <div class="col-12 col-md-4 mb-2"> <!-- Full width on mobile, half on larger screens -->
                         <a href="resources-ta.html" target="" class="btn btn-primary w-100" style="font-size: 14px;">
-                            <i class="fa-solid fa-user-shield"></i> சென்னை மழை - வளங்கள்
+                            <i class="fa-solid fa-user-shield"></i> சென்னை - வளங்கள்
                         </a>
                     </div>
                     <div class="col-12 col-md-4"> <!-- Full width on mobile, half on larger screens -->
@@ -250,7 +250,7 @@
     
         <div class="details-container">
             <div class="weather-details" id="weatherDetails">
-                <h3><span id="selectedLocality"></span> பகுதியில் வானிலை விவரங்கள்</h3><hr>
+                <h4><span id="selectedLocality"></span> பகுதியில் வானிலை விவரங்கள்</h4><hr>
                 <p id="disclaimer" style="font-size: 12px; font-style: italic;">வானிலை தகவல் ஒவ்வொரு மணிநேரத்திற்கும் மாறுகிறது மற்றும் உள்ளூர் வானிலை மையத்திலிருந்து பெறப்படுகிறது.</p>
                 <div id="weatherContent">தயவுசெய்து ஒரு பகுதியைத் தேர்ந்தெடுக்கவும்</div>
             </div>
@@ -276,8 +276,8 @@
         let marker;
 
         function fetchWeatherData(localityId, lat, lng, localityName) {
-    //const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR8B1XnkzVFKQVx0MOEmxmwBJLsZWLmib6VvKtVIJmHN2qglXhWa_a0mJY-1ZCNH8q8c8U6-73ftz9a/pub?gid=0&single=true&output=csv';
-    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTqfyE_XRXqR4-BpXCIugoXIz0cvvjHc2RE1KSQ-RKE6Tp2q8wxzjrLEopjFwZaz47kfiZXmM0BjHbi/pub?gid=0&single=true&output=csv';
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR8B1XnkzVFKQVx0MOEmxmwBJLsZWLmib6VvKtVIJmHN2qglXhWa_a0mJY-1ZCNH8q8c8U6-73ftz9a/pub?gid=0&single=true&output=csv';
+
     fetch(sheetUrl)
         .then(response => response.text())
         .then(data => {
@@ -309,12 +309,12 @@
                 marker = L.marker([lat, lng]).addTo(map).bindPopup(popupContent).openPopup();
 
                 const weatherContent = `
-                    <div class="weather-content">
+                    <div class="weather-content" style="font-size:10px">
                         <i class="fas fa-thermometer-half"></i> வெப்பநிலை: <span style="margin-right: 15px;">${row[temperatureIndex]}°C</span><br><br>
                         <i class="fas fa-tint"></i> ஈரப்பதம்: <span style="margin-right: 15px;">${row[humidityIndex]}%</span><br><br>
                         <i class="fas fa-wind"></i> காற்றின் வேகம்: <span style="margin-right: 15px;">${row[windSpeedIndex]} m/s</span><br><br>
                         <i class="fas fa-cloud-showers-heavy"></i> மழை சேகரிப்பு: <span style="margin-right: 15px;">${row[rainAccumulationIndex]} mm</span><br><br>
-                        புதுப்பிக்கப்பட்ட நேரம்: <span style="margin-right: 15px;">${row[lastFetched]}</span>
+                        <i class="fa-regular fa-clock"></i> புதுப்பிக்கப்பட்ட நேரம்: <span style="margin-right: 15px;">${row[lastFetched]}</span>
                     </div>
                 `;
                 document.getElementById('weatherContent').innerHTML = weatherContent;
