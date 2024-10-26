@@ -12,11 +12,61 @@
         body {
             font-family: Arial, sans-serif;
             padding: 20px;
-        }
+        }       
         #map-container {
-            height: 300px;
-            display: none; /* Hide the map by default */
+            height: 400px;
         }
+        .aqi-pluck-card {
+            position: relative;
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 8px;
+            color: black;
+            font-weight: bold;
+            text-align: center;
+            font-size: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            z-index: 10; /* Ensure it stays below the popup */
+        }
+        .aqi-pluck-card::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 10px;
+            background-color: white;
+            border: 1px solid black;
+        }
+        .good { background-color: #009966; }
+        .moderate { background-color: #ffde33; }
+        .unhealthy-sensitive { background-color: #ff9933; }
+        .unhealthy { background-color: #cc0033; }
+        .very-unhealthy { background-color: #660099; }
+        .hazardous { background-color: #7e0023; }
+
+        .popup-content {
+            text-align: center;
+            font-size: 8px;
+            padding: 5px; /* Reduced padding */
+            margin: 0; /* No extra margin */
+            border-radius: 5px;
+            line-height: 1.2; /* Tighter line spacing */
+        }
+
+        .popup-content p {
+            margin: 0; /* Remove margin around paragraph */
+        }
+
+        .popup-content.good { background-color: #009966; color: white; }
+        .popup-content.moderate { background-color: #ffde33; color: black; }
+        .popup-content.unhealthy-sensitive { background-color: #ff9933; color: black; }
+        .popup-content.unhealthy { background-color: #cc0033; color: white; }
+        .popup-content.very-unhealthy { background-color: #660099; color: white; }
+        .popup-content.hazardous { background-color: #7e0023; color: white; }
+        
         .aqi-box {
             text-align: center;
             padding: 10px;
@@ -27,12 +77,6 @@
             width: 100%;
             margin-top: 20px;
         }
-        .good { background-color: #00e400; }
-        .moderate { background-color: #ffff00; }
-        .unhealthy-sensitive { background-color: #ff7e00; }
-        .unhealthy { background-color: #ff0000; }
-        .very-unhealthy { background-color: #660099; }
-        .hazardous { background-color: #7e0023; }
         .two-column {
             display: flex;
             justify-content: space-between;
@@ -51,6 +95,12 @@
             box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
             padding: 10px;
         }
+        .leaflet-popup-content {
+            width: 60px;
+            margin: 5px 5px;
+            line-height: 1;
+        }
+        
         /* Scroll-up button styles */
         #scrollUpBtn {
             position: fixed;
@@ -73,6 +123,9 @@
             .column {
                 width: 100%;
             }
+            .table-bordered {
+                font-size: 9px;
+            }
         }
     </style>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
@@ -91,7 +144,7 @@
                     <i class="fas fa-home"></i>
                 </a>
                 <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
-                    <i class="fas fa-moon"></i>
+                    <i id="theme-icon" class="fas fa-moon"></i>
                 </button>
                 <a href="#" class="btn icon-circle"><i class="fa fa-language" aria-hidden="true"></i>
                 </a>
@@ -102,26 +155,25 @@
         </div>
     </div>
     <hr>
-    <center><h2>Chennai Air Quality and Sub-Stations</h2></center>
-
-    <!-- <label for="station-select">Select your nearest location: </label> -->
+    <center><strong><h4>Chennai Air Quality and Sub-Stations</h4></strong></center>
+    <label for="station-select">Select your nearest location:</label>
     <select id="station-select" class="form-control w-lg-50 w-sm-100">
-        <option value="">Select your nearest location</option>
+        <!-- <option value="">Select your nearest location</option> -->
         <option value="H13740">Arumbakkam</option>
         <option value="H12431">Alandur Bus Depot</option>
         <option value="H14701">Chengalpattu</option>
         <option value="H7023">Chennai US Consulate</option>
-        <option value="H11279">Velachery Res. Area</option>
         <option value="H8185">Manali</option>
         <option value="H11859">Manali Village</option>
         <option value="H13739">Kodungaiyur</option>
         <option value="H13738">Perungudi</option>
-        <option value="H13737">Royapuram</option>
+        <option value="H13737">Royapuram</option>        
+        <option value="H11279">Velachery Res. Area</option>
     </select>
 
     <div class="row mt-4">
         <div class="col-md-6">
-            <div class="aqi-info" style="display: none;">
+            <div class="aqi-info">
                 <div id="aqi-details"></div>
             </div>
         </div>
@@ -195,28 +247,8 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
-    // Theme toggle functionality
-    const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = document.getElementById('theme-icon');
-
-    themeToggle.addEventListener('click', () => {
-        const body = document.body;
-        body.classList.toggle('dark-mode');
-
-        // Toggle icon based on dark mode state
-        if (body.classList.contains('dark-mode')) {
-            themeIcon.classList.remove('fa-moon'); // Remove moon icon
-            themeIcon.classList.add('fa-sun');     // Add sun icon for light mode
-        } else {
-            themeIcon.classList.remove('fa-sun');  // Remove sun icon
-            themeIcon.classList.add('fa-moon');     // Add moon icon for dark mode
-        }
-    });
-
     const apiKey = '9eaa5b53392b2983fdc8e5e67bc0c7fdc28e38fd';
     const baseApiUrl = 'https://api.waqi.info/feed/@';
-    let map;
-
     const stationUrls = {
         "H13740": `${baseApiUrl}H13740/?token=${apiKey}`,
         "H12431": `${baseApiUrl}H12431/?token=${apiKey}`,
@@ -229,36 +261,97 @@
         "H13737": `${baseApiUrl}H13737/?token=${apiKey}`,
         "H13738": `${baseApiUrl}H13738/?token=${apiKey}`,
     };
-
     const coordinates = {
-        "H13740": [13.0827, 80.2707],  // Arumbakkam
-        "H12431": [12.9762, 80.2214],  // Alandur Bus Depot
-        "H14701": [12.6876, 79.9776],  // Chengalpattu
-        "H7023": [13.0604, 80.2548],   // Chennai US Consulate
-        "H11279": [12.9698, 80.2235],  // Velachery Res. Area
-        "H8185": [13.1687, 80.2666],   // Manali
-        "H11859": [13.1744, 80.2593],  // Manali Village
-        "H13739": [13.1303, 80.2426],  // Kodungaiyur
-        "H13738": [12.9223, 80.2306],  // Perungudi
-        "H13737": [13.0939, 80.2935]   // Royapuram
+        "H13740": { name: "Arumbakkam", coords: [13.0827, 80.2707] },
+        "H12431": { name: "Alandur Bus Depot", coords: [12.9762, 80.2214] },
+        "H14701": { name: "Chengalpattu", coords: [12.6876, 79.9776] },
+        "H7023": { name: "Chennai US Consulate", coords: [13.0604, 80.2548] },
+        "H8185": { name: "Manali", coords: [13.1687, 80.2666] },
+        "H11859": { name: "Manali Village", coords: [13.1744, 80.2593] },
+        "H13739": { name: "Kodungaiyur", coords: [13.1303, 80.2426] },
+        "H13737": { name: "Royapuram", coords: [13.0939, 80.2935] },
+        "H13738": { name: "Perungudi", coords:[12.9223, 80.2306] }, 
+        "H11279": { name: "Velachery Res. Area", coords: [12.9698, 80.2235] },
     };
+
+    //const map = L.map('map-container').fitBounds(Object.values(coordinates).map(loc => loc.coords));
+    const map = L.map('map-container').fitBounds(
+        Object.values(coordinates).map(loc => loc.coords), 
+        { paddingTopLeft: [40, 35] } // Adjust the second value to scroll lower
+    );
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    function getAQIClass(aqi) {
+        if (aqi <= 50) return "good";
+        else if (aqi <= 100) return "moderate";
+        else if (aqi <= 150) return "unhealthy-sensitive";
+        else if (aqi <= 200) return "unhealthy";
+        else if (aqi <= 300) return "very-unhealthy";
+        else return "hazardous";
+    }
+
+    async function loadAQIForAllStations() {
+        for (const stationId in coordinates) {
+            const apiUrl = `${baseApiUrl}${stationId}/?token=${apiKey}`;
+            const location = coordinates[stationId];
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.status === 'ok') {
+                    const pm25 = data.data.iaqi.pm25?.v || 'N/A';
+                    const aqiClass = getAQIClass(pm25);
+                    const aqiMarkerHtml = `
+                        <div class="aqi-pluck-card ${aqiClass}" onclick="showAQIInfo('${location.name}', '${pm25}')">
+                            <div>${pm25}</div>
+                        </div>
+                    `;
+
+                    const aqiIcon = L.divIcon({
+                        html: aqiMarkerHtml,
+                        className: 'aqi-icon',
+                        iconSize: [100, 60]
+                    });
+
+                    L.marker(location.coords, { icon: aqiIcon })
+                        .addTo(map)
+                        .on('click', () => showAQIInfo(location, pm25, aqiClass));
+                } else {
+                    console.error(`Failed to fetch AQI data for station ${stationId}`);
+                }
+            } catch (error) {
+                console.error(`Error fetching AQI data for station ${stationId}:`, error);
+            }
+        }
+    }
+
+    function showAQIInfo(location, aqi, aqiClass) {
+    // Create the popup content with area name and AQI level
+    const popupContent = `
+        <div class="popup-content ${aqiClass}">
+            <p>${location.name}</p>
+            <p>AQI Level: <strong>${aqi}</strong></p>
+        </div>
+    `;
+
+    // Display the popup at the marker location
+    L.popup({ 
+        closeButton: true,        
+        offset: [-20, -20]  // Offset the popup 20 pixels upwards
+    })
+        .setLatLng(location.coords)
+        .setContent(popupContent)
+        .openOn(map);
+    }
 
     function initializeMap() {
         map = L.map('map-container').setView([13.0827, 80.2707], 10);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
-    }
-
-    async function loadAQIForAllStations() {
-        const stationIds = Object.keys(stationUrls);
-        stationIds.forEach(async (stationId) => {
-            const aqiData = await fetchAQIData(stationId);
-            const coords = coordinates[stationId];
-            L.marker(coords).addTo(map)
-                .bindPopup(`<strong>${aqiData.city.name.split(',')[0]}</strong><br>AQI: ${aqiData.aqi}`)
-                .openPopup();
-        });
     }
 
     async function fetchAQIData(stationId) {
@@ -318,15 +411,40 @@
         return 'hazardous';
     }
 
-    // Initialize
-    initializeMap();
-    loadAQIForAllStations();// Scroll to top function
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+    // Trigger fetching AQI data for Arumbakkam on page load
+    document.addEventListener("DOMContentLoaded", async () => {
+    const defaultStationId = "H13740"; // Arumbakkam ID
+    document.getElementById("station-select").value = defaultStationId; // Set the dropdown to Arumbakkam
+    const aqiData = await fetchAQIData(defaultStationId);
+    const { aqi, time, iaqi } = aqiData;
+    const lastUpdated = new Date(time.s).toLocaleString();
+    const cityName = aqiData.city.name.split(',')[0]; // Extract city name up to the first comma
+    const healthStatus = getHealthStatus(aqi);
 
-        // Show scroll-up button on scroll
-        window.onscroll = function() {
+    const pm25 = iaqi.pm25 ? iaqi.pm25.v : 'N/A';
+    const pm10 = iaqi.pm10 ? iaqi.pm10.v : 'N/A';
+
+    // Show AQI details
+    const aqiDetails = document.getElementById("aqi-details");
+    aqiDetails.innerHTML = `
+        <strong> <h4 style="text-decoration:underline;">${cityName}</h4></strong>
+        <div class="aqi-box ${getAQIClass(aqi)}">AQI Level : ${aqi} | ${healthStatus}</div><br>
+        <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
+        <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>
+        <div>Last updated: ${lastUpdated}</div></strong>
+    `;
+    document.querySelector(".aqi-info").style.display = "block";
+    });
+    // End of Trigger fetching AQI data for Arumbakkam on page load
+    
+    loadAQIForAllStations();
+    // Scroll to top function
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Show scroll-up button on scroll
+    window.onscroll = function() {
             if (document.body.scrollTop > 100 || document.documentElement.scrollTop >
             100) {
                 document.getElementById('scrollUpBtn').style.display = 'block';
@@ -335,6 +453,7 @@
             }
         };
     </script>
+    <script src="script.js"></script>
     <footer class="text-center mt-5" style="font-size: 14px;">
         <hr>
         <p>Join the <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">WhatsApp Channel</a> | Follow on <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, <a href="https://x.com/newsofchennai">Twitter</a>, <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & <a href="https://www.facebook.com/newsofchennai">Facebook</a> | Contact - newsofchennai@pm.me <br> News of Chennai is a citizen service that has been functioning since 2020, providing reliable and verified information to citizens in times of need. <br> Weather data sourced from <a href="https://www.weatherunion.com/">Weather Union</a> based on on-ground network of weather stations installed across Chennai.</p>

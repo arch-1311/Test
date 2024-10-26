@@ -20,8 +20,11 @@
         th, td {
             text-align: center; /* Center-align text in table */
         }
-        th {
+        /* th {
             background-color: #f8f8f8;
+        } */
+        .dark-mode .table {
+            color: white; 
         }
         .scroll-to-top {
             position: fixed;
@@ -70,6 +73,7 @@
             align-items: center;
         }
     </style>
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -78,25 +82,26 @@
             <a href="index.html">
                 <img src="NOC2024.png" alt="Banner" class="img-fluid banner-img" />
             </a>
-        </div>
-        <center>
-            <div class="d-flex justify-content-between align-items-center mb-3" style="max-width: 430px">
-                <a href="index.html" style="text-decoration: none; font-size: 14px;">
-                    <div class="icon-circle">
-                        <i class="fas fa-home"></i>
-                    </div>
+            <!-- Top Ribbon -->
+            <div class="top-ribbon">
+                <a href="index.html" class="btn icon-circle" aria-label="Home">
+                    <i class="fas fa-home"></i>
                 </a>
-                <a href="medical-emergency-ta.html">
-                    <button id="tamil-button" class="btn btn-link">
-                        தமிழில் படிக்க இங்கே கிளிக் செய்யவும்
-                    </button>
+                <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <a href="medical-emergency-ta.html" class="btn icon-circle"><i class="fa fa-language" aria-hidden="true"></i>
                 </a>
+                <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a>
             </div>
-        </center>
+        </div>
+        <hr>
 
         <!-- Helpline Table Section -->
         <div class="content">
-            <p style="font-size: 22px;color:black;font-weight:bold;text-align: center;">Medical Emergency - Helpline Numbers</p>
+            <p style="font-size: 22px;font-weight:bold;text-align: center;">Medical Emergency - Helpline Numbers</p>
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -213,6 +218,7 @@
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
     </script>
+    <script src="script.js"></script>
     <footer class="text-center mt-5" style="font-size: 14px;">
         <hr>
         <p>Join the <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">WhatsApp Channel</a> | Follow on <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, <a href="https://x.com/newsofchennai">Twitter</a>, <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & <a href="https://www.facebook.com/newsofchennai">Facebook</a> | Contact - newsofchennai@pm.me <br> News of Chennai is a citizen service that has been functioning since 2020, providing reliable and verified information to citizens in times of need.

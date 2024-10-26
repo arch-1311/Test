@@ -68,29 +68,33 @@
             align-items: center;
         }
     </style>
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
     <!-- Banner Image -->
     <div class="container">
         <div class="text-center">
-            <a href="index.html">
+            <a href="index-ta.html">
                 <img src="NOC2024.png" alt="Banner" class="img-fluid banner-img" />
             </a>
-        </div>
-        <center>
-        <div class="d-flex justify-content-between align-items-center mb-3" style="max-width: 250px">
-            <a href="index-ta.html" style="text-decoration: none; font-size: 14px;">
-                <div class="icon-circle">
+            <!-- Top Ribbon -->
+            <div class="top-ribbon">
+                <a href="index-ta.html" class="btn icon-circle" aria-label="Home">
                     <i class="fas fa-home"></i>
-                </div>
-            </a>
-            <a href="councillor-contact.html">
-                <button class="btn btn-link">
-                    Switch to English Version
+                </a>
+                <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i id="theme-icon" class="fas fa-moon"></i>
                 </button>
-            </a>
-        </div>    
+                <a href="councillor-contact.html" class="btn icon-circle"><i class="fa fa-language" aria-hidden="true"></i>
+                </a>
+                <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+        <hr> 
+    <center>
         <h2 style="font-size: 22px;font-weight:bold;color: black;">சென்னை கவுன்சிலர்கள் தொடர்பு</h2>
         <p>உங்கள் மண்டலம் மற்றும் வார்டைப் பற்றிய தகவலுக்கு - <a href="know-you-ward-ta.html">இங்கே கிளிக் செய்யவும்</a></p>            
     </center>
@@ -2006,5 +2010,6 @@
         }
     };
 </script>
+<script src="script.js"></script>
 </body>
 </html>

@@ -128,7 +128,7 @@
                         <i class="fas fa-home"></i>
                     </a>
                     <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
-                        <i class="fas fa-moon"></i>
+                        <i id="theme-icon" class="fas fa-moon"></i>
                     </button>
                     <a href="lake-level-ta.html" class="btn icon-circle"><i class="fa fa-language" aria-hidden="true"></i>
                     </a>
@@ -144,25 +144,25 @@
                 <div class="dropdown">
                     <label for="reservoir-select">Select Reservoir:</label>
                     <select id="reservoir-select">
-                        <option value="CHEMBARAMBAKKAM" data-current="36.65">CHEMBARAMBAKKAM</option>
-                        <option value="CHOLAVARAM" data-current="19.52">CHOLAVARAM</option>                    
-                        <option value="KANNANKOTTAI THERVOY KANDIGAI" data-current="62.60">KANNANKOTTAI THERVOY KANDIGAI</option>
-                        <option value="POONDI" data-current="15.20">POONDI</option>
-                        <option value="PUZHAL" data-current="73.24">PUZHAL</option>
-                        <option value="VEERANAM" data-current="85.57">VEERANAM</option>
+                        <option value="CHEMBARAMBAKKAM" data-current="39.53">CHEMBARAMBAKKAM</option>
+                        <option value="CHOLAVARAM" data-current="12.86">CHOLAVARAM</option>                    
+                        <option value="KANNANKOTTAI THERVOY KANDIGAI" data-current="63.40">KANNANKOTTAI THERVOY KANDIGAI</option>
+                        <option value="POONDI" data-current="14.61">POONDI</option>
+                        <option value="PUZHAL" data-current="76.09">PUZHAL</option>
+                        <option value="VEERANAM" data-current="75.09">VEERANAM</option>
                     </select>
                 </div>
             </div>
             <!-- Single tank for selected reservoir -->
             <center>
                 <div class="water-level">
-                    <h6>Storage Level (100%)</h6>
+                    <p>Storage Level (100%)</p>
                     <div class="water-container">
                         <div class="water" id="water-level">
                             <div class="water-wave"></div> <!-- Subtle wave animation -->
                         </div>
                     </div>
-                    <p>Current Level: <br><span id="current-level">9.13</span>%</p>
+                    <h6>Current Level: <br><span id="current-level">9.13</span>%</h6>
                 </div>
                 <div class="date-info">
                     <!-- *As observed on: <span id="current-date"></span> -->
@@ -184,23 +184,6 @@
         </footer>
     </div>
     <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-
-        themeToggle.addEventListener('click', () => {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-
-            // Toggle icon based on dark mode state
-            if (body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('fa-moon'); // Remove moon icon
-                themeIcon.classList.add('fa-sun');     // Add sun icon for light mode
-            } else {
-                themeIcon.classList.remove('fa-sun');  // Remove sun icon
-                themeIcon.classList.add('fa-moon');     // Add moon icon for dark mode
-            }
-        });
         // Function to update water levels based on selected reservoir
         function updateWaterLevels() {
             const select = document.getElementById('reservoir-select');
@@ -218,8 +201,9 @@
 
         // Set current date
         const date = new Date();
-        const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-        document.getElementById('current-date').textContent = currentDate;
+        //const formattedDate = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`; // if value is updated on current date
+        const formattedDate = '25-10-2024' //if data is past date
+        document.getElementById('current-date').textContent = formattedDate;
 
         // Update water levels on page load
         updateWaterLevels();
@@ -229,5 +213,6 @@
             updateWaterLevels();
         });
     </script>
+    <script src="script.js"></script>
 </body>
 </html>
