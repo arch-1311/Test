@@ -1,29 +1,37 @@
-// Moon to Sun icon toggle in dark mode 
 document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
+    const bannerImage = document.getElementById('banner-image');
     const body = document.body;
 
-    // Check for saved theme in local storage
+    // Apply saved theme without default preference
     if (localStorage.getItem('theme') === 'dark') {
-        body.classList.add('dark-mode');
-        themeIcon.classList.remove('fa-moon');
-        themeIcon.classList.add('fa-sun');
+        enableDarkMode();
+    } else if (localStorage.getItem('theme') === 'light') {
+        enableLightMode();
     }
 
+    // Toggle dark mode
     themeToggle.addEventListener('click', () => {
-        // Toggle dark mode class
-        body.classList.toggle('dark-mode');
-
-        // Toggle icon based on dark mode state
         if (body.classList.contains('dark-mode')) {
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-            localStorage.setItem('theme', 'dark'); // Save dark mode preference
+            enableLightMode();
+            localStorage.setItem('theme', 'light');
         } else {
-            themeIcon.classList.remove('fa-sun');
-            themeIcon.classList.add('fa-moon');
-            localStorage.setItem('theme', 'light'); // Save light mode preference
+            enableDarkMode();
+            localStorage.setItem('theme', 'dark');
         }
     });
+
+    // Functions to enable light and dark modes
+    function enableDarkMode() {
+        body.classList.add('dark-mode');
+        themeIcon.classList.replace('fa-moon', 'fa-sun');
+        bannerImage.src = 'NOCWHITEBACKGROND.png';
+    }
+
+    function enableLightMode() {
+        body.classList.remove('dark-mode');
+        themeIcon.classList.replace('fa-sun', 'fa-moon');
+        bannerImage.src = 'NOC2024bg.png';
+    }
 });
