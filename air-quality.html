@@ -40,7 +40,7 @@
             background-color: white;
             border: 1px solid black;
         }
-        .good { background-color: #009966; }
+        .good { background-color: #009966; color: white;}
         .moderate { background-color: #ffde33; }
         .unhealthy-sensitive { background-color: #ff9933; }
         .unhealthy { background-color: #cc0033; color: white }
@@ -277,7 +277,18 @@
         "H13738": { name: "Perungudi", coords:[12.9223, 80.2306] }, 
         "H11279": { name: "Velachery Res. Area", coords: [12.9698, 80.2235] },
     };
-
+    const cityTranslations = {
+        "Arumbakkam": "Arumbakkam",
+        "Alandur Bus Depot": "Alandur",
+        "Crescent University": "Chengalpattu",
+        "Manali": "Manali",
+        "Manali Village": "Manali Village",
+        "Kodungaiyur": "Kodungaiyur",
+        "Perungudi": "Perungudi",
+        "Royapuram": "Royapuram",
+        "Chennai US Consulate": "Teynampet",
+        "Velachery Res. Area": "Velachery"
+    };
     //const map = L.map('map-container').fitBounds(Object.values(coordinates).map(loc => loc.coords));
     const map = L.map('map-container').fitBounds(
         Object.values(coordinates).map(loc => loc.coords), 
@@ -371,6 +382,7 @@
             const { aqi, time, iaqi } = aqiData;
             const lastUpdated = new Date(time.s).toLocaleString();
             const cityName = aqiData.city.name.split(',')[0]; // Extract city name up to the first comma
+            const formattedCityName = cityTranslations[cityName] || cityName;
             const healthStatus = getHealthStatus(aqi);
 
             const pm25 = aqiData.iaqi.pm25 ? aqiData.iaqi.pm25.v : 'N/A';
@@ -379,7 +391,7 @@
             // Show AQI details
             const aqiDetails = document.getElementById("aqi-details");
             aqiDetails.innerHTML = `
-                <strong> <h4 style="text-decoration:underline;">${cityName}</h4></strong>
+                <strong> <h4 style="text-decoration:underline;">${formattedCityName}</h4></strong>
                 <div class="aqi-box ${getAQIClass(aqi)}">AQI Level : ${aqi} | ${healthStatus}</div><br>
                 <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
                 <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>
@@ -423,6 +435,7 @@
     const { aqi, time, iaqi } = aqiData;
     const lastUpdated = new Date(time.s).toLocaleString();
     const cityName = aqiData.city.name.split(',')[0]; // Extract city name up to the first comma
+    const formattedCityName = cityTranslations[cityName] || cityName;
     const healthStatus = getHealthStatus(aqi);
 
     const pm25 = iaqi.pm25 ? iaqi.pm25.v : 'N/A';
@@ -431,7 +444,7 @@
     // Show AQI details
     const aqiDetails = document.getElementById("aqi-details");
     aqiDetails.innerHTML = `
-        <strong> <h4 style="text-decoration:underline;">${cityName}</h4></strong>
+        <strong> <h4 style="text-decoration:underline;">${formattedCityName}</h4></strong>
         <div class="aqi-box ${getAQIClass(aqi)}">AQI Level : ${aqi} | ${healthStatus}</div><br>
         <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
         <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>

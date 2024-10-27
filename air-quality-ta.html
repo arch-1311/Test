@@ -40,7 +40,7 @@
             background-color: white;
             border: 1px solid black;
         }
-        .good { background-color: #009966; }
+        .good { background-color: #009966; color: white;}
         .moderate { background-color: #ffde33; }
         .unhealthy-sensitive { background-color: #ff9933; }
         .unhealthy { background-color: #cc0033; color: white}
@@ -188,38 +188,38 @@
     <hr>
     <div class="row">
         <div class="col-12">
-            <h5 style="text-decoration:underline;font-size: 13px;">காற்றின் தரம் மற்றும் மாசு அளவீட்டின் பற்றி:</h5>
+            <h5 style="text-decoration:underline;font-size: 13px;">காற்றின் தரம் மற்றும் மாசு அளவீடு பற்றி:</h5>
             <table class="aqi-table table table-bordered" style="padding: 10px;">
                 <tbody>
                     <tr class="good">
                         <td>0 - 50</td>
                         <td>நல்லது</td>
-                        <td>காற்றின் தரம் திருப்திகரமானதாகக் கருதப்படுகிறது, சுகாதாரத்திற்கு குறைந்த அல்லது எந்த அபாயமும் இல்லை.</td>
+                        <td>காற்றின் தரம் திருப்திகரமாக இருப்பதாகக் கருதப்படுகிறது, மேலும் காற்று மாசுபாடு சிறிய அல்லது எந்த ஆபத்தையும் ஏற்படுத்தாது</td>
                     </tr>
                     <tr class="moderate">
                         <td>51 - 100</td>
                         <td>மிதமான</td>
-                        <td>ஏற்கெனவே அனுமதிக்கப்படும் காற்றின் தரம்; நெகிழ்வான நபர்களுக்கான மிதமான கவலை.</td>
+                        <td>காற்றின் தரம் ஏற்றுக்கொள்ளத்தக்கது; இருப்பினும், சில மாசுபாடுகளுக்கு, காற்று மாசுபாட்டிற்கு வழக்கத்திற்கு மாறாக உணர்திறன் கொண்ட மிகக் குறைந்த எண்ணிக்கையிலான மக்களுக்கு மிதமான உடல்நலக் கவலை இருக்கலாம்.</td>
                     </tr>
                     <tr class="unhealthy-sensitive">
                         <td>101 - 150</td>
                         <td>உணர்திறன் கொண்ட குழுக்களுக்கு ஆரோக்கியமற்றது</td>
-                        <td>நெகிழ்வான குழுக்கள் சுகாதார விளைவுகளை அனுபவிக்கலாம்; பொதுமக்கள் பாதிக்கப்பட முடியாது.</td>
+                        <td>உணர்திறன் கொண்ட குழுக்களின் உறுப்பினர்கள் உடல்நல பாதிப்புகளை அனுபவிக்கலாம். பொதுமக்களுக்கு பாதிப்பு ஏற்பட வாய்ப்பில்லை.</td>
                     </tr>
                     <tr class="unhealthy">
                         <td>151 - 200</td>
                         <td>ஆரோக்கியமற்றது</td>
-                        <td>எல்லாருக்குமான சுகாதார விளைவுகள்; நெகிழ்வான குழுக்கள் மிகவும் கடுமையான பிரச்சனைகளை அனுபவிக்கலாம்.</td>
+                        <td>ஒவ்வொருவரும் உடல்நல பாதிப்புகளை அனுபவிக்க ஆரம்பிக்கலாம்; உணர்திறன் கொண்ட குழுக்களின் உறுப்பினர்கள் மிகவும் கடுமையான உடல்நல பாதிப்புகளை அனுபவிக்கலாம்</td>
                     </tr>
                     <tr class="very-unhealthy">
                         <td>201 - 300</td>
                         <td>மிகவும் ஆரோக்கியமற்றது</td>
-                        <td>சுகாதார எச்சரிக்கைகள் வெளியிடப்பட்டுள்ளன; எல்லோரும் மிகவும் தீவிர சுகாதார விளைவுகளை அனுபவிக்க வாய்ப்பு உள்ளது.</td>
+                        <td>அவசரகால நிலைமைகள் பற்றிய சுகாதார எச்சரிக்கைகள். ஒட்டுமொத்த மக்களும் பாதிக்கப்பட வாய்ப்பு அதிகம்.</td>
                     </tr>
                     <tr class="hazardous">
                         <td>300+</td>
                         <td>அபாயகரமானது</td>
-                        <td>எல்லா நபர்களுக்கும் தீவிர விளைவுகளை உட்படச் சுகாதார எச்சரிக்கை.</td>
+                        <td>சுகாதார எச்சரிக்கை: அனைவரும் மிகவும் தீவிரமான உடல்நல பாதிப்புகளை சந்திக்கலாம்</td>
                     </tr>
                 </tbody>
             </table>
@@ -262,6 +262,18 @@
         "H13737": { name: "ராயபுரம்", coords: [13.0939, 80.2935] },
         "H13738": { name: "பெருங்குடி", coords:[12.9223, 80.2306] }, 
         "H11279": { name: "வேளச்சேரி", coords: [12.9698, 80.2235] },
+    };
+    const cityTranslations = {
+        "Arumbakkam": "அரும்பாக்கம்",
+        "Alandur Bus Depot": "ஆலந்தூர்",
+        "Crescent University": "செங்கல்பட்டு",
+        "Manali": "மணலி",
+        "Manali Village": "மணலி கிராமம்",
+        "Kodungaiyur": "கொடுங்கையூர்",
+        "Perungudi": "பெருங்குடி",
+        "Royapuram": "ராயபுரம்",
+        "Chennai US Consulate": "தேனாம்பேட்டை",
+        "Velachery Res. Area": "வேளச்சேரி"
     };
 
     //const map = L.map('map-container').fitBounds(Object.values(coordinates).map(loc => loc.coords));
@@ -357,6 +369,7 @@
             const { aqi, time, iaqi } = aqiData;
             const lastUpdated = new Date(time.s).toLocaleString();
             const cityName = aqiData.city.name.split(',')[0]; // Extract city name up to the first comma
+            const tamilCityName = cityTranslations[cityName] || cityName;
             const healthStatus = getHealthStatus(aqi);
 
             const pm25 = aqiData.iaqi.pm25 ? aqiData.iaqi.pm25.v : 'N/A';
@@ -365,7 +378,7 @@
             // Show AQI details
             const aqiDetails = document.getElementById("aqi-details");
             aqiDetails.innerHTML = `
-                <strong> <h4 style="text-decoration:underline;">${cityName}</h4></strong>
+                <strong> <h4 style="text-decoration:underline;">${tamilCityName}</h4></strong>
                 <div class="aqi-box ${getAQIClass(aqi)}">AQI நிலை : ${aqi} | ${healthStatus}</div><br>
                 <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
                 <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>
@@ -409,6 +422,7 @@
     const { aqi, time, iaqi } = aqiData;
     const lastUpdated = new Date(time.s).toLocaleString();
     const cityName = aqiData.city.name.split(',')[0]; // Extract city name up to the first comma
+    const tamilCityName = cityTranslations[cityName] || cityName;
     const healthStatus = getHealthStatus(aqi);
 
     const pm25 = iaqi.pm25 ? iaqi.pm25.v : 'N/A';
@@ -417,7 +431,7 @@
     // Show AQI details
     const aqiDetails = document.getElementById("aqi-details");
     aqiDetails.innerHTML = `
-        <strong> <h4 style="text-decoration:underline;">${cityName}</h4></strong>
+        <strong> <h4 style="text-decoration:underline;">${tamilCityName}</h4></strong>
         <div class="aqi-box ${getAQIClass(aqi)}">AQI நிலை : ${aqi} | ${healthStatus}</div><br>
         <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
         <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>
