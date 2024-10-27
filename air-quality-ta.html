@@ -43,9 +43,9 @@
         .good { background-color: #009966; }
         .moderate { background-color: #ffde33; }
         .unhealthy-sensitive { background-color: #ff9933; }
-        .unhealthy { background-color: #cc0033; }
-        .very-unhealthy { background-color: #660099; }
-        .hazardous { background-color: #7e0023; }
+        .unhealthy { background-color: #cc0033; color: white}
+        .very-unhealthy { background-color: #660099; color: white}
+        .hazardous { background-color: #7e0023; color: white}
 
         .popup-content {
             text-align: center;
@@ -193,27 +193,27 @@
                 <tbody>
                     <tr class="good">
                         <td>0 - 50</td>
-                        <td>சிறந்தது</td>
+                        <td>நல்லது</td>
                         <td>காற்றின் தரம் திருப்திகரமானதாகக் கருதப்படுகிறது, சுகாதாரத்திற்கு குறைந்த அல்லது எந்த அபாயமும் இல்லை.</td>
                     </tr>
                     <tr class="moderate">
                         <td>51 - 100</td>
-                        <td>மிதமானது</td>
+                        <td>மிதமான</td>
                         <td>ஏற்கெனவே அனுமதிக்கப்படும் காற்றின் தரம்; நெகிழ்வான நபர்களுக்கான மிதமான கவலை.</td>
                     </tr>
                     <tr class="unhealthy-sensitive">
                         <td>101 - 150</td>
-                        <td>நெகிழ்வான குழுக்களுக்கு தீங்கானது</td>
+                        <td>உணர்திறன் கொண்ட குழுக்களுக்கு ஆரோக்கியமற்றது</td>
                         <td>நெகிழ்வான குழுக்கள் சுகாதார விளைவுகளை அனுபவிக்கலாம்; பொதுமக்கள் பாதிக்கப்பட முடியாது.</td>
                     </tr>
                     <tr class="unhealthy">
                         <td>151 - 200</td>
-                        <td>ஆரோக்கியத்திற்கு தீங்கானது</td>
+                        <td>ஆரோக்கியமற்றது</td>
                         <td>எல்லாருக்குமான சுகாதார விளைவுகள்; நெகிழ்வான குழுக்கள் மிகவும் கடுமையான பிரச்சனைகளை அனுபவிக்கலாம்.</td>
                     </tr>
                     <tr class="very-unhealthy">
                         <td>201 - 300</td>
-                        <td>மிகவும் தீங்கானது</td>
+                        <td>மிகவும் ஆரோக்கியமற்றது</td>
                         <td>சுகாதார எச்சரிக்கைகள் வெளியிடப்பட்டுள்ளன; எல்லோரும் மிகவும் தீவிர சுகாதார விளைவுகளை அனுபவிக்க வாய்ப்பு உள்ளது.</td>
                     </tr>
                     <tr class="hazardous">
@@ -252,16 +252,16 @@
         "H13738": `${baseApiUrl}H13738/?token=${apiKey}`,
     };
     const coordinates = {
-        "H13740": { name: "Arumbakkam", coords: [13.0827, 80.2707] },
-        "H12431": { name: "Alandur Bus Depot", coords: [12.9762, 80.2214] },
-        "H14701": { name: "Chengalpattu", coords: [12.6876, 79.9776] },
-        "H7023": { name: "Chennai US Consulate", coords: [13.0604, 80.2548] },
+        "H13740": { name: "அரும்பாக்கம்", coords: [13.0827, 80.2707] },
+        "H12431": { name: "ஆலந்தூர்", coords: [12.9762, 80.2214] },
+        "H14701": { name: "செங்கல்பட்டு", coords: [12.6876, 79.9776] },
+        "H7023": { name: "தேனாம்பேட்டை", coords: [13.0604, 80.2548] },
         "H8185": { name: "மணலி", coords: [13.1687, 80.2666] },
-        "H11859": { name: "Manali Village", coords: [13.1744, 80.2593] },
-        "H13739": { name: "Kodungaiyur", coords: [13.1303, 80.2426] },
-        "H13737": { name: "Royapuram", coords: [13.0939, 80.2935] },
-        "H13738": { name: "Perungudi", coords:[12.9223, 80.2306] }, 
-        "H11279": { name: "Velachery Res. Area", coords: [12.9698, 80.2235] },
+        "H11859": { name: "மணலி கிராமம்", coords: [13.1744, 80.2593] },
+        "H13739": { name: "கொடுங்கையூர்", coords: [13.1303, 80.2426] },
+        "H13737": { name: "ராயபுரம்", coords: [13.0939, 80.2935] },
+        "H13738": { name: "பெருங்குடி", coords:[12.9223, 80.2306] }, 
+        "H11279": { name: "வேளச்சேரி", coords: [12.9698, 80.2235] },
     };
 
     //const map = L.map('map-container').fitBounds(Object.values(coordinates).map(loc => loc.coords));
@@ -323,7 +323,7 @@
     const popupContent = `
         <div class="popup-content ${aqiClass}">
             <p>${location.name}</p>
-            <p>AQI Level: <strong>${aqi}</strong></p>
+            <p>AQI நிலை: <strong>${aqi}</strong></p>
         </div>
     `;
 
@@ -366,10 +366,10 @@
             const aqiDetails = document.getElementById("aqi-details");
             aqiDetails.innerHTML = `
                 <strong> <h4 style="text-decoration:underline;">${cityName}</h4></strong>
-                <div class="aqi-box ${getAQIClass(aqi)}">AQI Level : ${aqi} | ${healthStatus}</div><br>
+                <div class="aqi-box ${getAQIClass(aqi)}">AQI நிலை : ${aqi} | ${healthStatus}</div><br>
                 <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
                 <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>
-                <div>Last updated: ${lastUpdated}</div></strong>
+                <div>கடைசியாக புதுப்பிக்கப்பட்டது: ${lastUpdated}</div></strong>
             `;
             document.querySelector(".aqi-info").style.display = "block";
 
@@ -385,12 +385,12 @@
         }
     });
     function getHealthStatus(aqiValue) {
-        if (aqiValue <= 50) return 'Good';
-        if (aqiValue <= 100) return 'Moderate';
-        if (aqiValue <= 150) return 'Unhealthy for Sensitive Groups';
-        if (aqiValue <= 200) return 'Unhealthy';
-        if (aqiValue <= 300) return 'Very Unhealthy';
-        return 'Hazardous';
+        if (aqiValue <= 50) return 'நல்லது';
+        if (aqiValue <= 100) return 'மிதமான';
+        if (aqiValue <= 150) return 'உணர்திறன் கொண்ட குழுக்களுக்கு ஆரோக்கியமற்றது';
+        if (aqiValue <= 200) return 'ஆரோக்கியமற்றது';
+        if (aqiValue <= 300) return 'மிகவும் ஆரோக்கியமற்றது';
+        return 'அபாயகரமானது';
     }
     function getAQIClass(aqi) {
         if (aqi <= 50) return 'good';
@@ -418,10 +418,10 @@
     const aqiDetails = document.getElementById("aqi-details");
     aqiDetails.innerHTML = `
         <strong> <h4 style="text-decoration:underline;">${cityName}</h4></strong>
-        <div class="aqi-box ${getAQIClass(aqi)}">AQI Level : ${aqi} | ${healthStatus}</div><br>
+        <div class="aqi-box ${getAQIClass(aqi)}">AQI நிலை : ${aqi} | ${healthStatus}</div><br>
         <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
         <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>
-        <div>Last updated: ${lastUpdated}</div></strong>
+        <div>கடைசியாக புதுப்பிக்கப்பட்டது: ${lastUpdated}</div></strong>
     `;
     document.querySelector(".aqi-info").style.display = "block";
     });
