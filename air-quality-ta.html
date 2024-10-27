@@ -40,12 +40,12 @@
             background-color: white;
             border: 1px solid black;
         }
-        .good { background-color: #009966; color: black; }
-        .moderate { background-color: #ffde33; color: black; }
-        .unhealthy-sensitive { background-color: #ff9933; color: black;   }
-        .unhealthy { background-color: #cc0033; color: white;  }
-        .very-unhealthy { background-color: #660099; color: white; }
-        .hazardous { background-color: #7e0023; color: white; }
+        .good { background-color: #009966; }
+        .moderate { background-color: #ffde33; }
+        .unhealthy-sensitive { background-color: #ff9933; }
+        .unhealthy { background-color: #cc0033; }
+        .very-unhealthy { background-color: #660099; }
+        .hazardous { background-color: #7e0023; }
 
         .popup-content {
             text-align: center;
@@ -138,25 +138,25 @@
             <img id="banner-image" src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
         </a>
          <!-- Top Ribbon -->
-        <div class="top-ribbon" style="justify-content: space-around;">
+        <div class="top-ribbon">
             <!-- <div class="left-options"> -->
                 <a href="index.html" class="btn icon-circle" aria-label="Home">
                     <i class="fas fa-home"></i>
                 </a>                
-                <a href="air-quality.html" class="btn icon-circle">English Version<!--<i class="fa fa-language" aria-hidden="true"></i>-->
+                <a href="air-quality.html" class="btn icon-circle" style="white-space: nowrap;">English Version</i> <!--<i class="fa fa-language" aria-hidden="true"></i>-->
                 </a>
                 <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
                     <i id="theme-icon" class="fas fa-moon"></i>
                 </button>
-               <!--  <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
+               <!-- <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
                 <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a>
-            <!-- </div> -->
+             </div> -->
         </div>
     </div>
     <hr>
-    <center><strong><h4>சென்னை - காற்றின் தரம்</h4></strong></center>
-    <!-- <label for="station-select">Select your nearest location:</label> -->
+    <center><strong><h5>சென்னை - காற்றின் தரம்</h5></strong>
+    <label for="station-select">Select your nearest location:</label></center>
     <select id="station-select" class="form-control w-lg-50 w-sm-100">
         <!-- <option value="">உங்கள் அருகிலுள்ள இடத்தை தேர்வு செய்யவும்</option> -->
         <option value="H13740">அரும்பாக்கம்</option>

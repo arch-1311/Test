@@ -139,24 +139,28 @@
             <img id="banner-image" src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
         </a>
          <!-- Top Ribbon -->
-        <div class="top-ribbon" style="justify-content: space-between;">
+        <div class="top-ribbon">
             <!-- <div class="left-options"> -->
                 <a href="index.html" class="btn icon-circle" aria-label="Home">
                     <i class="fas fa-home"></i>
                 </a>
-                <a href="air-quality-ta.html" class="btn icon-circle">தமிழ் பதிப்பு</a>
+                <a href="air-quality-ta.html" class="btn icon-circle" style="white-space: nowrap;">தமிழ் பதிப்பு</i>
+                </a>
                 <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
                     <i id="theme-icon" class="fas fa-moon"></i>
                 </button>
-               <!--  <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <!-- <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a> -->
             <!-- </div> -->
         </div>
     </div>
     <hr>
-    <center><strong><h4>Chennai Air Quality</h4></strong></center>
-    <label for="station-select">Select your nearest location:</label>
+    <center><strong><h4>Chennai Air Quality</h4></strong>
+        <div style="font-size: 13px; font-weight: bold; padding: 5px; border-radius: 10px; box-shadow: 0px 4px 6px #6c757d; max-width: 650px; margin: 10px auto; text-align: center;">
+            <label for="station-select">Select your nearest location ↓ </label>
+        </div>
+        </center>
     <select id="station-select" class="form-control w-lg-50 w-sm-100">
         <!-- <option value="">Select your nearest location</option> -->
         <option value="H13740">Arumbakkam</option>

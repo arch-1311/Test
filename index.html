@@ -142,14 +142,14 @@
                 <a href="#" class="btn icon-circle" aria-label="Home">
                     <i class="fas fa-home"></i>
                 </a>                
-                <a href="index-ta.html" class="btn icon-circle"><i class="fa fa-language" aria-hidden="true"></i>
+                <a href="index-ta.html" class="btn icon-circle" style="white-space: nowrap;">தமிழ் பதிப்பு</i>
                 </a>
                 <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
                     <i id="theme-icon" class="fas fa-moon"></i>
                 </button>
-                <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <!-- <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
                 <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a> -->
             <!-- </div> -->
         </div>
     </div>
@@ -292,7 +292,8 @@
         let marker;
 
         function fetchWeatherData(localityId, lat, lng, localityName) {
-    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTqfyE_XRXqR4-BpXCIugoXIz0cvvjHc2RE1KSQ-RKE6Tp2q8wxzjrLEopjFwZaz47kfiZXmM0BjHbi/pub?gid=0&single=true&output=csv';
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR8B1XnkzVFKQVx0MOEmxmwBJLsZWLmib6VvKtVIJmHN2qglXhWa_a0mJY-1ZCNH8q8c8U6-73ftz9a/pub?gid=0&single=true&output=csv';
+
 
     fetch(sheetUrl)
         .then(response => response.text())
@@ -311,6 +312,7 @@
             const windSpeedIndex = headers.indexOf('Wind Speed (m/s)');
             const rainIntensityIndex = headers.indexOf('Rain Intensity (mm/h)');
             const rainAccumulationIndex = headers.indexOf('Rain Accumulation (mm)');
+            const lastFetched = headers.indexOf('Last Fetched');
 
             let found = false;
             for (const row of weatherData) {
@@ -329,6 +331,8 @@
                         <i class="fas fa-tint"></i> Humidity: <span style="margin-right: 15px;">${row[humidityIndex]}%</span><br><br>
                         <i class="fas fa-wind"></i> Wind Speed: <span style="margin-right: 15px;">${row[windSpeedIndex]} m/s</span><br><br>
                         <i class="fas fa-cloud-showers-heavy"></i> Rain Accumulation: <span style="margin-right: 15px;">${row[rainAccumulationIndex]} mm</span><br><br>
+                        <i class="far fa-clock"></i> Last Updated: <span style="margin-right: 15px;">${row[lastFetched]}</span>
+
                     </div>
                 `;
                 document.getElementById('weatherContent').innerHTML = weatherContent;
