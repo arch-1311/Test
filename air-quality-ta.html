@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chennai Air Quality</title>
+    <title>சென்னை - காற்றின் தரம்</title>
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -155,22 +155,22 @@
         </div>
     </div>
     <hr>
-    <center><strong><h4>Chennai Air Quality</h4></strong></center>
+    <center><strong><h4>சென்னை - காற்றின் தரம்</h4></strong></center>
     <!-- <label for="station-select">Select your nearest location:</label> -->
     <select id="station-select" class="form-control w-lg-50 w-sm-100">
-        <option value="">Select your nearest location</option>
-        <option value="H13740">Arumbakkam</option>
-        <option value="H12431">Alandur Bus Depot</option>
-        <option value="H14701">Chengalpattu</option>
-        <option value="H7023">Chennai US Consulate</option>
-        <option value="H8185">Manali</option>
-        <option value="H11859">Manali Village</option>
-        <option value="H13739">Kodungaiyur</option>
-        <option value="H13738">Perungudi</option>
-        <option value="H13737">Royapuram</option>        
-        <option value="H11279">Velachery Res. Area</option>
+        <!-- <option value="">உங்கள் அருகிலுள்ள இடத்தை தேர்வு செய்யவும்</option> -->
+        <option value="H13740">அரும்பாக்கம்</option>
+        <option value="H12431">ஆலந்தூர்</option>
+        <option value="H14701">செங்கல்பட்டு</option>
+        <option value="H8185">மணலி</option>
+        <option value="H11859">மணலி கிராமம்</option>
+        <option value="H13739">கொடுங்கையூர்</option>
+        <option value="H13738">பெருங்குடி</option>
+        <option value="H13737">ராயபுரம்</option>
+        <option value="H7023">தேனாம்பேட்டை</option>
+        <option value="H11279">வேளச்சேரி</option>
     </select>
-
+    
     <div class="row mt-4">
         <div class="col-md-6">
             <div class="aqi-info" style="display: none;">
@@ -185,59 +185,46 @@
     <hr>
     <div class="row">
         <div class="col-12">
-            <h5 style="text-decoration:underline;">About the Air Quality and Pollution Measurement:</h5>
+            <h5 style="text-decoration:underline;font-size: 13px;">காற்றின் தரம் மற்றும் மாசு அளவீட்டின் பற்றி:</h5>
             <table class="aqi-table table table-bordered" style="padding: 10px;">
-                <thead>
-                    <tr>
-                        <th>AQI</th>
-                        <th>Air Pollution Level</th>
-                        <th>Health Implications</th>
-                        <th>Cautionary Statement (for PM2.5)</th> <!-- New column header -->
-                    </tr>
-                </thead>
                 <tbody>
                     <tr class="good">
                         <td>0 - 50</td>
-                        <td>Good</td>
-                        <td>Air quality is considered satisfactory, with little or no risk to health.</td>
-                        <td>None</td> <!-- Cautionary statement -->
+                        <td>சிறந்தது</td>
+                        <td>காற்றின் தரம் திருப்திகரமானதாகக் கருதப்படுகிறது, சுகாதாரத்திற்கு குறைந்த அல்லது எந்த அபாயமும் இல்லை.</td>
                     </tr>
                     <tr class="moderate">
                         <td>51 - 100</td>
-                        <td>Moderate</td>
-                        <td>Acceptable air quality; moderate concern for sensitive individuals.</td>
-                        <td>Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.</td> <!-- Cautionary statement -->
+                        <td>மிதமானது</td>
+                        <td>ஏற்கெனவே அனுமதிக்கப்படும் காற்றின் தரம்; நெகிழ்வான நபர்களுக்கான மிதமான கவலை.</td>
                     </tr>
                     <tr class="unhealthy-sensitive">
                         <td>101 - 150</td>
-                        <td>Unhealthy for Sensitive Groups</td>
-                        <td>Sensitive groups may experience health effects; the general public may not be affected.</td>
-                        <td>Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.</td> <!-- Cautionary statement -->
+                        <td>நெகிழ்வான குழுக்களுக்கு தீங்கானது</td>
+                        <td>நெகிழ்வான குழுக்கள் சுகாதார விளைவுகளை அனுபவிக்கலாம்; பொதுமக்கள் பாதிக்கப்பட முடியாது.</td>
                     </tr>
                     <tr class="unhealthy">
                         <td>151 - 200</td>
-                        <td>Unhealthy</td>
-                        <td>Health effects for all; sensitive groups may experience more severe issues.</td>
-                        <td>Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion.</td> <!-- Cautionary statement -->
+                        <td>ஆரோக்கியத்திற்கு தீங்கானது</td>
+                        <td>எல்லாருக்குமான சுகாதார விளைவுகள்; நெகிழ்வான குழுக்கள் மிகவும் கடுமையான பிரச்சனைகளை அனுபவிக்கலாம்.</td>
                     </tr>
                     <tr class="very-unhealthy">
                         <td>201 - 300</td>
-                        <td>Very Unhealthy</td>
-                        <td>Health warnings issued; everyone likely to experience serious health effects.</td>
-                        <td>Active children and adults, and people with respiratory disease, such as asthma, should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.</td> <!-- Cautionary statement -->
+                        <td>மிகவும் தீங்கானது</td>
+                        <td>சுகாதார எச்சரிக்கைகள் வெளியிடப்பட்டுள்ளன; எல்லோரும் மிகவும் தீவிர சுகாதார விளைவுகளை அனுபவிக்க வாய்ப்பு உள்ளது.</td>
                     </tr>
                     <tr class="hazardous">
                         <td>300+</td>
-                        <td>Hazardous</td>
-                        <td>Health alert indicating serious effects for all individuals.</td>
-                        <td>Everyone should avoid all outdoor exertion.</td> <!-- Cautionary statement -->
+                        <td>அபாயகரமானது</td>
+                        <td>எல்லா நபர்களுக்கும் தீவிர விளைவுகளை உட்படச் சுகாதார எச்சரிக்கை.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>    
-
-    <div>Data sourced from <a href="https://aqicn.org/city/chennai//us-consulate/">Chennai - Air Quality Index (AQI)</a></div>
+    </div>
+    
+    <div>தரவு பெறப்பட்டது <a href="https://aqicn.org/city/chennai//us-consulate/">சென்னை - காற்றின் தரம் குறியீடு (AQI)</a></div>
+    
     <!-- Scroll Up Button -->
     <button id="scrollUpBtn" onclick="scrollToTop()">
         <i class="fas fa-arrow-up"></i>
@@ -266,7 +253,7 @@
         "H12431": { name: "Alandur Bus Depot", coords: [12.9762, 80.2214] },
         "H14701": { name: "Chengalpattu", coords: [12.6876, 79.9776] },
         "H7023": { name: "Chennai US Consulate", coords: [13.0604, 80.2548] },
-        "H8185": { name: "Manali", coords: [13.1687, 80.2666] },
+        "H8185": { name: "மணலி", coords: [13.1687, 80.2666] },
         "H11859": { name: "Manali Village", coords: [13.1744, 80.2593] },
         "H13739": { name: "Kodungaiyur", coords: [13.1303, 80.2426] },
         "H13737": { name: "Royapuram", coords: [13.0939, 80.2935] },
@@ -411,6 +398,32 @@
         return 'hazardous';
     }
 
+    // Trigger fetching AQI data for Teynampet on page load
+    document.addEventListener("DOMContentLoaded", async () => {
+    const defaultStationId = "H7023"; // Teynampet ID
+    document.getElementById("station-select").value = defaultStationId; // Set the dropdown to Teynampet
+    const aqiData = await fetchAQIData(defaultStationId);
+    const { aqi, time, iaqi } = aqiData;
+    const lastUpdated = new Date(time.s).toLocaleString();
+    const cityName = aqiData.city.name.split(',')[0]; // Extract city name up to the first comma
+    const healthStatus = getHealthStatus(aqi);
+
+    const pm25 = iaqi.pm25 ? iaqi.pm25.v : 'N/A';
+    const pm10 = iaqi.pm10 ? iaqi.pm10.v : 'N/A';
+
+    // Show AQI details
+    const aqiDetails = document.getElementById("aqi-details");
+    aqiDetails.innerHTML = `
+        <strong> <h4 style="text-decoration:underline;">${cityName}</h4></strong>
+        <div class="aqi-box ${getAQIClass(aqi)}">AQI Level : ${aqi} | ${healthStatus}</div><br>
+        <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
+        <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>
+        <div>Last updated: ${lastUpdated}</div></strong>
+    `;
+    document.querySelector(".aqi-info").style.display = "block";
+    });
+    // End of Trigger fetching AQI data for Teynampet on page load
+
     loadAQIForAllStations();
     // Scroll to top function
     function scrollToTop() {
@@ -428,9 +441,17 @@
         };
     </script>
     <script src="script.js"></script>
-    <footer class="text-center mt-5" style="font-size: 14px;">
+    <!-- Footer -->
+    <footer class="text-center mt-5" style="font-size: 12px;">
         <hr>
-        <p>Join the <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">WhatsApp Channel</a> | Follow on <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, <a href="https://x.com/newsofchennai">Twitter</a>, <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & <a href="https://www.facebook.com/newsofchennai">Facebook</a> | Contact - newsofchennai@pm.me <br> News of Chennai is a citizen service that has been functioning since 2020, providing reliable and verified information to citizens in times of need. <br> Weather data sourced from <a href="https://www.weatherunion.com/">Weather Union</a> based on on-ground network of weather stations installed across Chennai.</p>
+        <p> <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">வாட்ஸ்அப் சேனலில் </a> சேரவும் | 
+            <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, 
+            <a href="https://x.com/newsofchennai">Twitter</a>, 
+            <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & 
+            <a href="https://www.facebook.com/newsofchennai">Facebook</a> இல் பின்தொடரவும் | தொடர்புக்கு - 
+            newsofchennai@pm.me <br>
+            News of Chennai, 2020 முதல் செயல்பட்டு வரும் குடிமக்கள் சேவையாகும், இது தேவைப்படும் நேரங்களில் குடிமக்களுக்கு நம்பகமான மற்றும் சரிபார்க்கப்பட்ட தகவல்களை வழங்குகிறது.
+        </p>
     </footer>
 </body>
 </html>
