@@ -124,7 +124,8 @@
                 width: 100%;
             }
             .table-bordered {
-                font-size: 9px;
+                font-weight: bold;
+                font-size: 12px;
             }
         }
     </style>
@@ -135,7 +136,7 @@
 <div class="container" style="max-width: 800px;">
     <div class="text-center">
         <a href="index.html">
-            <img src="NOC2024.png" alt="Banner" class="img-fluid banner-img" />
+            <img src="NOCWHITEBACKGROND.png" alt="Banner" class="img-fluid banner-img" />
         </a>
          <!-- Top Ribbon -->
         <div class="top-ribbon">
@@ -160,15 +161,15 @@
     <select id="station-select" class="form-control w-lg-50 w-sm-100">
         <!-- <option value="">Select your nearest location</option> -->
         <option value="H13740">Arumbakkam</option>
-        <option value="H12431">Alandur Bus Depot</option>
+        <option value="H12431">Alandur</option>
         <option value="H14701">Chengalpattu</option>
-        <option value="H7023">Chennai US Consulate</option>
         <option value="H8185">Manali</option>
         <option value="H11859">Manali Village</option>
         <option value="H13739">Kodungaiyur</option>
         <option value="H13738">Perungudi</option>
-        <option value="H13737">Royapuram</option>        
-        <option value="H11279">Velachery Res. Area</option>
+        <option value="H13737">Royapuram</option>    
+        <option value="H7023">Teynampet</option>    
+        <option value="H11279">Velachery</option>
     </select>
 
     <div class="row mt-4">
@@ -185,52 +186,52 @@
     <hr>
     <div class="row">
         <div class="col-12">
-            <h5 style="text-decoration:underline;">About the Air Quality and Pollution Measurement:</h5>
+            <h5 style="text-decoration:underline;font-size: 13px;">About the Air Quality and Pollution Measurement:</h5>
             <table class="aqi-table table table-bordered" style="padding: 10px;">
-                <thead>
+                <!-- <thead>
                     <tr>
                         <th>AQI</th>
                         <th>Air Pollution Level</th>
                         <th>Health Implications</th>
-                        <th>Cautionary Statement (for PM2.5)</th> <!-- New column header -->
+                         <th>Cautionary Statement (for PM2.5)</th> New column header 
                     </tr>
-                </thead>
+                </thead> -->
                 <tbody>
                     <tr class="good">
                         <td>0 - 50</td>
                         <td>Good</td>
                         <td>Air quality is considered satisfactory, with little or no risk to health.</td>
-                        <td>None</td> <!-- Cautionary statement -->
+                        <!-- <td>None</td> Cautionary statement -->
                     </tr>
                     <tr class="moderate">
                         <td>51 - 100</td>
                         <td>Moderate</td>
                         <td>Acceptable air quality; moderate concern for sensitive individuals.</td>
-                        <td>Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.</td> <!-- Cautionary statement -->
+                        <!-- <td>Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.</td> Cautionary statement -->
                     </tr>
                     <tr class="unhealthy-sensitive">
                         <td>101 - 150</td>
                         <td>Unhealthy for Sensitive Groups</td>
                         <td>Sensitive groups may experience health effects; the general public may not be affected.</td>
-                        <td>Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.</td> <!-- Cautionary statement -->
+                        <!-- <td>Active children and adults, and people with respiratory disease, such as asthma, should limit prolonged outdoor exertion.</td> Cautionary statement -->
                     </tr>
                     <tr class="unhealthy">
                         <td>151 - 200</td>
                         <td>Unhealthy</td>
                         <td>Health effects for all; sensitive groups may experience more severe issues.</td>
-                        <td>Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion.</td> <!-- Cautionary statement -->
+                        <!-- <td>Active children and adults, and people with respiratory disease, such as asthma, should avoid prolonged outdoor exertion; everyone else, especially children, should limit prolonged outdoor exertion.</td> Cautionary statement -->
                     </tr>
                     <tr class="very-unhealthy">
                         <td>201 - 300</td>
                         <td>Very Unhealthy</td>
                         <td>Health warnings issued; everyone likely to experience serious health effects.</td>
-                        <td>Active children and adults, and people with respiratory disease, such as asthma, should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.</td> <!-- Cautionary statement -->
+                        <!-- <td>Active children and adults, and people with respiratory disease, such as asthma, should avoid all outdoor exertion; everyone else, especially children, should limit outdoor exertion.</td> Cautionary statement -->
                     </tr>
                     <tr class="hazardous">
                         <td>300+</td>
                         <td>Hazardous</td>
                         <td>Health alert indicating serious effects for all individuals.</td>
-                        <td>Everyone should avoid all outdoor exertion.</td> <!-- Cautionary statement -->
+                        <!-- <td>Everyone should avoid all outdoor exertion.</td> Cautionary statement -->
                     </tr>
                 </tbody>
             </table>
@@ -411,10 +412,10 @@
         return 'hazardous';
     }
 
-    // Trigger fetching AQI data for Arumbakkam on page load
+    // Trigger fetching AQI data for Teynampet on page load
     document.addEventListener("DOMContentLoaded", async () => {
-    const defaultStationId = "H13740"; // Arumbakkam ID
-    document.getElementById("station-select").value = defaultStationId; // Set the dropdown to Arumbakkam
+    const defaultStationId = "H7023"; // Teynampet ID
+    document.getElementById("station-select").value = defaultStationId; // Set the dropdown to Teynampet
     const aqiData = await fetchAQIData(defaultStationId);
     const { aqi, time, iaqi } = aqiData;
     const lastUpdated = new Date(time.s).toLocaleString();
@@ -435,7 +436,7 @@
     `;
     document.querySelector(".aqi-info").style.display = "block";
     });
-    // End of Trigger fetching AQI data for Arumbakkam on page load
+    // End of Trigger fetching AQI data for Teynampet on page load
     
     loadAQIForAllStations();
     // Scroll to top function
