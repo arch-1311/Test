@@ -122,28 +122,35 @@
                 max-width: 800px; /* Optional: Set a max width */
             }
         }
+        body h5 {
+            color: darkblue;
+        }
+        body.dark-mode h5 {
+            color: white;
+        }
     </style>
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
     <div class="text-center">
         <a href="#">
-            <img src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
+            <img id="banner-image" src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
         </a>
-        <!-- Top Ribbon -->
+         <!-- Top Ribbon -->
         <div class="top-ribbon">
-            <a href="#" class="btn icon-circle" aria-label="Home">
-                <i class="fas fa-home"></i>
-            </a>
-            <a href="index-ta.html" class="btn icon-circle"><i class="fa fa-language" aria-hidden="true"></i>
-            </a>
-            <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
-                <i id="theme-icon" class="fas fa-moon"></i>
-            </button>
-            
-            <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a>
+            <!-- <div class="left-options"> -->
+                <a href="#" class="btn icon-circle" aria-label="Home">
+                    <i class="fas fa-home"></i>
+                </a>                
+                <a href="index-ta.html" class="btn icon-circle"><i class="fa fa-language" aria-hidden="true"></i>
+                </a>
+                <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a>
+            <!-- </div> -->
         </div>
     </div>
     <hr>
@@ -203,7 +210,7 @@
         </div>
     </div>    
     <hr>
-    <h5 style="color: darkblue;"><i class="fas fa-cloud-sun-rain"></i> Real Time Chennai Weather</h5></center>
+    <h5><i class="fas fa-cloud-sun-rain"></i> Real Time Chennai Weather</h5></center>
     <div class="container">
         <p class="text-center" style="
         font-size: 14px;
@@ -386,23 +393,6 @@
                 document.getElementById('scrollUpBtn').style.display = 'none';
             }
         };
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        const themeIcon = document.getElementById('theme-icon');
-
-        themeToggle.addEventListener('click', () => {
-            const body = document.body;
-            body.classList.toggle('dark-mode');
-
-            // Toggle icon based on dark mode state
-            if (body.classList.contains('dark-mode')) {
-                themeIcon.classList.remove('fa-moon'); // Remove moon icon
-                themeIcon.classList.add('fa-sun');     // Add sun icon for light mode
-            } else {
-                themeIcon.classList.remove('fa-sun');  // Remove sun icon
-                themeIcon.classList.add('fa-moon');     // Add moon icon for dark mode
-            }
-        });
     </script>
     <script src="script.js"></script>
     <footer class="text-center mt-5" style="font-size: 14px;">

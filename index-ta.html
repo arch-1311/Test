@@ -127,13 +127,19 @@
                 font-size: 9px;
             }
         }
+        body h6 {
+            color: darkblue;
+        }
+        body.dark-mode h6 {
+            color: white;
+        }
     </style>
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
     <div class="text-center">
         <a href="#">
-            <img src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
+            <img id="banner-image" src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
         </a>
         <!-- Top Ribbon -->
         <div class="top-ribbon">
@@ -164,17 +170,17 @@
         
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-4 mb-2"> <!-- Full width on mobile, half on larger screens -->
-                        <a href="helplines-ta.html" target="" class="btn btn-primary w-100" style="font-size: 14px;">
+                        <a href="helplines-ta.html" target="" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
                             <i class="fa-solid fa-phone"></i> சரிபார்க்கப்பட்ட உதவி எண்கள்
                         </a>
                     </div>
                     <div class="col-12 col-md-4 mb-2"> <!-- Full width on mobile, half on larger screens -->
-                        <a href="resources-ta.html" target="" class="btn btn-primary w-100" style="font-size: 14px;">
+                        <a href="resources-ta.html" target="" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
                             <i class="fa-solid fa-user-shield"></i> நகர ஆதாரங்கள்
                         </a>
                     </div>
                     <div class="col-12 col-md-4"> <!-- Full width on mobile, half on larger screens -->
-                        <a href="medical-emergency-ta.html" target="" class="btn btn-danger w-100" style="font-size: 14px;">
+                        <a href="medical-emergency-ta.html" target="" class="btn btn-danger w-100" style="font-size: 14px;background-color: darkred;">
                             <i class="fa-solid fa-briefcase-medical"></i> மருத்துவ அவசர உதவி எண்கள்
                         </a>
                     </div>
@@ -207,7 +213,7 @@
             </div>
         </div> 
     <hr>
-    <h6 style="color: darkblue;"><i class="fas fa-cloud-sun-rain"></i> சென்னை - தற்போதைய வானிலை</h6></center>
+    <h6><i class="fas fa-cloud-sun-rain"></i> சென்னை - தற்போதைய வானிலை</h6></center>
 
     <div class="container">
         <p class="text-center" style="
@@ -413,6 +419,7 @@
             }
         });
     </script>
+    <script src="script.js"></script>
     <footer class="text-center mt-5" style="font-size: 12px;">
         <hr>
         <p> <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">வாட்ஸ்அப் சேனலில் </a> சேரவும் | 
