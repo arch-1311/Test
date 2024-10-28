@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chennai Air Quality</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <style>
+        .accordion-button {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .header-icon-circle {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px; /* Set the circle size */
+            height: 40px;
+            background-color: #f1f1f1; /* Circle background color */
+            border-radius: 50%;
+        }
+
+        .card-header{
+            padding: 0; /*needed*/
+        }
+
+        .header-icon-img {
+            width: 60%; /* Adjust to make the image smaller within the circle */
+            height: auto;
+        }
+
+        /* Scroll-up button styles */
+        #scrollUpBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 999;
+        }
+        @media (max-width: 576px) {
+            .font-mobile {
+                font-size: 10px;
+            }
+        }
+    </style>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container" style="max-width: 800px;">
+        <div class="text-center">
+            <a href="index.html">
+                <img id="banner-image" src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
+            </a>
+            <div class="top-ribbon">
+                <a href="index.html" class="btn icon-circle" aria-label="Home">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a href="help-line-ta.html" class="btn icon-circle" style="white-space: nowrap;">தமிழ் பதிப்பு</i>
+                </a>
+                <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <!-- <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a> -->                
+            </div>
+        </div>
+        <hr>
+        <center><strong><h4>Helplines</h4></strong>
+        </center>
+        <div class="accordion" id="zoneAccordion">
+            <!--Greater Chennai Police-->
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <span class="header-icon-circle">
+                                <img src="Images/police.png" alt="Police Icon" class="header-icon-img">
+                            </span>
+                            Greater Chennai Police  
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#zoneAccordion">
+                    <div class="card-body">
+                        <!-- Buttons with styles similar to the uploaded image -->
+                        <a href="tel:100" class="btn btn-danger btn-block mb-2 font-mobile">
+                            <i class="fas fa-phone-alt mr-2"></i> CALL POLICE - EMERGENCY - SOS
+                        </a>
+                        <a href="https://wa.me/919498111191" class="btn btn-danger btn-block mb-2 font-mobile">
+                            <i class="fab fa-whatsapp mr-2"></i> WHATSAPP - TAMIL NADU POLICE
+                        </a>
+                        <a href="https://eservices.tnpolice.gov.in/CCTNSNICSDC/ComplaintRegistrationPage" target="_blank" class="btn btn-secondary btn-block mb-2 font-mobile">
+                            <i class="fas fa-file-alt mr-2"></i> REGISTER POLICE COMPLAINT ONLINE
+                        </a>
+                        <a href="https://eservices.tnpolice.gov.in/CCTNSNICSDC/PSHomePage?3" target="_blank" class="btn btn-primary btn-block mb-2 font-mobile">
+                            <i class="fas fa-phone-square-alt mr-2"></i> ALL POLICE STATIONS & CONTACTS
+                        </a>
+                        <a href="https://www.tn.gov.in/detail_contact/6765/4" target="_blank" class="btn btn-primary btn-block font-mobile">
+                            <i class="fas fa-venus mr-2"></i> ALL WOMEN POLICE STATIONS CONTACTS
+                        </a>
+                        <a href="https://chennai.citizenmatters.in/how-to-file-an-fir-in-chennai-18271" target="_blank" class="btn btn-secondary btn-block font-mobile">
+                            <i class="fas fa-file-alt mr-2"></i> All You Need To Know About Filing an FIR
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.amtexsystems.kaavaluthavi&amp;hl=en_IN&amp;gl=US" target="_blank" class="btn btn-outline-primary btn-block font-mobile">
+                            <i class="fa-solid fa-download"></i> Install Kaaval Uthavi App
+                        </a>
+                        <button class="btn btn-info btn-block font-mobile">
+                            Members of the public can contact the Commissioner through video calls on 6369100100 between 12-1 p.m on Mondays, Wednesdays and Fridays.
+                        </button>
+                        <a href="https://wa.me/916369100100" class="btn btn-danger btn-block mb-2 font-mobile">
+                            <i class="fab fa-whatsapp mr-2"></i> Contact Chennai Police Commissioner
+                        </a>
+                        <hr>
+                        <p class="small font-italic">Last Updated - 29 Oct'24 12:10 AM </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Scroll Up Button -->
+    <button id="scrollUpBtn" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+    // jQuery to toggle the icon on collapse/expand
+    $('.collapse').on('shown.bs.collapse', function () {
+        $(this).parent().find('.accordion-button i').removeClass('fa-chevron-down').addClass('fa-chevron-up');
+    }).on('hidden.bs.collapse', function () {
+        $(this).parent().find('.accordion-button i').removeClass('fa-chevron-up').addClass('fa-chevron-down');
+    });
+    // Scroll to top function
+    function scrollToTop() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+    // Show scroll-up button on scroll
+    window.onscroll = function() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop >
+        100) {
+            document.getElementById('scrollUpBtn').style.display = 'block';
+        } else {
+            document.getElementById('scrollUpBtn').style.display = 'none';
+        }
+    };
+    </script>
+    <script src="script.js"></script>
+    <footer class="text-center mt-5" style="font-size: 14px;">
+        <hr>
+        <p>Join the <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">WhatsApp Channel</a> | Follow on <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, <a href="https://x.com/newsofchennai">Twitter</a>, <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & <a href="https://www.facebook.com/newsofchennai">Facebook</a> | Contact - newsofchennai@pm.me <br> News of Chennai is a citizen service that has been functioning since 2020, providing reliable and verified information to citizens in times of need. <br> Weather data sourced from <a href="https://www.weatherunion.com/">Weather Union</a> based on on-ground network of weather stations installed across Chennai.</p>
+    </footer>
+</body>
+</html>
