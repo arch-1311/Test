@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chennai Air Quality</title>
+    <title>Chennai Helpline</title>
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -49,148 +49,320 @@
             font-size: 18px;
             z-index: 999;
         } 
-        @media (max-width: 600px) {
-           .btn-block { 
+        /* @media (max-width: 600px) { */
+           .btn-block , .btn-custom { 
             font-size: 12px;
            }            
-        }
+        /* } */
     </style>
     <link href="styles.css" rel="stylesheet">
 </head>
 <body>
     <div class="container" style="max-width: 800px;">
-        <div class="text-center">
-            <a href="index.html">
-                <img id="banner-image" src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
+    <div class="text-center">
+        <a href="index.html">
+            <img id="banner-image" src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
+        </a>
+        <div class="top-ribbon">
+            <a href="index.html" class="btn icon-circle" aria-label="Home">
+                <i class="fas fa-home"></i>
             </a>
-            <div class="top-ribbon">
-                <a href="index.html" class="btn icon-circle" aria-label="Home">
-                    <i class="fas fa-home"></i>
-                </a>
-                <a href="help-line-ta.html" class="btn icon-circle" style="white-space: nowrap;">தமிழ் பதிப்பு</i>
-                </a>
-                <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
-                    <i id="theme-icon" class="fas fa-moon"></i>
-                </button>
-                <!-- <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
-                <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a> -->                
+            <a href="help-line-ta.html" class="btn icon-circle" style="white-space: nowrap;">தமிழ் பதிப்பு</i>
+            </a>
+            <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                <i id="theme-icon" class="fas fa-moon"></i>
+            </button>
+            <!-- <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a> -->                
+        </div>
+    </div>
+    <hr>
+    <center><strong><h4>Helplines</h4></strong>
+    </center>
+    <div class="accordion" id="zoneAccordion">
+        <!--Greater Chennai Police-->
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <span class="header-icon-circle">
+                            <img src="Images/police.png" alt="Police Icon" class="header-icon-img">
+                        </span>
+                        <span style="font-size: 14px;"> Greater Chennai Police </span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#zoneAccordion">
+                <div class="card-body">
+                    <a href="tel:100" class="btn btn-danger btn-block mb-2 ">
+                        <i class="fas fa-phone-alt mr-2"></i> CALL POLICE - EMERGENCY - SOS
+                    </a>
+                    <a href="https://wa.me/919498111191" class="btn btn-danger btn-block mb-2 ">
+                        <i class="fab fa-whatsapp mr-2"></i> WHATSAPP - TAMIL NADU POLICE
+                    </a>
+                    <a href="https://eservices.tnpolice.gov.in/CCTNSNICSDC/ComplaintRegistrationPage" target="_blank" class="btn btn-secondary btn-block mb-2 ">
+                        <i class="fas fa-file-alt mr-2"></i> REGISTER POLICE COMPLAINT ONLINE
+                    </a>
+                    <a href="https://eservices.tnpolice.gov.in/CCTNSNICSDC/PSHomePage?3" target="_blank" class="btn btn-primary btn-block mb-2 ">
+                        <i class="fas fa-phone-square-alt mr-2"></i> ALL POLICE STATIONS & CONTACTS
+                    </a>
+                    <a href="https://www.tn.gov.in/detail_contact/6765/4" target="_blank" class="btn btn-primary btn-block ">
+                        <i class="fas fa-venus mr-2"></i> ALL WOMEN POLICE STATIONS CONTACTS
+                    </a>
+                    <a href="https://chennai.citizenmatters.in/how-to-file-an-fir-in-chennai-18271" target="_blank" class="btn btn-secondary btn-block ">
+                        <i class="fas fa-file-alt mr-2"></i> All You Need To Know About Filing an FIR
+                    </a>
+                    <a href="https://play.google.com/store/apps/details?id=com.amtexsystems.kaavaluthavi&amp;hl=en_IN&amp;gl=US" target="_blank" class="btn btn-outline-primary btn-block ">
+                        <i class="fa-solid fa-download"></i> Install Kaaval Uthavi App
+                    </a>
+                    <button class="btn btn-info btn-block ">
+                        Members of the public can contact the Commissioner through video calls on 6369100100 between 12-1 p.m on Mondays, Wednesdays and Fridays.
+                    </button>
+                    <a href="https://wa.me/916369100100" class="btn btn-danger btn-block mb-2 ">
+                        <i class="fab fa-whatsapp mr-2"></i> Contact Chennai Police Commissioner
+                    </a>
+                    <hr>
+                    <p class="small font-italic">Last Updated - 29 Oct'24 12:10 AM </p>
+                </div>
             </div>
         </div>
-        <hr>
-        <center><strong><h4>Helplines</h4></strong>
-        </center>
-        <div class="accordion" id="zoneAccordion">
-            <!--Greater Chennai Police-->
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <span class="header-icon-circle">
-                                <img src="Images/police.png" alt="Police Icon" class="header-icon-img">
-                            </span>
-                            <span style="font-size: 14px;"> Greater Chennai Police </span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#zoneAccordion">
-                    <div class="card-body">
-                        <a href="tel:100" class="btn btn-danger btn-block mb-2 ">
-                            <i class="fas fa-phone-alt mr-2"></i> CALL POLICE - EMERGENCY - SOS
-                        </a>
-                        <a href="https://wa.me/919498111191" class="btn btn-danger btn-block mb-2 ">
-                            <i class="fab fa-whatsapp mr-2"></i> WHATSAPP - TAMIL NADU POLICE
-                        </a>
-                        <a href="https://eservices.tnpolice.gov.in/CCTNSNICSDC/ComplaintRegistrationPage" target="_blank" class="btn btn-secondary btn-block mb-2 ">
-                            <i class="fas fa-file-alt mr-2"></i> REGISTER POLICE COMPLAINT ONLINE
-                        </a>
-                        <a href="https://eservices.tnpolice.gov.in/CCTNSNICSDC/PSHomePage?3" target="_blank" class="btn btn-primary btn-block mb-2 ">
-                            <i class="fas fa-phone-square-alt mr-2"></i> ALL POLICE STATIONS & CONTACTS
-                        </a>
-                        <a href="https://www.tn.gov.in/detail_contact/6765/4" target="_blank" class="btn btn-primary btn-block ">
-                            <i class="fas fa-venus mr-2"></i> ALL WOMEN POLICE STATIONS CONTACTS
-                        </a>
-                        <a href="https://chennai.citizenmatters.in/how-to-file-an-fir-in-chennai-18271" target="_blank" class="btn btn-secondary btn-block ">
-                            <i class="fas fa-file-alt mr-2"></i> All You Need To Know About Filing an FIR
-                        </a>
-                        <a href="https://play.google.com/store/apps/details?id=com.amtexsystems.kaavaluthavi&amp;hl=en_IN&amp;gl=US" target="_blank" class="btn btn-outline-primary btn-block ">
-                            <i class="fa-solid fa-download"></i> Install Kaaval Uthavi App
-                        </a>
-                        <button class="btn btn-info btn-block ">
-                            Members of the public can contact the Commissioner through video calls on 6369100100 between 12-1 p.m on Mondays, Wednesdays and Fridays.
-                        </button>
-                        <a href="https://wa.me/916369100100" class="btn btn-danger btn-block mb-2 ">
-                            <i class="fab fa-whatsapp mr-2"></i> Contact Chennai Police Commissioner
-                        </a>
-                        <hr>
-                        <p class="small font-italic">Last Updated - 29 Oct'24 12:10 AM </p>
-                    </div>
+        <!--Greater Chennai Traffic Police-->
+        <div class="card">
+            <div class="card-header" id="headingTwo">
+                <h2 class="mb-0">
+                    <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                        <span class="header-icon-circle">
+                            <img src="Images/traffic.png" alt=" Traffic Police Icon" class="header-icon-img">
+                        </span>
+                        <span style="font-size: 14px;">  Greater Chennai Traffic Police </span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#zoneAccordion">
+                <div class="card-body">     
+                    <a href="tel:103" class="btn btn-danger btn-block mb-2 ">
+                        <i class="fas fa-phone-alt mr-2"></i> In Case of Road Accidents, Call Greater Chennai Traffic Police
+                    </a> 
+                    <a href="https://wa.me/919003130103" class="btn btn-danger btn-block mb-2 ">
+                        <i class="fab fa-whatsapp mr-2"></i> Call Greater Chennai Traffic Police
+                    </a>
+                    <a href="https://echallan.parivahan.gov.in/index/accused-challan" target="_blank" class="btn btn-secondary btn-block mb-2 ">
+                        <i class="fas fa-file-alt mr-2"></i> Pay e-challan Online
+                    </a>                        
+                    <a href="https://sarathi.parivahan.gov.in/sarathiservice/" target="_blank" class="btn btn-primary btn-block ">
+                        <i class="fa-solid fa-id-card"></i> Contactless TN Licence Services
+                    </a>
+                    <button class="btn btn-info btn-block ">
+                        To improve RTO office service delivery, TN Govt is now offering the following services in a Contactless mode. The citizens would be able to apply for many services online and without needing to visit RTO offices multiple times
+                    </button>
+                    <hr>
+                    <div style="font-size: 14px; line-height: 1.6;">
+                        <p><strong>Things to keep in mind during a traffic stop</strong></p>
+                        <ul style="padding-left: 20px; list-style-position: outside;">
+                            <li>Ensure that you are being pulled over by the competent authority. Traffic police must be in their uniform with name and buckle number clearly visible.</li>
+                            <li>Wearing of helmets is compulsory. Persons fined for not wearing a helmet will be issued a challan that is valid until midnight.</li>
+                            <li>Male traffic police must be accompanied by female traffic police to conduct vehicle searches on female drivers.</li>
+                            <li>Chennai Traffic Police has adopted a cashless system for spot fines. Payments for violations must not be made in cash during traffic stops. Challan must be issued for all spot fines.</li>
+                            <li>Fines over Rs 100 can be levied only by traffic police of the rank of sub-inspector or above.</li>
+                            <li>Drivers' licenses may be seized for a broad range of offences such as smoking while driving, using the phone, drunken driving, and not stopping at a red light. A valid receipt must be issued by the police before seizing the license.</li>
+                            <li>Traffic police may detain your vehicle if found to be driving or riding without a valid license, permit, or registration. The detained vehicle will be handed over to the police officer in charge of the nearest police station and will be kept under safe custody until a release order is issued.</li>
+                            <li>Offenders detained by the traffic police must be taken directly to the police station and produced before the magistrate within 24 hours of detention.</li>
+                        </ul>
+                        <p style="margin-top: 10px;"><em>Credits: Aruna Natarajan, Citizen Matters</em></p>
+                        <p>
+                            <a aria-label="chennai.citizenmatters.in" href="https://chennai.citizenmatters.in/chennai-traffic-police-stop-driver-rights-responsibilities-5832" target="_blank">
+                                <i class="fa-solid fa-link"></i> Pulled up by traffic police? Know your responsibilities and rights!
+                            </a>
+                        </p>
+                    </div>                        
+                    <hr>
+                    <p class="small font-italic">Last Updated - 29 Oct'24 11:07 PM </p>
                 </div>
             </div>
-            <!--Greater Chennai Traffic Police-->
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                            <span class="header-icon-circle">
-                                <img src="Images/traffic.png" alt=" Traffic Police Icon" class="header-icon-img">
-                            </span>
-                            <span style="font-size: 14px;">  Greater Chennai Traffic Police </span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#zoneAccordion">
-                    <div class="card-body">     
-                        <a href="tel:103" class="btn btn-danger btn-block mb-2 ">
-                            <i class="fas fa-phone-alt mr-2"></i> In Case of Road Accidents, Call Greater Chennai Traffic Police
-                        </a> 
-                        <a href="https://wa.me/919003130103" class="btn btn-danger btn-block mb-2 ">
-                            <i class="fab fa-whatsapp mr-2"></i> Call Greater Chennai Traffic Police
-                        </a>
-                        <a href="https://echallan.parivahan.gov.in/index/accused-challan" target="_blank" class="btn btn-secondary btn-block mb-2 ">
-                            <i class="fas fa-file-alt mr-2"></i> Pay e-challan Online
-                        </a>                        
-                        <a href="https://sarathi.parivahan.gov.in/sarathiservice/" target="_blank" class="btn btn-primary btn-block ">
-                            <i class="fa-solid fa-id-card"></i> Contactless TN Licence Services
-                        </a>
-                        <button class="btn btn-info btn-block ">
-                            To improve RTO office service delivery, TN Govt is now offering the following services in a Contactless mode. The citizens would be able to apply for many services online and without needing to visit RTO offices multiple times
-                        </button>
-                        <hr>
-                        <div style="font-size: 14px; line-height: 1.6;">
-                            <p><strong>Things to keep in mind during a traffic stop</strong></p>
-                            <ul style="padding-left: 20px; list-style-position: outside;">
-                                <li>Ensure that you are being pulled over by the competent authority. Traffic police must be in their uniform with name and buckle number clearly visible.</li>
-                                <li>Wearing of helmets is compulsory. Persons fined for not wearing a helmet will be issued a challan that is valid until midnight.</li>
-                                <li>Male traffic police must be accompanied by female traffic police to conduct vehicle searches on female drivers.</li>
-                                <li>Chennai Traffic Police has adopted a cashless system for spot fines. Payments for violations must not be made in cash during traffic stops. Challan must be issued for all spot fines.</li>
-                                <li>Fines over Rs 100 can be levied only by traffic police of the rank of sub-inspector or above.</li>
-                                <li>Drivers' licenses may be seized for a broad range of offences such as smoking while driving, using the phone, drunken driving, and not stopping at a red light. A valid receipt must be issued by the police before seizing the license.</li>
-                                <li>Traffic police may detain your vehicle if found to be driving or riding without a valid license, permit, or registration. The detained vehicle will be handed over to the police officer in charge of the nearest police station and will be kept under safe custody until a release order is issued.</li>
-                                <li>Offenders detained by the traffic police must be taken directly to the police station and produced before the magistrate within 24 hours of detention.</li>
-                            </ul>
-                            <p style="margin-top: 10px;"><em>Credits: Aruna Natarajan, Citizen Matters</em></p>
-                            <p>
-                                <a aria-label="chennai.citizenmatters.in" href="https://chennai.citizenmatters.in/chennai-traffic-police-stop-driver-rights-responsibilities-5832" target="_blank">
-                                    <i class="fa-solid fa-link"></i> Pulled up by traffic police? Know your responsibilities and rights!
-                                </a>
-                            </p>
-                        </div>                        
-                        <hr>
-                        <p class="small font-italic">Last Updated - 29 Oct'24 11:07 PM </p>
+        </div>
+        <!--Greater Chennai Corporation-->
+        <div class="card">
+            <div class="card-header" id="headingThree">
+            <h2 class="mb-0">
+                <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    <span class="header-icon-circle">
+                        <img src="Images/chn-corp.png" alt="Corporation Icon" class="header-icon-img">
+                    </span>
+                    <span style="font-size: 14px;"> Greater Chennai Corporation </span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </h2>
+            </div>
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#zoneAccordion">
+                <div class="card-body">
+                    <a href="tel:1913" class="btn btn-danger btn-block mb-2 ">
+                        <i class="fas fa-phone-alt mr-2"></i> Call Corporation Helpline
+                    </a>
+                    <a href="https://wa.me/919499933644" class="col-12 btn btn-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i> Corporation WhatsApp
+                    </a>
+                
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-2">
+                            <a href="tel:044-25619206" class="btn btn-primary w-100 btn-custom">
+                                <i class="fa fa-phone" aria-hidden="true"></i> GCC Control Room (1)
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-6 mb-2">
+                            <a href="tel:044-25303511" class="btn btn-primary w-100 btn-custom">
+                                <i class="fa fa-phone" aria-hidden="true"></i> GCC Control Room (2)
+                            </a>
+                        </div>
                     </div>
-                </div>
+                
+                    <a href="know-you-ward.html" class="col-12 btn btn-outline-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-globe" aria-hidden="true"></i> Know Your GCC Zone & Ward
+                    </a>
+                    
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-2">
+                            <a href="https://chennaicorporation.gov.in/gcc/online-services/" class="btn btn-primary w-100 btn-custom" target="_blank" rel="noopener noreferrer">
+                                <i class="fa fa-globe" aria-hidden="true"></i> Online Services
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-6 mb-2">
+                            <a href="councillor-contact.html" class="btn btn-primary w-100 btn-custom">
+                                <i class="fa fa-phone" aria-hidden="true"></i> Zonal Officers Contacts
+                            </a>
+                        </div>
+                    </div>
+                
+                    <a href="https://chennaicorporation.gov.in/gcc/swm_bin/" class="col-12 btn btn-info btn-custom mb-2" target="_blank" rel="noopener noreferrer">
+                        <i class="fa fa-trash" aria-hidden="true"></i> Garbage Removal Trucks Schedule
+                    </a>
+                
+                    <hr>
+                    <p class="more-reading">
+                        <strong>More reading</strong>           
+                        <ul style="padding-left: 20px; list-style-position: outside; list-style-type: none;">
+                            <li>
+                                <a href="https://chennai.citizenmatters.in/chennai-governance-corporation-mtc-railways-cmrl-tnpcb-tnhb-32855" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-solid fa-link" aria-hidden="true"></i>
+                                </a> Who administers and provides public services in Chennai? 
+                            </li>
+                            <li>
+                                <a href="https://chennai.citizenmatters.in/gcc-greater-chennai-corporation-and-how-it-functions-local-elected-council-36664" target="_blank" rel="noopener noreferrer">
+                                    <i class="fa-solid fa-link" aria-hidden="true"></i>
+                                </a> How GCC administers the city 
+                            </li>
+                        </ul>
+                    </p>
+                    <hr>
+                <p class="small font-italic">Last Updated - 30 Oct'24 12:46 AM </p>   
+                </div>           
+            </div>
+        </div>
+        <!--Ambulance - Emergency-->
+        <div class="card">
+            <div class="card-header" id="headingFour">
+            <h2 class="mb-0">
+                <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                    <span class="header-icon-circle">
+                        <img src="Images/ambulance.png" alt="Ambulance Icon" class="header-icon-img">
+                    </span>
+                    <span style="font-size: 14px;"> Ambulance - Emergency </span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </h2>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#zoneAccordion">
+                <div class="card-body">
+                    <a href="tel:108" class="btn btn-danger btn-block mb-2 ">
+                        <i class="fas fa-phone-alt mr-2"></i> Call 108 Ambulance
+                    </a>
+                    <a href="tel:04428194630" class="col-12 btn btn-outline-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-phone-alt mr-2" aria-hidden="true"></i> Call St. John's Ambulance
+                    </a>
+                    <a href="tel:104" class="col-12 btn btn-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-phone-alt mr-2" aria-hidden="true"></i> Call 104 TN Medical Helpline
+                    </a>
+                    <!-- <a href="https://wa.me/919499933644" class="col-12 btn btn-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i> Call St. John's Ambulance
+                    </a> -->
+                
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-2">
+                            <a href="tel:1066" class="btn btn-primary w-100 btn-custom">
+                                <i class="fa fa-phone" aria-hidden="true"></i> Apollo Hospital
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-6 mb-2">
+                            <a href="tel:044-46242424" class="btn btn-primary w-100 btn-custom">
+                                <i class="fa fa-phone" aria-hidden="true"></i> Global Hospital
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-2">
+                            <a href="tel:105757" class="btn btn-primary w-100 btn-custom">
+                                <i class="fa fa-phone" aria-hidden="true"></i> Chettinad Hospital
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-6 mb-2">
+                            <a href="tel:044-49334933" class="btn btn-primary w-100 btn-custom">
+                                <i class="fa fa-phone" aria-hidden="true"></i> Fortis Malar Hospital
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div style="font-size: 14px; line-height: 1.6;">
+                        <p><strong>Government Hospitals</strong></p>
+                        <ul style="padding-left: 20px; list-style-position: outside;">
+                            <li>Government General Hospital | <a href="tel:04425305000">04425305000</a></li>
+                            <li>Government Kilpauk Hospital | <a href="tel:04428364951">04428364951</a></li>
+                            <li>Government Royapettah Hospital | <a href="tel:04428483051">04428483051</a></li>
+                            <li>Government Stanley Hospital | <a href="tel:04425281347">04425281347</a></li>
+                            <li>Kasturba Hospital for Women | <a href="tel:04428545449">04428545449</a></li>
+                            <li>Institute of Child Health &amp; Hospital | <a href="tel:04428191135">04428191135</a></li>
+                            <li>Government Hospital for Women &amp; Children | <a href="tel:04428191982">04428191982</a></li>
+                        </ul>                    
+                    </div>
+                    <hr>
+                    <button type="button" class="btn btn-light w-100 btn-custom" style="text-align: center;font-size: 14px;">
+                        <p><strong>Air Ambulance Services</strong></p>
+                        <span>Activation takes about 2 - 12 hours | Subject to availability and weather conditions</span>
+                    </button><br><br>
+                    <div class="row">
+                        <div class="col-12 col-md-6 mb-2">
+                            <a href="https://wa.me/9710940000" class="btn btn-primary w-100 btn-custom">
+                                <i class="fa-solid fa-helicopter" aria-hidden="true"></i> Aero Care
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-6 mb-2">
+                            <a href="https://wa.me/9701111156" class="btn btn-primary w-100 btn-custom">
+                                <i class="fa-solid fa-helicopter" aria-hidden="true"></i> ICATT
+                            </a>
+                        </div>
+                    </div>
+                    <div style="font-size: 14px; line-height: 1.6;">
+                        <p><strong>Types of Ambulance</strong></p>
+                        <ul style="padding-left: 20px; list-style-position: outside;">
+                            <li>Patient Transport Ambulance</li>
+                            <li>Basic Life Support Ambulance</li>
+                            <li>Advanced Life Support Ambulance</li>
+                            <li>Air Ambulance (Helicopter / Aeroplane)</li>
+                        </ul>
+                    </div>
+                    <hr>
+                <p class="small font-italic">Last Updated - 30 Oct'24 01:21 AM </p>   
+                </div>           
             </div>
         </div>
         
 
-        <!-- Scroll Up Button -->
+    <!-- Scroll Up Button -->
     <button id="scrollUpBtn" onclick="scrollToTop()">
         <i class="fas fa-arrow-up"></i>
     </button>
-    </div>
+        </div>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
