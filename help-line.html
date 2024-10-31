@@ -65,6 +65,13 @@
         .dark-mode p {
             color: #131313;
         }
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        th, td {
+            text-align: center;
+        }
         @media (max-width: 576px) {
             #helpline {
                 font-size: 10px;
@@ -73,6 +80,9 @@
                 font-size: 12px;
             }
             .modal-footer .btn {
+                font-size: 12px;
+            }
+            th, td {
                 font-size: 12px;
             }
         }
@@ -452,6 +462,23 @@
                     <a href="tel:1906" class="col-12 btn btn-outline-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
                         <i class="fa-solid fa-square-phone mr-2" aria-hidden="true"></i> What to do in Case of LPG Leakage
                     </a>
+                    <hr>
+                    <div style="font-size: 14px; line-height: 1.6;">
+                        <p><strong>What to do in Case of LPG Leakage</strong></p>
+                        <ul style="padding-left: 20px; list-style-position: outside;">
+                            <li>Do not panic</li>
+                            <li>Open all doors &amp; windows for ventilation. LPG is heavier than air and hence it tends to settle down. Opening doors must be the first step.</li>
+                            <li>Put off all flames, lamps, incense sticks etc.</li>
+                            <li>Put the safety cap back on the cylinder.</li>
+                            <li>Close regulator and burner knobs.</li>
+                            <li>Do not operate any electrical switches, appliance or equipment in the kitchen.</li>
+                            <li>Isolate the electrical supply from the outside source.</li>
+                            <li>Call your LPG dealer for emergency assistance and then 1906</li>
+                            <li>Try to isolate the cylinder to an open space and cover it with wet cloth.</li>
+                            <li>Call the fire brigade and police if required.</li>
+                        </ul>
+                    </div>  
+                    <hr>
                     <img src="Images/know-your-extinguisher.jpeg" class="img-fluid" alt="Know Your Extinguisher">
                     <a href="https://play.google.com/store/apps/details?id=com.amtex.pathukavalan" target="_blank" class="btn btn-outline-danger btn-block ">
                         <i class="fa-solid fa-download"></i> Install Thee SOS app
@@ -1005,10 +1032,125 @@
                     <hr>                             
                     <a href="tel:9444748914" class="col-12 btn btn-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
                         <i class="fa-solid fa-square-phone mr-2" aria-hidden="true"></i> Call Snake Bite Helpline
-                    </a> 
-                    <a href="tel:18002678780" class="col-12 btn btn-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
-                        <i class="fa-solid fa-square-phone mr-2" aria-hidden="true"></i> Snake Catching Helplines
-                    </a> 
+                    </a>  
+                    <a href="tel:044-22200335" class="col-12 btn btn-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
+                        <i class="fa-solid fa-square-phone mr-2" aria-hidden="true"></i> Call Forest Dept. - Snake Rescue - Across Chennai
+                    </a>
+                    <button class="btn btn-outline-danger btn-block mb-2" data-toggle="modal" data-target="#helplineModal">
+                        Snake Catching Helplines
+                    </button>                
+                    <!-- Modal -->
+                    <div class="modal fade" id="helplineModal" tabindex="-1" aria-labelledby="helplineModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="helplineModalLabel">Snake Catching Helplines</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <table class="table table-striped table-responsive">
+                                        <thead>
+                                            <tr>
+                                                <th>Places</th>
+                                                <th>Name</th>
+                                                <th>Contact</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Poonamalee, Nerkundram, Koyambedu</td>
+                                                <td>Baba</td>
+                                                <td><a href="tel:9841588852">9841588852</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Porur, Iyyappanthangal, Valasaravakkam</td>
+                                                <td>Baba</td>
+                                                <td><a href="tel:9841588852">9841588852</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Mugalivakkam, Perambur Porur, Ramapuram, Nerkundram, Manappakkam</td>
+                                                <td>Sakthi</td>
+                                                <td><a href="tel:9094321393">9094321393</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Annanagar to Pattabhiram</td>
+                                                <td>Ganesh</td>
+                                                <td><a href="tel:7448927227">7448927227</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Chrompet</td>
+                                                <td>Jaison</td>
+                                                <td><a href="tel:8056204821">8056204821</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Chrompet to Tambaram</td>
+                                                <td>Robin</td>
+                                                <td><a href="tel:8807870610">8807870610</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Surrounding of Porur & Alappakam</td>
+                                                <td>Manikandan</td>
+                                                <td><a href="tel:9840346631">9840346631</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Chrompet</td>
+                                                <td>Ravi</td>
+                                                <td><a href="tel:9600119081">9600119081</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Thiruvanmiyur, ECR & OMR</td>
+                                                <td>Shavan</td>
+                                                <td><a href="tel:6379163347">6379163347</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Thiruvanmiyur, ECR & OMR</td>
+                                                <td>Shavan</td>
+                                                <td><a href="tel:9445070909">9445070909</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Manali, Thandayarpet, Royapuram, Thiruvattiyur</td>
+                                                <td>Nagendran</td>
+                                                <td><a href="tel:9940073642">9940073642</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Surrounding of Tambaram</td>
+                                                <td>Praveen</td>
+                                                <td><a href="tel:9962205585">9962205585</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>ECR & OMR</td>
+                                                <td>Arjun</td>
+                                                <td><a href="tel:9176543213">9176543213</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Tambaram, Padappai & Thiruneermalai</td>
+                                                <td>Chandran</td>
+                                                <td><a href="tel:9840724104">9840724104</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Perungulathur to Maraimalai Nagar</td>
+                                                <td>Murugesan</td>
+                                                <td><a href="tel:9884847673">9884847673</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sholinganallur to Kelambakkam</td>
+                                                <td>Vijayanadan</td>
+                                                <td><a href="tel:9884306960">9884306960</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Chengalpattu District</td>
+                                                <td>Aadithan (FG)</td>
+                                                <td><a href="tel:8489517927">8489517927</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
                     <div style="font-size: 14px; line-height: 1.6;">
                         <p><strong> <u>What to do in Case of Snake Bite </u><br>
                         Things to keep in mind after snake bite</strong></p>
