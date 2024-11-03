@@ -1,3 +1,31 @@
+body {
+    padding: 5px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+/* rotating globe and time css */
+.rotating-globe {
+    display: inline-block;
+    width: 1rem; /* Adjust this to match .date-time font size */
+    height: 1rem;
+    background-image: url('globe.gif'); /* Make sure this path is correct */
+    background-size: cover;
+    margin-right: 0.5rem; /* Space between the globe and date-time */
+    mix-blend-mode: multiply;
+    transform: translateZ(0);
+    animation: rotateGlobe 5s linear infinite; /* Uncomment if using static image and want CSS rotation */
+}
+
+@keyframes rotateGlobe {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 .top-ribbon {
     display: flex;
     justify-content: center;
