@@ -8,19 +8,18 @@ body {
 
 .date-time {
     font-size: 12px;
-    color : grey;
+    color : dimgrey;
 }
 .rotating-globe {
     display: inline-block;
-    width: 1rem; /* Adjust this to match .date-time font size */
-    height: 1rem;
-    background-image: url('globe.gif'); /* Make sure this path is correct */
+    width: 12px; /* Adjust this to match .date-time font size */
+    height: 12px;
+    /* background-image: url('https://static.semafor.com/_next/static/media/spinning-earth.eafcef04.gif'); */
     background-size: cover;
+    background-position: center;
     margin-right: 0.5rem; /* Space between the globe and date-time */
     mix-blend-mode: multiply;
-    transform: translateZ(0);
-    animation: rotateGlobe 5s linear infinite; /* Uncomment if using static image and want CSS rotation */
-    color : grey
+    transform: translateZ(0); /* For performance optimization */
 }
 
 @keyframes rotateGlobe {
