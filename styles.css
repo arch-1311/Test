@@ -5,6 +5,11 @@ body {
     text-align: center;
 }
 /* rotating globe and time css */
+
+.date-time {
+    font-size: 12px;
+    color : grey;
+}
 .rotating-globe {
     display: inline-block;
     width: 1rem; /* Adjust this to match .date-time font size */
@@ -15,6 +20,7 @@ body {
     mix-blend-mode: multiply;
     transform: translateZ(0);
     animation: rotateGlobe 5s linear infinite; /* Uncomment if using static image and want CSS rotation */
+    color : grey
 }
 
 @keyframes rotateGlobe {
