@@ -67,6 +67,7 @@
         }
         .weather-content {
             margin: 10px 0; /* Add spacing */
+            text-align: left;
         }
 
         /* Scroll-up button styles */
@@ -176,52 +177,88 @@
             </p> -->
     
             <div class="row justify-content-center">
-                <div class="col-12 col-md-4 mb-2 d-md-none"> <!-- Only on mobile view -->
-                    <div class="d-flex justify-content-between"> <!-- Flexbox for horizontal alignment -->
-                        <a href="helplines.html" target="" class="btn btn-primary w-100 me-1" style="font-size: 12px;background-color: darkblue;">
-                            <i class="fa-solid fa-phone"></i> Rain Helplines
+                <!-- Mobile view: Rain Helpline and Rain Resources in 1 row -->
+                <div class="col-12 d-md-none mb-2">
+                    <div class="d-flex justify-content-between">
+                        <a href="helplines.html" class="btn btn-primary w-100 me-1" style="font-size: 12px;background-color: darkblue;">
+                            <i class="fa-solid fa-cloud-rain"></i> Rain Helplines
                         </a>
-                        <a href="resources.html" target="" class="btn btn-primary w-100 ms-1" style="font-size: 12px;background-color: darkblue;">
-                            <i class="fa-solid fa-user-shield"></i> City Resources
+                        <a href="resources.html" class="btn btn-primary w-100 ms-1" style="font-size: 12px;background-color: darkblue;">
+                            <i class="fa-solid fa-user-shield"></i> Rain Resources
                         </a>
                     </div>
                 </div>
-                <div class="col-12 col-md-4 mb-2 d-none d-md-block"> <!-- Full width on mobile, half on larger screens -->
-                    <a href="helplines.html" target="" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
-                        <i class="fa-solid fa-phone"></i> Rain Helplines
-                    </a>
-                </div>
-                <div class="col-12 col-md-4 mb-2 d-none d-md-block"> <!-- Full width on mobile, half on larger screens -->
-                    <a href="resources.html" target="" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
-                        <i class="fa-solid fa-user-shield"></i> City Resources
-                    </a>
-                </div>
-                <div class="col-12 col-md-4 mb-2">  
-                    <a href="help-line.html" target="" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
-                        <i class="fa-regular fa-address-book"></i> Verified Helplines
-                    </a>
-                </div>
-                <div class="col-12 col-md-4 mb-2"> 
-                    <a href="actions.html" target="" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
-                        <i class="fa-regular fa-address-book"></i> Take Actions
-                    </a>
-                </div>
-                <div class="col-12 col-md-4 mb-2"> 
-                    <a href="transport-travel.html" target="" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
-                        <i class="fa-solid fa-compass"></i> Transport + Travel
-                    </a>
-                </div>
-                <div class="col-12 col-md-4 mb-2"> 
-                    <a href="ongoing-scams.html" target="" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
-                        <i class="fa-regular fa-address-book"></i> Ongoing Scams
-                    </a>
-                </div>
-                <div class="col-12 col-md-4"> <!-- Full width on mobile, half on larger screens -->
-                    <a href="medical-emergency.html" target="" class="btn btn-danger w-100" style="font-size: 14px;background-color: darkred;">
+            
+                <!-- Mobile view: Medical in a row -->
+                <div class="col-12 d-md-none mb-2">
+                    <a href="medical-emergency.html" class="btn btn-danger w-100" style="font-size: 14px;background-color: darkred;">
                         <i class="fa-solid fa-briefcase-medical"></i> Medical Emergency
                     </a>
                 </div>
-            </div>
+            
+                <!-- Mobile view: Verified Helplines and Take Action in 1 row -->
+                <div class="col-12 d-md-none mb-2">
+                    <div class="d-flex justify-content-between">
+                        <a href="help-line.html" class="btn btn-primary w-100 me-1" style="font-size: 12px;background-color: darkblue;">
+                            <i class="fa-solid fa-phone"></i> Verified Helplines
+                        </a>
+                        <a href="actions.html" class="btn btn-primary w-100 ms-1" style="font-size: 12px;background-color: darkblue;">
+                            <i class="fa-solid fa-location-crosshairs"></i> Take Action
+                        </a>
+                    </div>
+                </div>
+            
+                <!-- Mobile view: Transport and Ongoing Scams in 1 row -->
+                <div class="col-12 d-md-none mb-2">
+                    <div class="d-flex justify-content-between">
+                        <a href="transport-travel.html" class="btn btn-primary w-100 me-1" style="font-size: 12px;background-color: darkblue;">
+                            <i class="fa-solid fa-compass"></i> Transport + Travel
+                        </a>
+                        <a href="scams.html" class="btn btn-primary w-100 ms-1" style="font-size: 12px;background-color: darkblue;">
+                            <i class="fa-solid fa-skull-crossbones"></i> Ongoing Scams
+                        </a>
+                    </div>
+                </div>
+            
+                <!-- Desktop view: Rain Helpline, Rain Resources, Medical in 1 row -->
+                <div class="col-12 col-md-4 d-none d-md-block mb-2">
+                    <a href="helplines.html" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
+                        <i class="fa-solid fa-cloud-rain"></i> Rain Helplines
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 d-none d-md-block mb-2">
+                    <a href="resources.html" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
+                        <i class="fa-solid fa-user-shield"></i> Rain Resources
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 d-none d-md-block mb-2">
+                    <a href="medical-emergency.html" class="btn btn-danger w-100" style="font-size: 14px;background-color: darkred;">
+                        <i class="fa-solid fa-briefcase-medical"></i> Medical Emergency
+                    </a>
+                </div>
+            
+                <!-- Desktop view: Verified Helplines, Take Action, Transport, Ongoing Scams in 1 row -->
+                <div class="col-12 col-md-4 d-none d-md-block mb-2">
+                    <a href="help-line.html" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
+                        <i class="fa-solid fa-phone"></i> Verified Helplines
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 d-none d-md-block mb-2">
+                    <a href="actions.html" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
+                        <i class="fa-solid fa-location-crosshairs"></i> Take Action
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 d-none d-md-block mb-2">
+                    <a href="transport-travel.html" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
+                        <i class="fa-solid fa-compass"></i> Transport + Travel
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 d-none d-md-block mb-2">
+                    <a href="scams.html" class="btn btn-primary w-100" style="font-size: 14px;background-color: darkblue;">
+                        <i class="fa-solid fa-skull-crossbones"></i> Ongoing Scams
+                    </a>
+                </div>
+            </div>            
         </div>
     </div>
                
@@ -370,9 +407,9 @@
                 const weatherContent = `
                     <div class="weather-content">
                         <i class="fas fa-thermometer-half"></i> Temperature: <span style="margin-right: 15px;">${row[temperatureIndex]}°C</span><br><br>
+                        <i class="fas fa-cloud-showers-heavy"></i> Rain Accumulation: <span style="margin-right: 15px;">${row[rainAccumulationIndex]} mm</span><br><br>
                         <i class="fas fa-tint"></i> Humidity: <span style="margin-right: 15px;">${row[humidityIndex]}%</span><br><br>
                         <i class="fas fa-wind"></i> Wind Speed: <span style="margin-right: 15px;">${row[windSpeedIndex]} m/s</span><br><br>
-                        <i class="fas fa-cloud-showers-heavy"></i> Rain Accumulation: <span style="margin-right: 15px;">${row[rainAccumulationIndex]} mm</span><br><br>
                         <i class="far fa-clock"></i> Last Updated: <span style="margin-right: 15px;">${row[lastFetched]}</span>
 
                     </div>

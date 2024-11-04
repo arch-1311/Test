@@ -42,7 +42,50 @@
             width: 60%; /* Adjust to make the image smaller within the circle */
             height: auto;
         }
+        .accordion-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            /* padding: 0.5rem 1rem; */
+            border: none;
+            background-color: transparent;
+        }
+        .accordion .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        .accordion .card-header {
+            background-color: white;
+        }
 
+        .header-icon-circle {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: #f1f1f1;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .header-icon-img {
+            width: 60%;
+            height: auto;
+        }
+        .accordion-button .chevron {
+            font-size: 18px;
+            color: #1a73e8;
+            transition: transform 0.3s ease;
+            margin-left: auto;
+        }
+
+        .accordion-button .chevron.rotate {
+            transform: rotate(180deg);
+        }
         /* Scroll-up button styles */
         #scrollUpBtn {
             position: fixed;
@@ -79,6 +122,13 @@
         }
         th, td {
             text-align: center;
+        }
+        p , ul, li, .more-reading {
+        text-align: left;    
+        }
+        .btn p {
+            text-align: center; 
+            margin-bottom: 0px;
         }
         @media (max-width: 576px) {
             #helpline {
@@ -161,7 +211,7 @@
                     <a href="https://play.google.com/store/apps/details?id=com.amtexsystems.kaavaluthavi&amp;hl=en_IN&amp;gl=US" target="_blank" class="btn btn-outline-primary btn-block">
                         <i class="fa-solid fa-download"></i> காவல் உதவி செயலியை நிறுவவும்
                     </a>
-                    <button class="btn btn-light btn-block">
+                    <button class="btn alt alert-dark btn-block">
                         பொதுமக்கள் திங்கட்கிழமை, புதன்கிழமை மற்றும் வெள்ளிக்கிழமை, மதியம் 12-1 மணிக்குள் 6369100100 என்ற எண்ணில் வீடியோ கால் மூலம் கமிஷனர் உடன் தொடர்பு கொள்ளலாம்.
                     </button>
                     <a href="https://wa.me/916369100100" class="btn btn-danger btn-block mb-2">
@@ -199,7 +249,7 @@
                     <a href="https://sarathi.parivahan.gov.in/sarathiservice/" target="_blank" class="btn btn-primary btn-block">
                         <i class="fa-solid fa-id-card"></i> தொடுதலில்லா டி.என் உரிம சேவைகள்
                     </a>
-                    <button class="btn btn-light btn-block">
+                    <button class="btn alt alert-dark btn-block">
                         RTO அலுவலக சேவைகளின் சேவைகளில் மேம்படுத்த, தமிழ்நாடு அரசு தொடுதலில்லா முறையில் சில சேவைகளை வழங்குகிறது. பொதுமக்கள் பல சேவைகளுக்கு ஆன்லைனில் விண்ணப்பிக்க முடியும் மற்றும் RTO அலுவலகத்திற்கு பல முறை செல்வதற்குத் தேவையில்லை.
                     </button>
                     <hr>
@@ -360,7 +410,7 @@
             </div>
             <div id="collapse11" class="collapse" aria-labelledby="heading11" data-parent="#zoneAccordion">
                 <div class="card-body">   
-                    <button class="btn btn-light btn-block mb-2">
+                    <button class="btn alt alert-dark btn-block mb-2">
                         குழந்தைகள் பாதுகாப்பு தற்காப்பு உதவி எண் என்பது 24 மணி நேரம், ஆண்டில் 365 நாட்கள் குழந்தைகளுக்கான அவசர தொலைபேசி சேவையாகும்
                     </button>                 
                     <a href="tel:14417" class="col-12 btn btn-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
@@ -481,7 +531,7 @@
             </div>
             <div id="collapse13" class="collapse" aria-labelledby="heading13" data-parent="#zoneAccordion">
                 <div class="card-body"> 
-                    <button class="btn btn-light btn-block mb-2">
+                    <button class="btn alt alert-dark btn-block mb-2">
                         மாற்றுத் திறன்களின் நலன் குறித்து மாநில ஆணைக்குழு - தமிழக அரசு
                     </button>      
                     <a href="tel:18004250111" class="col-12 btn btn-outline-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
@@ -491,7 +541,7 @@
                         <i class="fab fa-whatsapp mr-2" aria-hidden="true"></i> வாட்ஸ்அப் வீடியோ
                     </a>         
                     <hr>   
-                    <button class="btn btn-light btn-block mb-2">
+                    <button class="btn alt alert-dark btn-block mb-2">
                         பல்வேறு மாற்றுத் திறனாளிகளின் மகிழ்ச்சிக்கு தேசிய நிறுவனம் - மத்திய அரசு. மொபைல் உதவி எண்கள் வேலை நாள்களில் மட்டுமே செயல்படும்.
                     </button>      
                     <a href="tel:18004250345" class="col-12 btn btn-outline-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
@@ -543,14 +593,14 @@
                         <i class="fa-solid fa-square-phone mr-2" aria-hidden="true"></i> ஹெல்பேஜ் இந்தியாவை அழைக்கவும்
                     </a> 
                     <hr>
-                    <button class="btn btn-light btn-block mb-2">
+                    <button class="btn alt alert-dark btn-block mb-2">
                         டிக்னிட்டி அடிப்படை | திங்க்-வெள்ளி 10am-6pm
                     </button> 
                     <a href="tel:18002678780" class="col-12 btn btn-primary btn-custom mb-2" target="_blank" rel="noopener noreferrer">
                         <i class="fa-solid fa-square-phone mr-2" aria-hidden="true"></i> டிக்னிட்டி அடிப்படையை அழைக்கவும்
                     </a> 
                     <hr>
-                    <button class="btn btn-light btn-block mb-2">
+                    <button class="btn alt alert-dark btn-block mb-2">
                         உதவி என்பது மூதாட்டி மற்றும் மூதாவிகளுக்கான சென்னையில் அமைந்துள்ள என்.ஜி.ஓ
                     </button> 
                     <a href="tel:9840092938" class="col-12 btn btn-outline-primary btn-custom mb-2" target="_blank" rel="noopener noreferrer">
@@ -644,7 +694,7 @@
                         </ul>                    
                     </div>
                     <hr>
-                    <button type="button" class="btn btn-light w-100 btn-custom" style="text-align: center;font-size: 14px;">
+                    <button type="button" class="btn alt alert-dark w-100 btn-custom" style="text-align: center;font-size: 14px;">
                         <p><strong>வானூர்தி ஆம்புலன்ஸ் சேவைகள்</strong></p>
                         <span>இயக்கத்திற்கு 2 - 12 மணிநேரம் ஆகும் | கிடைக்கும் நிலை மற்றும் வானிலை சார்ந்தது</span>
                     </button><br><br>
@@ -890,7 +940,7 @@
                     <a href="https://dfw.chennaimetrowater.in/#/index" class="btn btn-primary btn-block mb-2">
                         <i class="fa-solid fa-droplet"></i> தண்ணீர் டேங்கர் - ஆன்லைனில் முன்பதிவு செய்யவும்
                     </a>
-                    <button class="btn btn-light btn-block mb-2">
+                    <button class="btn alt alert-dark btn-block mb-2">
                         தண்ணீர் முன்பதிவு இணையதளம் மொபைலில் சரியாக ஏற்றப்படாதிருக்கலாம்
                     </button>
                     <a href="tel:044-45674567" class="col-12 btn btn-outline-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
@@ -1275,7 +1325,7 @@
                     <a href="tel:9444404090" class="col-12 btn btn-danger btn-custom mb-2" target="_blank" rel="noopener noreferrer">
                         <i class="fa-solid fa-square-phone mr-2" aria-hidden="true"></i> IC திருமண உதவிக்குறிப்பு (2)
                     </a> 
-                    <button class="btn btn-light btn-block mb-2">
+                    <button class="btn alt alert-dark btn-block mb-2">
                         அடுத்தினால் காதல் செய்பவர் (AKS) என்பது கல marryingது மற்றும் விரைவில் திருமணம் ஆகும் இடைச்சாதி தம்பதிகளை பாதுகாத்து ஆலோசனை வழங்கும் தமிழ்நாட்டின் அடிப்படையிலான NGO ஆகும்.
                     </button>                
                     <a href="tel:9361545000" class="col-12 btn btn-primary btn-custom mb-2" target="_blank" rel="noopener noreferrer">
@@ -1370,7 +1420,7 @@
     <script src="script.js"></script>
     <footer class="text-center mt-5" style="font-size: 12px;">
         <hr>
-        <p> <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">வாட்ஸ்அப் சேனலில் </a> சேரவும் | 
+        <p class="text-center"> <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">வாட்ஸ்அப் சேனலில் </a> சேரவும் | 
             <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, 
             <a href="https://x.com/newsofchennai">Twitter</a>, 
             <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & 

@@ -29,7 +29,53 @@
                 padding: 5px;
             }
         }
-
+        
+        .accordion .card {
+            border: none;
+            /* border-radius: 10px; */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+        .accordion .card-header {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+        .accordion .card-header .header-content {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        .accordion .card-header h6 {
+            font-weight: bold;
+            color: #1a73e8;
+            margin: 0;
+        }
+        .accordion .card-header small {
+            color: #333;
+            font-weight: normal;
+            margin-top: 2px;
+        }
+        .accordion .card-body {
+            font-size: 16px;
+            color: #333;
+            padding: 15px 20px;
+        }
+        .accordion .chevron {
+            font-size: 18px;
+            color: #1a73e8;
+            transition: transform 0.3s ease;
+        }
+        .accordion .chevron.rotate {
+            transform: rotate(180deg);
+        }
+        .dark-mode p {
+            color:black;
+        }
     </style>
     <link href="styles.css" rel="stylesheet">
 </head>
@@ -57,9 +103,9 @@
         <hr>
         <center><strong><h4>போக்குவரத்து மற்றும் பயணம்</h4></strong></center>
         
-        <p>உங்கள் அருகிலுள்ள பொதுப் போக்குவரத்தை தேட விரும்பினால் - <a href="https://moovitapp.com/chennai-4612/poi/en-gb" target="_blank">இங்கே கிளிக் செய்யவும்</a> | முழு சென்னை போக்குவரத்து வரைபடம் (மெட்ரோ & புறநகர்) - <a href="https://github.com/karthi209/chennai-transitmap/blob/main/chennai-transit-map-clean.jpg" target="_blank">இங்கே கிளிக் செய்யவும்</a></p>
+        <p style="background-color: white; padding: 15px; border-radius: 10px; box-shadow: 0px 4px 6px #6c757d; margin: 20px auto;">உங்கள் அருகிலுள்ள பொதுப் போக்குவரத்தை தேட விரும்பினால் - <a href="https://moovitapp.com/chennai-4612/poi/en-gb" target="_blank">இங்கே கிளிக் செய்யவும்</a> | முழு சென்னை போக்குவரத்து வரைபடம் (மெட்ரோ & புறநகர்) - <a href="https://github.com/karthi209/chennai-transitmap/blob/main/chennai-transit-map-clean.jpg" target="_blank">இங்கே கிளிக் செய்யவும்</a></p>
 
-        <div class="table-responsive">
+        <!-- <div class="table-responsive">
             <table class="table table-bordered mt-4">
                 <thead>
                     <tr>
@@ -122,10 +168,122 @@
                     </tr>
                 </tbody>
             </table>
+        </div> -->
+        
+        <div class="accordion" id="transportAccordion">
+            <!-- சென்னை மெட்ரோ ரெயில் கார்ட் -->
+            <div class="card">
+                <div class="card-header" id="metroHeader" data-toggle="collapse" data-target="#metroContent" aria-expanded="true" aria-controls="metroContent">
+                    <div class="header-content">
+                        <h6>சென்னை மெட்ரோ ரெயில்</h6>
+                        <small>உதவி எண்: <a href="tel:18604251515">18604251515</a></small>
+                    </div>
+                    <i class="chevron fas fa-chevron-down"></i>
+                </div>
+                <div id="metroContent" class="collapse" aria-labelledby="metroHeader" data-parent="#transportAccordion">
+                    <div class="card-body text-left">
+                        <p><strong>இணைப்புகள்:</strong></p>
+                        <ul>
+                            <li><a href="https://tickets.chennaimetrorail.org/onlineticket" target="_blank">சிலப்பதிவு வாங்க</a></li>
+                            <li><a href="http://wcag.chennaimetrorail.in/wp-content/uploads/2023/11/Line-Map.pdf" target="_blank">சாதாரண பாதை மற்றும் நிலையங்கள்</a></li>
+                            <li><a href="http://wcag.chennaimetrorail.in/wp-content/uploads/2024/03/chennai-metro-timetable.pdf" target="_blank">அரை நேரம்</a></li>
+                            <li><a href="https://chennaimetrorail.org/wp-content/uploads/2023/11/Fare-chart-for-all-stns.pdf" target="_blank">கூட்ட செலவுகள்</a></li>
+                            <li><a href="https://chennaimetrorail.org/feeder-service/" target="_blank">மெட்ரோ உணவு சேவை</a></li>
+                            <li><a href="https://chennaimetrorail.org/wp-content/uploads/2024/08/Parking-Facilities-Availabilities-01-08-2024.pdf" target="_blank">நிறுத்தக பணிகள்</a></li>
+                            <li><a href="https://commuters-data.chennaimetrorail.org/parkingavailability" target="_blank">நிறுத்தும் இடத்தின் கிடைப்புக்கு</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- மெட்ரோபோலிடன் போக்குவரத்து கம்பெனி (MTC) கார்ட் -->
+            <div class="card">
+                <div class="card-header" id="mtcHeader" data-toggle="collapse" data-target="#mtcContent" aria-expanded="false" aria-controls="mtcContent">
+                    <div class="header-content">
+                        <h6>மெட்ரோபோலிடன் போக்குவரத்து கம்பெனி (MTC)</h6>
+                        <small>உதவி எண்: <a href="tel:9445030516">9445030516</a> | <a href="tel:149">149</a></small>
+                    </div>
+                    <i class="chevron fas fa-chevron-down"></i>
+                </div>
+                <div id="mtcContent" class="collapse" aria-labelledby="mtcHeader" data-parent="#transportAccordion">
+                    <div class="card-body text-left">
+                        <p><strong>இணைப்புகள்:</strong></p>
+                        <ul>
+                            <li><a href="https://mtcbus.tn.gov.in/Home/bustimingsearch" target="_blank">பஸ் நேரங்கள்</a></li>
+                            <li><a href="https://mtcbus.tn.gov.in/Home/fares" target="_blank">பஸ் கட்டணங்கள்</a></li>
+                            <li>சென்னை பஸ் ஆப் (நேரடி கண்காணிப்பு): <a href="https://play.google.com/store/apps/details?id=io.ionic.starter67676&hl=en-US" target="_blank">ஆண்ட்ராய்ட்</a> | <a href="https://apps.apple.com/in/app/chennai-bus/id6443669492" target="_blank">iOS</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- சென்னை நகர்ப்புற ரயில் கார்ட் -->
+            <div class="card">
+                <div class="card-header" id="suburbanHeader" data-toggle="collapse" data-target="#suburbanContent" aria-expanded="false" aria-controls="suburbanContent">
+                    <div class="header-content">
+                        <h6>சென்னை நகர்ப்புற ரயில் (SR)</h6>
+                        <small>உதவி எண்: <a href="tel:139">139</a></small>
+                    </div>
+                    <i class="chevron fas fa-chevron-down"></i>
+                </div>
+                <div id="suburbanContent" class="collapse" aria-labelledby="suburbanHeader" data-parent="#transportAccordion">
+                    <div class="card-body text-left">
+                        <p><strong>இணைப்புகள்:</strong></p>
+                        <ul>
+                            <li><a href="https://railmadad.indianrailways.gov.in/madad/final/home.jsp" target="_blank">வெப்சைட்</a></li>
+                            <li><a href="https://sr.indianrailways.gov.in/cris//uploads/files/1689659415735-REVISED%20SUBURBAN%20TRAIN%20TABLE%20W.E.F%2014.07.2023.pdf" target="_blank">அரை நேரம்</a></li>
+                            <li><a href="https://moovitapp.com/index/en/public_transit-lines-Chennai-4612-975817" target="_blank">அட்டவணை தேடல்</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- தெற்கு ரயில்வே கார்ட் -->
+            <div class="card">
+                <div class="card-header" id="southernRailwayHeader" data-toggle="collapse" data-target="#southernRailwayContent" aria-expanded="false" aria-controls="southernRailwayContent">
+                    <div class="header-content">
+                        <h6>தெற்கு ரயில்வே</h6>
+                        <small>உதவி எண்: <a href="tel:139">139</a></small>
+                    </div>
+                    <i class="chevron fas fa-chevron-down"></i>
+                </div>
+                <div id="southernRailwayContent" class="collapse" aria-labelledby="southernRailwayHeader" data-parent="#transportAccordion">
+                    <div class="card-body text-left">
+                        <p><strong>இணைப்புகள்:</strong></p>
+                        <ul>
+                            <li><a href="https://railmadad.indianrailways.gov.in/madad/final/home.jsp" target="_blank">வெப்சைட்</a></li>
+                            <li><a href="https://raw.githubusercontent.com/karthi209/tamilnadu-railway-map/refs/heads/main/tamilnadu-railway-map.jpg" target="_blank">பாதை வரைபடம்</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- சென்னை விமான நிலைய கார்ட் -->
+            <div class="card">
+                <div class="card-header" id="airportHeader" data-toggle="collapse" data-target="#airportContent" aria-expanded="false" aria-controls="airportContent">
+                    <div class="header-content">
+                        <h6>சென்னை விமான நிலையம்</h6>
+                        <small>
+                            T1 உள்ளூர்: <a href="tel:04422563100">04422563100</a>, <a href="tel:04422563101">04422563101</a>, <a href="tel:8056220066">8056220066</a><br>
+                            T2 சர்வதேச: <a href="tel:04422565100">04422565100</a>, <a href="tel:04422565101">04422565101</a>, <a href="tel:8056220077">8056220077</a><br>
+                            T4 உள்ளூர்: <a href="tel:04422563600">04422563600</a>, <a href="tel:04422563601">04422563601</a>, <a href="tel:7845792544">7845792544</a>
+                        </small>
+                    </div>
+                    <i class="chevron fas fa-chevron-down"></i>
+                </div>
+                <div id="airportContent" class="collapse" aria-labelledby="airportHeader" data-parent="#transportAccordion">
+                    <div class="card-body text-left">
+                        <p><strong>இணைப்புகள்:</strong></p>
+                        <ul>
+                            <li><a href="https://www.avionio.com/en/airport/maa/arrivals" target="_blank">வருகை நிலை</a></li>
+                            <li><a href="https://www.avionio.com/en/airport/maa/departures" target="_blank">புறப்படும் நிலை</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
         
-        
-        <div style="text-align:left"> 
+        <div style="text-align:left; background-color: white; padding: 15px; border-radius: 10px; box-shadow: 0px 4px 6px #6c757d; margin: 20px auto;"> 
             <h5>ஓட்டுநர் பெறுமதி செயலிகள்</h5>
             <ul>
                 <li>ரெட் டாக்ஸி - <a href="https://play.google.com/store/apps/details?id=com.eaglefleet.redtaxi&hl=en-US" target="_blank">ஆண்ட்ராய்டு</a> | <a href="https://apps.apple.com/in/app/red-taxi/id1128644624" target="_blank">ஐஓஎஸ்</a></li>
@@ -151,7 +309,28 @@
         </footer>
     </div>
     
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <script>
+        $(document).ready(function() {
+            // Toggle chevron rotation
+            $('.accordion .card-header').on('click', function() {
+                var chevron = $(this).find('.chevron');
+                
+                // Collapse other sections and reset their chevrons
+                $('.accordion .chevron').not(chevron).removeClass('rotate');
+                
+                // Toggle the current chevron rotation
+                chevron.toggleClass('rotate');
+            });
+
+            // Reset chevron when section is collapsed by other means
+            $('.collapse').on('hidden.bs.collapse', function () {
+                $(this).parent().find('.chevron').removeClass('rotate');
+            });
+        });
         // Scroll-up button functionality
         const scrollUpBtn = document.getElementById("scrollUpBtn");
         window.onscroll = function() {
