@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// time 
+// English Date-Time
 function updateTime() {
     const now = new Date();
     const day = now.toLocaleDateString('en-US', { weekday: 'long' });
@@ -44,5 +44,28 @@ function updateTime() {
     const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     document.getElementById('date-time').innerHTML = `${day}, ${date} | ${time}`;
 }
+
+// Tamil Date-Time
+function updateTimeTamil() {
+    const now = new Date();
+    
+    // Custom mapping for Tamil days and months
+    const tamilDays = ["ஞாயிறு", "திங்கள்", "செவ்வாய்", "புதன்", "வியாழன்", "வெள்ளி", "சனி"];
+    const tamilMonths = ["ஜனவரி", "பிப்ரவரி", "மார்ச்", "ஏப்ரல்", "மே", "ஜூன்", "ஜூலை", "ஆகஸ்ட்", "செப்டம்பர்", "அக்டோபர்", "நவம்பர்", "டிசம்பர்"];
+    
+    const day = tamilDays[now.getDay()];
+    const date = now.getDate();
+    const month = tamilMonths[now.getMonth()];
+    const year = now.getFullYear();
+    const time = now.toLocaleTimeString('ta-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    
+    document.getElementById('date-time-tamil').innerHTML = `${day}, ${date} ${month}, ${year} | ${time}`;
+}
+
+// Update both date-times every second
 setInterval(updateTime, 1000);
+setInterval(updateTimeTamil, 1000);
+
+// Initial call to display the date-times immediately
 updateTime();
+updateTimeTamil();
