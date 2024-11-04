@@ -54,7 +54,7 @@
             color: #1a73e8;
             margin: 0;
         }
-        .accordion .card-header small {
+        .accordion .card-header large {
             color: #333;
             font-weight: normal;
             margin-top: 2px;
@@ -99,9 +99,11 @@
             <span class="date-time" id="date-time"></span>
         </div> 
         <hr>
-        <center><strong><h4>Transport and Travel</h4></strong></center>
+        <center><strong><h4>Transport + Travel</h4></strong></center>
         
-        <p style="padding: 15px; border-radius: 10px; box-shadow: 0px 4px 6px #6c757d; margin: 20px auto;">If you want to search for the nearest public transport - <a href="https://moovitapp.com/chennai-4612/poi/en-gb" target="_blank">Click Here</a> | Full Chennai Transit Map (Metro & Suburban) - <a href="https://github.com/karthi209/chennai-transitmap/blob/main/chennai-transit-map-clean.jpg" target="_blank">Click Here</a></p>
+        <p class="alert alert-dark">
+            <!-- If you want to search for the nearest public transport - <a href="https://moovitapp.com/chennai-4612/poi/en-gb" target="_blank">Click Here</a> |  -->
+            Full Chennai Transit Map (Metro & Suburban) - <a href="Pdfs/chennai-transit-map.pdf" target="_blank" alt="Chennai Transit Map" title="Chennai Transit Map">Click Here</a></p>
         <!-- <div class="table-responsive">
             <table class="table table-bordered mt-4">
                 <thead>
@@ -173,43 +175,45 @@
                 <div class="card-header" id="metroHeader" data-toggle="collapse" data-target="#metroContent" aria-expanded="true" aria-controls="metroContent">
                     <div class="header-content">
                         <h6>Chennai Metro Rail</h6>
-                        <small>Helpline: <a href="tel:18604251515">18604251515</a></small>
                     </div>
                     <i class="chevron fas fa-chevron-down"></i>
                 </div>
                 <div id="metroContent" class="collapse" aria-labelledby="metroHeader" data-parent="#transportAccordion">
                     <div class="card-body text-left">
-                        <p><strong>Links:</strong></p>
+                        <!--<p><strong>Links:</strong></p>-->
                         <ul>
                             <li><a href="https://tickets.chennaimetrorail.org/onlineticket" target="_blank">Buy ticket</a></li>
-                            <li><a href="http://wcag.chennaimetrorail.in/wp-content/uploads/2023/11/Line-Map.pdf" target="_blank">Existing Route with Stations</a></li>
-                            <li><a href="http://wcag.chennaimetrorail.in/wp-content/uploads/2024/03/chennai-metro-timetable.pdf" target="_blank">Timings</a></li>
-                            <li><a href="https://chennaimetrorail.org/wp-content/uploads/2023/11/Fare-chart-for-all-stns.pdf" target="_blank">Fare Chart</a></li>
+                            <li><a href="Pdfs/Chennai-Metro-Map.pdf" title="Chennai Metro Map" target="_blank">Existing Route with Stations</a></li>
+                            <li><a href="Pdfs/chennai-metro-timetable.pdf" title="Chennai Metro Timetable" target="_blank">Timings</a></li>
+                            <li><a href="Pdfs/Chennai-Fare-Chart.pdf" title="Chennai Fare Chart"target="_blank">Fare Chart</a></li>
                             <li><a href="https://chennaimetrorail.org/feeder-service/" target="_blank">Metro Feeder Service</a></li>
                             <li><a href="https://chennaimetrorail.org/wp-content/uploads/2024/08/Parking-Facilities-Availabilities-01-08-2024.pdf" target="_blank">Parking Facilities</a></li>
                             <li><a href="https://commuters-data.chennaimetrorail.org/parkingavailability" target="_blank">Parking Availability</a></li>
                         </ul>
+                        <hr>                        
+                        <large>Helpline: <a href="tel:18604251515">18604251515</a></large>
                     </div>
                 </div>
             </div>
         
-            <!-- Metropolitan Transport Corporation (MTC) Card -->
+            <!-- Metropolitan Transport Corporation Card -->
             <div class="card">
                 <div class="card-header" id="mtcHeader" data-toggle="collapse" data-target="#mtcContent" aria-expanded="false" aria-controls="mtcContent">
                     <div class="header-content">
-                        <h6>Metropolitan Transport Corporation (MTC)</h6>
-                        <small>Helpline: <a href="tel:9445030516">9445030516</a> | <a href="tel:149">149</a></small>
+                        <h6>Metropolitan Transport Corporation</h6>
                     </div>
                     <i class="chevron fas fa-chevron-down"></i>
                 </div>
                 <div id="mtcContent" class="collapse" aria-labelledby="mtcHeader" data-parent="#transportAccordion">
                     <div class="card-body text-left">
-                        <p><strong>Links:</strong></p>
+                        <!--<p><strong>Links:</strong></p>-->
                         <ul>
                             <li><a href="https://mtcbus.tn.gov.in/Home/bustimingsearch" target="_blank">Bus Timings</a></li>
                             <li><a href="https://mtcbus.tn.gov.in/Home/fares" target="_blank">Bus Fares</a></li>
                             <li>Chennai Bus App (Live Tracking): <a href="https://play.google.com/store/apps/details?id=io.ionic.starter67676&hl=en-US" target="_blank">Android</a> | <a href="https://apps.apple.com/in/app/chennai-bus/id6443669492" target="_blank">iOS</a></li>
                         </ul>
+                        <hr>
+                        <large>Helpline: <a href="tel:9445030516">9445030516</a> | <a href="tel:149">149</a></large>
                     </div>
                 </div>
             </div>
@@ -218,19 +222,20 @@
             <div class="card">
                 <div class="card-header" id="suburbanHeader" data-toggle="collapse" data-target="#suburbanContent" aria-expanded="false" aria-controls="suburbanContent">
                     <div class="header-content">
-                        <h6>Chennai Suburban Train (SR)</h6>
-                        <small>Helpline: <a href="tel:139">139</a></small>
+                        <h6>Chennai Suburban Train</h6>
                     </div>
                     <i class="chevron fas fa-chevron-down"></i>
                 </div>
                 <div id="suburbanContent" class="collapse" aria-labelledby="suburbanHeader" data-parent="#transportAccordion">
                     <div class="card-body text-left">
-                        <p><strong>Links:</strong></p>
+                        <!--<p><strong>Links:</strong></p>-->
                         <ul>
                             <li><a href="https://railmadad.indianrailways.gov.in/madad/final/home.jsp" target="_blank">Website</a></li>
                             <li><a href="https://sr.indianrailways.gov.in/cris//uploads/files/1689659415735-REVISED%20SUBURBAN%20TRAIN%20TABLE%20W.E.F%2014.07.2023.pdf" target="_blank">Timings</a></li>
                             <li><a href="https://moovitapp.com/index/en/public_transit-lines-Chennai-4612-975817" target="_blank">Schedule Search</a></li>
                         </ul>
+                        <hr>                        
+                        <large>Helpline: <a href="tel:139">139</a></large>
                     </div>
                 </div>
             </div>
@@ -240,17 +245,18 @@
                 <div class="card-header" id="southernRailwayHeader" data-toggle="collapse" data-target="#southernRailwayContent" aria-expanded="false" aria-controls="southernRailwayContent">
                     <div class="header-content">
                         <h6>Southern Railway</h6>
-                        <small>Helpline: <a href="tel:139">139</a></small>
                     </div>
                     <i class="chevron fas fa-chevron-down"></i>
                 </div>
                 <div id="southernRailwayContent" class="collapse" aria-labelledby="southernRailwayHeader" data-parent="#transportAccordion">
                     <div class="card-body text-left">
-                        <p><strong>Links:</strong></p>
+                        <!--<p><strong>Links:</strong></p>-->
                         <ul>
                             <li><a href="https://railmadad.indianrailways.gov.in/madad/final/home.jsp" target="_blank">Website</a></li>
                             <li><a href="https://raw.githubusercontent.com/karthi209/tamilnadu-railway-map/refs/heads/main/tamilnadu-railway-map.jpg" target="_blank">Route Map</a></li>
                         </ul>
+                        <hr>                        
+                        <large>Helpline: <a href="tel:139">139</a></large>
                     </div>
                 </div>
             </div>
@@ -260,21 +266,22 @@
                 <div class="card-header" id="airportHeader" data-toggle="collapse" data-target="#airportContent" aria-expanded="false" aria-controls="airportContent">
                     <div class="header-content">
                         <h6>Chennai Airport</h6>
-                        <small>
-                            T1 Domestic: <a href="tel:04422563100">04422563100</a>, <a href="tel:04422563101">04422563101</a>, <a href="tel:8056220066">8056220066</a><br>
-                            T2 Intl: <a href="tel:04422565100">04422565100</a>, <a href="tel:04422565101">04422565101</a>, <a href="tel:8056220077">8056220077</a><br>
-                            T4 Domestic: <a href="tel:04422563600">04422563600</a>, <a href="tel:04422563601">04422563601</a>, <a href="tel:7845792544">7845792544</a>
-                        </small>
                     </div>
                     <i class="chevron fas fa-chevron-down"></i>
                 </div>
                 <div id="airportContent" class="collapse" aria-labelledby="airportHeader" data-parent="#transportAccordion">
                     <div class="card-body text-left">
-                        <p><strong>Links:</strong></p>
+                        <!--<p><strong>Links:</strong></p>-->
                         <ul>
                             <li><a href="https://www.avionio.com/en/airport/maa/arrivals" target="_blank">Arrival Status</a></li>
                             <li><a href="https://www.avionio.com/en/airport/maa/departures" target="_blank">Departure Status</a></li>
                         </ul>
+                        <hr>
+                        <large>
+                            T1 Domestic: <a href="tel:04422563100">04422563100</a>, <a href="tel:04422563101">04422563101</a>, <a href="tel:8056220066">8056220066</a><br>
+                            T2 Intl: <a href="tel:04422565100">04422565100</a>, <a href="tel:04422565101">04422565101</a>, <a href="tel:8056220077">8056220077</a><br>
+                            T4 Domestic: <a href="tel:04422563600">04422563600</a>, <a href="tel:04422563601">04422563601</a>, <a href="tel:7845792544">7845792544</a>
+                        </large>
                     </div>
                 </div>
             </div>
@@ -294,7 +301,7 @@
         <button id="scrollUpBtn"><i class="fas fa-chevron-up"></i></button>
         <footer class="text-center mt-5" style="font-size: 14px;">
             <hr>
-            <p>Join the <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">WhatsApp Channel</a> | Follow on <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, <a href="https://x.com/newsofchennai">Twitter</a>, <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & <a href="https://www.facebook.com/newsofchennai">Facebook</a> | Contact - newsofchennai@pm.me <br> News of Chennai is a citizen service that has been functioning since 2020, providing reliable and verified information to citizens in times of need. <br> Weather data sourced from <a href="https://www.weatherunion.com/">Weather Union</a> based on on-ground network of weather stations installed across Chennai.</p>
+            <p>Join the <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">WhatsApp Channel</a> | Follow on <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, <a href="https://x.com/newsofchennai">Twitter</a>, <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & <a href="https://www.facebook.com/newsofchennai">Facebook</a> | Contact - newsofchennai@pm.me <br> News of Chennai is a citizen service that has been functioning since 2020, providing reliable and verified information to citizens in times of need. <br> <!-- Weather data sourced from <a href="https://www.weatherunion.com/">Weather Union</a> based on on-ground network of weather stations installed across Chennai.</p> -->
         </footer>
     </div>
     
