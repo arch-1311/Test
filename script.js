@@ -57,7 +57,7 @@ function updateTimeTamil() {
     const date = now.getDate();
     const month = tamilMonths[now.getMonth()];
     const year = now.getFullYear();
-    const time = now.toLocaleTimeString('ta-IN', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     
     document.getElementById('date-time-tamil').innerHTML = `${day}, ${date} ${month}, ${year} | ${time}`;
 }
