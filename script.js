@@ -57,9 +57,11 @@ function updateTimeTamil() {
     const date = now.getDate();
     const month = tamilMonths[now.getMonth()];
     const year = now.getFullYear();
-    const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
     
-    document.getElementById('date-time-tamil').innerHTML = `${day}, ${date} ${month}, ${year} | ${time}`;
+    // Split time and suffix (AM/PM)
+    const [time, suffix] = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).split(" ");
+    
+    document.getElementById('date-time-tamil').innerHTML = `${day}, ${date} ${month}, ${year} | ${time} ${suffix}`;
 }
 
 // Update both date-times every second
