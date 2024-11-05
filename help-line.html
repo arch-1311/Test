@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chennai Helpline</title>
     <link rel="icon" href="favicon.png" type="image/x-icon">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link href="styles.css" rel="stylesheet">
@@ -53,7 +54,9 @@
             transition: transform 0.3s ease;
             margin-left: auto;
         }
-
+        .card-header {
+            padding: 10px;
+        }
         .accordion-button .chevron.rotate {
             transform: rotate(180deg);
         }
@@ -153,10 +156,13 @@
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
                     <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <span class="header-icon-circle">
+                        <!--<span class="header-icon-circle">
                             <img src="Images/police.png" alt="Police Icon" class="header-icon-img">
-                        </span>
-                        <span style="font-size: 14px;"> Greater Chennai Police </span>
+                        </span> -->
+                        <span style="font-size: 16px;font-weight: bold;">
+                            <!-- <i class="fa-solid fa-shield-halved"></i> -->
+                            <i class="fa-solid fa-shield"></i> Greater Chennai Police  
+                            </span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </h2>
@@ -200,10 +206,10 @@
             <div class="card-header" id="headingTwo">
                 <h2 class="mb-0">
                     <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                        <span class="header-icon-circle">
+                        <!--<span class="header-icon-circle">
                             <img src="Images/traffic.png" alt=" Traffic Police Icon" class="header-icon-img">
-                        </span>
-                        <span style="font-size: 14px;">  Greater Chennai Traffic Police </span>
+                        </span>-->
+                        <span style="font-size: 16px;font-weight: bold;"> <i class="fa-solid fa-traffic-light"></i> Greater Chennai Traffic Police </span>
                         <i class="fas fa-chevron-down"></i>
                     </button>
                 </h2>
@@ -259,10 +265,10 @@
             <div class="card-header" id="heading16">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapse16" aria-expanded="true" aria-controls="collapse16">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/cybercrime.png" alt="Cyber Crime Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Cyber Crime</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-laptop-code"></i> Cyber Crime</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -306,10 +312,10 @@
             <div class="card-header" id="heading10">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/women.png" alt="Milk Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Women Helplines</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"> <i class="fa-solid fa-venus"></i>  Women Helplines</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -372,10 +378,10 @@
             <div class="card-header" id="heading11">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/children.png" alt="Milk Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Children Helplines</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-regular fa-children"></i> Children Helplines</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -428,10 +434,10 @@
             <div class="card-header" id="heading12">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/LGBT.png" alt="Milk Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> LGBTQIA+ Helplines</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-mars-double"></i> LGBTQIA+ Helplines <i class="fa-solid fa-venus-double"></i></span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -493,10 +499,10 @@
             <div class="card-header" id="heading13">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapse13" aria-expanded="true" aria-controls="collapse13">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/differently-abled.png" alt="Differently-abled Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Differently Abled Helplines</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-wheelchair"></i>  Differently Abled Helplines</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -548,10 +554,10 @@
             <div class="card-header" id="heading14">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapse14" aria-expanded="true" aria-controls="collapse14">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/elders.png" alt="Elderly Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Elderly Helplines</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-person-cane"></i> Elderly Helplines</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -611,8 +617,8 @@
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
                     <span class="header-icon-circle">
                         <img src="Images/ambulance.png" alt="Ambulance Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Ambulance - Emergency </span>
+                    </span> 
+                    <span style="font-size: 16px;font-weight: bold;"> Ambulance - Emergency </span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -701,10 +707,10 @@
             <div class="card-header" id="headingSix">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/fire.png" alt="Ambulance Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Fire & Rescue | Gas Leakage</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-fire"></i>   Fire & Rescue | Gas Leakage</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -776,10 +782,10 @@
             <div class="card-header" id="headingFive">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/disaster.png" alt="Ambulance Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Disaster Management</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-triangle-exclamation"></i> Disaster Management</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -822,10 +828,10 @@
             <div class="card-header" id="headingThree">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/chn-corp.png" alt="Corporation Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Greater Chennai Corporation </span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-building-circle-check"></i> Greater Chennai Corporation </span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -899,10 +905,10 @@
             <div class="card-header" id="heading7">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapse7" aria-expanded="true" aria-controls="collapse7">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/metro.png" alt="Metro water and Electricity Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Metro Water | Electricity</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-faucet-drip"></i> Metro Water | Electricity</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -949,10 +955,10 @@
             <div class="card-header" id="heading8">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapse8" aria-expanded="true" aria-controls="collapse8">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/blood.png" alt="Blood bank Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Blood Banks</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-hand-holding-droplet"></i>  Blood Banks</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -1013,10 +1019,10 @@
             <div class="card-header" id="heading9">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapse9" aria-expanded="true" aria-controls="collapse9">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/milk.png" alt="Milk Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Human Milk Banks</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-person-breastfeeding"></i>  Human Milk Banks</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -1085,10 +1091,10 @@
             <div class="card-header" id="heading15">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapse15" aria-expanded="true" aria-controls="collapse15">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/animal.png" alt="Animal & Snake Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Animal Helplines & Snake Catching</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-paw"></i>   Animal Helplines & Snake Catching</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
@@ -1282,10 +1288,10 @@
             <div class="card-header" id="heading17">
             <h2 class="mb-0">
                 <button class="btn btn-link accordion-button" type="button" data-toggle="collapse" data-target="#collapse17" aria-expanded="true" aria-controls="collapse17">
-                    <span class="header-icon-circle">
+                    <!--<span class="header-icon-circle">
                         <img src="Images/intercaste.png" alt="Inter Caste Marriage Protection Icon" class="header-icon-img">
-                    </span>
-                    <span style="font-size: 14px;"> Inter Caste Marriage Protection <br> & Crime against SC/ST Helpline</span>
+                    </span> -->
+                    <span style="font-size: 16px;font-weight: bold;"><i class="fa-solid fa-hand-holding-hand"></i>  Inter Caste Marriage Protection <br> & Crime against SC/ST Helpline</span>
                     <i class="fas fa-chevron-down"></i>
                 </button>
             </h2>
