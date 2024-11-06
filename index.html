@@ -131,7 +131,7 @@
         }
         @media (max-width: 600px) {
             .weather-content span {
-                font-size:14px;
+                font-size:16px;
             }
             .weather-details {
                 height :350px;
@@ -418,7 +418,11 @@ function fetchWeatherData(localityId, lat, lng, localityName) {
                     const rainfallCategory = getRainfallCategory(rainAccumulation);
 
                     // Extract date from Last Fetched
-                    const lastFetchedDate = new Date(row[lastFetchedIndex]).toLocaleDateString();
+                    //const lastFetchedDate = new Date(row[lastFetchedIndex]).toLocaleDateString();
+                    // Extract and format date from Last Fetched as "6-Nov-2024"
+                    // Parse and format lastFetched date from DD-MM-YYYY to "6 Nov 2024"
+                    const lastFetchedDate = row[lastFetchedIndex].split(' ')[0]; // Splits at the space and takes the first part
+
 
                     const popupContent = `
                         <b>${localityName}</b><br>
@@ -429,12 +433,12 @@ function fetchWeatherData(localityId, lat, lng, localityName) {
 
                     const weatherContent = `
                         <div class="weather-content">
-                            <i class="fas fa-thermometer-half"></i><span style="margin-right: 15px; "> Temperature: ${row[temperatureIndex]}°C</span><br>
-                            <i class="fas fa-cloud-showers-heavy"></i><span style="margin-right: 15px;"> Rain Accumulation: ${rainAccumulation} mm</span><br>
-                            <i class="fas fa-info-circle"></i><span style="margin-right: 15px;">  Since ${lastFetchedDate}, 12:00 am, ${rainAccumulation} mm of rain has been recorded, classified as ${rainfallCategory} according to IMD 24-hour rainfall classification.<br>
-                            <i class="fas fa-tint"></i><span style="margin-right: 15px;"> Humidity: ${row[humidityIndex]}%</span><br>
-                            <i class="fas fa-wind"></i><span style="margin-right: 15px;"> Wind Speed: ${row[windSpeedIndex]} m/s</span><br>
-                            <i class="far fa-clock"></i><span style="margin-right: 15px;"> Last Updated: ${row[lastFetchedIndex]}</span>
+                            <span style="margin-right: 15px;"> <i class="fas fa-thermometer-half"></i>&nbsp;&nbsp;Temperature: ${row[temperatureIndex]}°C</span><br>
+                            <span style="margin-right: 15px;"> <i class="fas fa-cloud-showers-heavy"></i>&nbsp;&nbsp;Rain Accumulation: ${rainAccumulation} mm</span><br>
+                            <span style="margin-right: 15px;"> <i class="fas fa-info-circle"></i>&nbsp;&nbsp;Since ${lastFetchedDate}, 12:00 am, ${rainAccumulation} mm of rain has been recorded, classified as ${rainfallCategory} according to IMD 24-hour rainfall classification.<br>
+                            <span style="margin-right: 15px;"> <i class="fas fa-tint"></i>&nbsp;&nbsp;Humidity: ${row[humidityIndex]}%</span><br>
+                            <span style="margin-right: 15px;"> <i class="fas fa-wind"></i>&nbsp;&nbsp;Wind Speed: ${row[windSpeedIndex]} m/s</span><br>
+                            <span style="margin-right: 15px;"> <i class="far fa-clock"></i>&nbsp;&nbsp;Last Updated: ${row[lastFetchedIndex]}</span>
                         </div>
                     `;
                     document.getElementById('weatherContent').innerHTML = weatherContent;
