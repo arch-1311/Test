@@ -69,6 +69,9 @@
             margin: 10px 0; /* Add spacing */
             text-align: left;
         }
+        .weather-content span {
+            font-size:12px;
+        }
 
         /* Scroll-up button styles */
         #scrollUpBtn {
@@ -124,6 +127,14 @@
             .banner-img {
                 width: 80%; /* Set the desired width for desktop view */
                 max-width: 800px; /* Optional: Set a max width */
+            }
+        }
+        @media (max-width: 600px) {
+            .weather-content span {
+                font-size:14px;
+            }
+            .weather-details {
+                height :350px;
             }
         }
         body h5 {
@@ -363,27 +374,33 @@
     <script>
         //map
         const map = L.map('map').setView([13.080772, 80.248018], 13); // Default center (hidden initially)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '© OpenStreetMap'
-        }).addTo(map);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+}).addTo(map);
 
-        let marker;
+let marker;
 
-        function fetchWeatherData(localityId, lat, lng, localityName) {
-        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR8B1XnkzVFKQVx0MOEmxmwBJLsZWLmib6VvKtVIJmHN2qglXhWa_a0mJY-1ZCNH8q8c8U6-73ftz9a/pub?gid=0&single=true&output=csv';
+// Helper function to classify rainfall according to IMD standards
+function getRainfallCategory(rainAmount) {
+    if (rainAmount >= 0.1 && rainAmount <= 2.4) return "Very Light Rain";
+    if (rainAmount >= 2.5 && rainAmount <= 7.5) return "Light Rain";
+    if (rainAmount >= 7.6 && rainAmount <= 35.5) return "Moderate Rain";
+    if (rainAmount >= 35.6 && rainAmount <= 64.4) return "Rather Heavy Rain";
+    if (rainAmount >= 64.5 && rainAmount <= 115.5) return "Heavy Rain";
+    if (rainAmount >= 115.6 && rainAmount <= 204.4) return "Very Heavy Rain";
+    return "Extreme Rainfall"; // for cases above 204.4 mm
+}
 
+function fetchWeatherData(localityId, lat, lng, localityName) {
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR8B1XnkzVFKQVx0MOEmxmwBJLsZWLmib6VvKtVIJmHN2qglXhWa_a0mJY-1ZCNH8q8c8U6-73ftz9a/pub?gid=0&single=true&output=csv';
 
     fetch(sheetUrl)
         .then(response => response.text())
         .then(data => {
-            //const lines = data.split('\n').map(line => line.split(','));
-            const lines = data.split('\n').map(line => line.split(',').map(cell => cell.trim())); // Trim each cell
-            const headers = lines[0].map(header => header.trim()); // Trim headers
-
-           // const headers = lines[0];
+            const lines = data.split('\n').map(line => line.split(',').map(cell => cell.trim()));
+            const headers = lines[0];
             const weatherData = lines.slice(1);
-            console.log('Headers:', headers);
 
             const localityIndex = headers.indexOf('Locality');
             const temperatureIndex = headers.indexOf('Temperature (°C)');
@@ -391,42 +408,46 @@
             const windSpeedIndex = headers.indexOf('Wind Speed (m/s)');
             const rainIntensityIndex = headers.indexOf('Rain Intensity (mm/h)');
             const rainAccumulationIndex = headers.indexOf('Rain Accumulation (mm)');
-            const lastFetched = headers.indexOf('Last Fetched');
+            const lastFetchedIndex = headers.indexOf('Last Fetched');
 
             let found = false;
             for (const row of weatherData) {
                 if (row[localityIndex] === localityId) {
                     found = true;
-            const popupContent = `
-    <b>${localityName}</b><br>
-    Rain Accumulation: ${row[rainAccumulationIndex]} mm
-`;
+                    const rainAccumulation = parseFloat(row[rainAccumulationIndex]);
+                    const rainfallCategory = getRainfallCategory(rainAccumulation);
 
-                marker = L.marker([lat, lng]).addTo(map).bindPopup(popupContent).openPopup();
+                    // Extract date from Last Fetched
+                    const lastFetchedDate = new Date(row[lastFetchedIndex]).toLocaleDateString();
 
-                const weatherContent = `
-                    <div class="weather-content">
-                        <i class="fas fa-thermometer-half"></i> Temperature: <span style="margin-right: 15px;">${row[temperatureIndex]}°C</span><br><br>
-                        <i class="fas fa-cloud-showers-heavy"></i> Rain Accumulation: <span style="margin-right: 15px;">${row[rainAccumulationIndex]} mm</span><br><br>
-                        <i class="fas fa-tint"></i> Humidity: <span style="margin-right: 15px;">${row[humidityIndex]}%</span><br><br>
-                        <i class="fas fa-wind"></i> Wind Speed: <span style="margin-right: 15px;">${row[windSpeedIndex]} m/s</span><br><br>
-                        <i class="far fa-clock"></i> Last Updated: <span style="margin-right: 15px;">${row[lastFetched]}</span>
+                    const popupContent = `
+                        <b>${localityName}</b><br>
+                        Rain Accumulation: ${rainAccumulation} mm
+                    `;
 
-                    </div>
-                `;
-                document.getElementById('weatherContent').innerHTML = weatherContent;
+                    marker = L.marker([lat, lng]).addTo(map).bindPopup(popupContent).openPopup();
 
-                // Corrected this line
-                document.getElementById('selectedLocality').innerText = localityName;
-                break;
+                    const weatherContent = `
+                        <div class="weather-content">
+                            <i class="fas fa-thermometer-half"></i><span style="margin-right: 15px; "> Temperature: ${row[temperatureIndex]}°C</span><br>
+                            <i class="fas fa-cloud-showers-heavy"></i><span style="margin-right: 15px;"> Rain Accumulation: ${rainAccumulation} mm</span><br>
+                            <i class="fas fa-info-circle"></i><span style="margin-right: 15px;">  Since ${lastFetchedDate}, 12:00 am, ${rainAccumulation} mm of rain has been recorded, classified as ${rainfallCategory} according to IMD 24-hour rainfall classification.<br>
+                            <i class="fas fa-tint"></i><span style="margin-right: 15px;"> Humidity: ${row[humidityIndex]}%</span><br>
+                            <i class="fas fa-wind"></i><span style="margin-right: 15px;"> Wind Speed: ${row[windSpeedIndex]} m/s</span><br>
+                            <i class="far fa-clock"></i><span style="margin-right: 15px;"> Last Updated: ${row[lastFetchedIndex]}</span>
+                        </div>
+                    `;
+                    document.getElementById('weatherContent').innerHTML = weatherContent;
+
+                    document.getElementById('selectedLocality').innerText = localityName;
+                    break;
+                }
             }
-        }
 
             if (!found) {
                 document.getElementById('weatherContent').innerHTML = 'Locality not found in the data.';
             }
 
-            // Show weather details and map
             document.getElementById('weatherDetails').style.display = 'block';
             document.getElementById('map').style.display = 'block';
             document.getElementById('disclaimer').style.display = 'block';
@@ -435,32 +456,32 @@
             console.error('Error fetching weather data:', error);
             document.getElementById('weatherContent').innerHTML = 'Failed to retrieve weather data.';
         });
+}
+
+// Event listener for locality selection
+document.getElementById('localitySelect').addEventListener('change', function() {
+    const selectedOption = this.options[this.selectedIndex];
+    const localityId = selectedOption.value;
+    const lat = selectedOption.getAttribute('data-lat');
+    const lng = selectedOption.getAttribute('data-lng');
+    const localityName = selectedOption.textContent;
+
+    if (localityId === 'Choose a locality') {
+        document.getElementById('weatherDetails').style.display = 'none';
+        document.getElementById('map').style.display = 'none';
+        document.getElementById('disclaimer').style.display = 'none';
+    } else {
+        fetchWeatherData(localityId, lat, lng, localityName);
     }
+});
 
-        // Event listener for locality selection
-        document.getElementById('localitySelect').addEventListener('change', function() {
-            const selectedOption = this.options[this.selectedIndex];
-            const localityId = selectedOption.value;
-            const lat = selectedOption.getAttribute('data-lat');
-            const lng = selectedOption.getAttribute('data-lng');
-            const localityName = selectedOption.textContent;
+// Remove default Kilpauk selection on page load
+window.onload = function() {
+    document.getElementById('map').style.display = 'none';
+    document.getElementById('weatherDetails').style.display = 'none';
+    document.getElementById('disclaimer').style.display = 'none';
+};
 
-            if (localityId === 'Choose a locality') {
-                // Hide map and weather details
-                document.getElementById('weatherDetails').style.display = 'none';
-                document.getElementById('map').style.display = 'none';
-                document.getElementById('disclaimer').style.display = 'none';
-            } else {
-                fetchWeatherData(localityId, lat, lng, localityName);
-            }
-        });
-
-        // Remove default Kilpauk selection on page load
-        window.onload = function() {
-            document.getElementById('map').style.display = 'none'; // Hide map initially
-            document.getElementById('weatherDetails').style.display = 'none'; // Hide weather details initially
-            document.getElementById('disclaimer').style.display = 'none'; // hide disclaimer initially
-        };
 
         // Scroll to top function
         function scrollToTop() {
