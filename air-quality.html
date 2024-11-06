@@ -277,84 +277,59 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 <script>
     // Define AQI to PM25 conversion table
-const AQITablePM25 = {
-  concentrations: [
-    { min: 0, max: 15.5, index: { min: 0, max: 50 } },
-    { min: 15.5, max: 40.5, index: { min: 50, max: 100 } },
-    { min: 40.5, max: 65.5, index: { min: 100, max: 150 } },
-    { min: 65.5, max: 150.5, index: { min: 150, max: 200 } },
-    { min: 150.5, max: 250.5, index: { min: 200, max: 300 } },
-    { min: 250.5, max: 500.5, index: { min: 300, max: 400 } },
-    { min: 500.5, max: 99999999999, index: { min: 400, max: 99999999999 } }
-  ]
-};
+    const AQITablePM25 = {
+    concentrations: [
+        { min: 0, max: 15.5, index: { min: 0, max: 50 } },
+        { min: 15.5, max: 40.5, index: { min: 50, max: 100 } },
+        { min: 40.5, max: 65.5, index: { min: 100, max: 150 } },
+        { min: 65.5, max: 150.5, index: { min: 150, max: 200 } },
+        { min: 150.5, max: 250.5, index: { min: 200, max: 300 } },
+        { min: 250.5, max: 500.5, index: { min: 300, max: 400 } },
+        { min: 500.5, max: 99999999999, index: { min: 400, max: 99999999999 } }
+    ]
+    };
 
-// Get the upper and lower bounds of particle concentration for corresponding AQI
-function getBreakpoints(AQI) {
-  const breakpoints = AQITablePM25.concentrations.find(function (conc) {
-    return conc.index.min <= AQI && conc.index.max > AQI;
-  });
-  if (breakpoints === undefined) {
-    throw new Error(`AQI out of bounds. AQI: ${AQI}`);
-  }
-  return breakpoints;
-}
+    // Get the upper and lower bounds of particle concentration for corresponding AQI
+    function getBreakpoints(AQI) {
+    const breakpoints = AQITablePM25.concentrations.find(function (conc) {
+        return conc.index.min <= AQI && conc.index.max > AQI;
+    });
+    if (breakpoints === undefined) {
+        throw new Error(`AQI out of bounds. AQI: ${AQI}`);
+    }
+    return breakpoints;
+    }
 
-// Calculate PM 2.5 concentration per 24 hours based on AQI
-function calcPM25(AQI) {
-  const breakpoints = getBreakpoints(AQI);
-  
-  // Particle concentration
-  const PM_min = breakpoints.min;
-  const PM_max = breakpoints.max;
-  
-  // Air quality index
-  const AQI_min = breakpoints.index.min;
-  const AQI_max = breakpoints.index.max;
+    // Calculate PM 2.5 concentration per 24 hours based on AQI
+    function calcPM25(AQI) {
+    const breakpoints = getBreakpoints(AQI);
+    
+    // Particle concentration
+    const PM_min = breakpoints.min;
+    const PM_max = breakpoints.max;
+    
+    // Air quality index
+    const AQI_min = breakpoints.index.min;
+    const AQI_max = breakpoints.index.max;
 
-  // Particle concentration based on given AQI
-  const PM = ((AQI - AQI_min) / (AQI_max - AQI_min)) * (PM_max - PM_min) + PM_min;
-  
-  return PM;
-}
+    // Particle concentration based on given AQI
+    const PM = ((AQI - AQI_min) / (AQI_max - AQI_min)) * (PM_max - PM_min) + PM_min;
+    
+    return PM;
+    }
+    
+    // Calculate cigarette equivalent based on AQI (assuming 24-hour exposure)
+    function calculateCigarettes(AQI, hours = 24) {
+        // Step 1: Calculate PM2.5 concentration from AQI
+        const PM25 = calcPM25(AQI);
+        
+        // Step 2: Calculate the equivalent number of cigarettes
+        const cigaretteFactor = 22 * 24; // 22 µg/m³ for 24 hours is equivalent to 1 cigarette
+        const cigarettes = (PM25 * hours) / cigaretteFactor;
 
-// Calculate cigarette equivalent based on AQI (assuming 24-hour exposure)
-function calculateCigarettes(AQI, hours = 24) {
-  // Step 1: Calculate PM2.5 concentration from AQI
-  const PM25 = calcPM25(AQI);
-  
-  // Step 2: Calculate the equivalent number of cigarettes
-  const cigaretteFactor = 22 * 24; // 22 µg/m³ for 24 hours is equivalent to 1 cigarette
-  const cigarettes = (PM25 * hours) / cigaretteFactor;
-
-  // Return the calculated cigarette count, rounded to two decimal places
-  return (cigarettes).toFixed(2);
-}
-
-// Example of fetching AQI from an API (replace with your actual API call)
-async function fetchAQI() {
-  try {
-    // Example API response (replace with actual API request)
-    const response = await fetch('https://api.example.com/aqi'); // Replace with actual API endpoint
-    const data = await response.json();
-
-    // Assuming the AQI value is inside 'data.aqi'
-    const aqi = data.aqi;
-
-    // Update the cigarettes count in the DOM
-    document.getElementById('cigarettes-count').innerText = `${calculateCigarettes(aqi)} cigarettes`;
-  } catch (error) {
-    console.error('Error fetching AQI:', error);
-    // You can show a default or error message in case the API call fails
-    document.getElementById('cigarettes-count').innerText = 'Error fetching AQI data';
-  }
-}
-
-// Fetch AQI and update the cigarette count when the page loads
-fetchAQI();
-
-
-
+        // Return the calculated cigarette count, rounded to two decimal places
+        return (cigarettes).toFixed(2);
+    }
 
     //aqi
     const apiKey = '9eaa5b53392b2983fdc8e5e67bc0c7fdc28e38fd';
@@ -494,16 +469,29 @@ fetchAQI();
             const pm25 = aqiData.iaqi.pm25 ? aqiData.iaqi.pm25.v : 'N/A';
             const pm10 = aqiData.iaqi.pm10 ? aqiData.iaqi.pm10.v : 'N/A';
 
-            // Show AQI details
+            // Calculate cigarettes equivalent
+            let cigarettesHTML = '';
+            if (pm25 > 50) {
+                // Show the 'cigarettes-equivalent' div
+                const cigarettes = calculateCigarettes(pm25);
+                cigarettesHTML = `
+                    <div id="cigarettes-equivalent">
+                        <strong>Equivalent to smoking <span style="color:red" id="cigarettes-count">${cigarettes}  <i class="fas fa-smoking"></i></span>&nbsp;&nbsp;if exposed for 24 hours</strong>
+                    </div><br>
+                `;
+            }
+            // Show AQI details in the 'aqi-details' div
             const aqiDetails = document.getElementById("aqi-details");
             aqiDetails.innerHTML = `
-                <strong> <h4 style="text-decoration:underline;">${formattedCityName}</h4></strong>
-                <div class="aqi-box ${getAQIClass(aqi)}">AQI Level : ${aqi} | ${healthStatus}</div><br>
-                <div><strong>Equivalent to smoking <span style="color:red" id="cigarettes-count">${calculateCigarettes(pm25)}  <i class="fas fa-smoking"></i></span>&nbsp;&nbsp;if exposed for 24 hours</strong></div><br>
-                <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>                
+                <strong><h4 style="text-decoration:underline;">${formattedCityName}</h4></strong>
+                <div class="aqi-box ${getAQIClass(aqi)}">AQI Level: ${aqi} | ${healthStatus}</div><br>
+                ${cigarettesHTML}
+                <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
                 <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>
-                <div>Last updated: ${lastUpdated}</div></strong>
+                <div>Last updated: ${lastUpdated}</div>
             `;
+
+            // You can call this function on page load or when the AQI data is updated
             document.querySelector(".aqi-info").style.display = "block";
 
             // Show map
@@ -548,16 +536,30 @@ fetchAQI();
     const pm25 = iaqi.pm25 ? iaqi.pm25.v : 'N/A';
     const pm10 = iaqi.pm10 ? iaqi.pm10.v : 'N/A';
 
-    // Show AQI details
+    // Calculate cigarettes equivalent
+    let cigarettesHTML = '';
+    if (pm25 > 50) {
+        // Show the 'cigarettes-equivalent' div
+        const cigarettes = calculateCigarettes(pm25);
+        cigarettesHTML = `
+            <div id="cigarettes-equivalent">
+                <strong>Equivalent to smoking <span style="color:red" id="cigarettes-count">${cigarettes}  <i class="fas fa-smoking"></i></span>&nbsp;&nbsp;if exposed for 24 hours</strong>
+            </div><br>
+        `;
+    }
+    // Show AQI details in the 'aqi-details' div
     const aqiDetails = document.getElementById("aqi-details");
     aqiDetails.innerHTML = `
-        <strong> <h4 style="text-decoration:underline;">${formattedCityName}</h4></strong>
-        <div class="aqi-box ${getAQIClass(aqi)}">AQI Level : ${aqi} | ${healthStatus}</div><br>
-        <div><strong>Equivalent to smoking <span style="color:red" id="cigarettes-count">${calculateCigarettes(pm25)}  <i class="fas fa-smoking"></i></span>&nbsp;&nbsp;if exposed for 24 hours</strong></div><br>
+        <strong><h4 style="text-decoration:underline;">${formattedCityName}</h4></strong>
+        <div class="aqi-box ${getAQIClass(aqi)}">AQI Level: ${aqi} | ${healthStatus}</div><br>
+        ${cigarettesHTML}
         <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
         <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>
-        <div>Last updated: ${lastUpdated}</div></strong>
+        <div>Last updated: ${lastUpdated}</div>
     `;
+
+    // You can call this function on page load or when the AQI data is updated
+
     document.querySelector(".aqi-info").style.display = "block";
     });
     // End of Trigger fetching AQI data for Teynampet on page load
