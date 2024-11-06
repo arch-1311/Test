@@ -42,7 +42,12 @@ function updateTime() {
     const day = now.toLocaleDateString('en-US', { weekday: 'long' });
     const date = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    document.getElementById('date-time').innerHTML = `${day}, ${date} | ${time}`;
+    
+    // Check if the 'date-time' element exists before updating
+    const dateTimeElement = document.getElementById('date-time');
+    if (dateTimeElement) {
+        dateTimeElement.innerHTML = `${day}, ${date} | ${time}`;
+    }
 }
 
 // Tamil Date-Time
@@ -51,18 +56,18 @@ function updateTimeTamil() {
 
     // Tamil months' approximate Gregorian start dates (for current year)
     const tamilMonths = [
-        { name: "சித்திரை", start: new Date(now.getFullYear(), 3, 14) },
-        { name: "வைகாசி", start: new Date(now.getFullYear(), 4, 15) },
-        { name: "ஆனி", start: new Date(now.getFullYear(), 5, 15) },
-        { name: "ஆடி", start: new Date(now.getFullYear(), 6, 15) },
-        { name: "ஆவணி", start: new Date(now.getFullYear(), 7, 15) },
-        { name: "புரட்டாசி", start: new Date(now.getFullYear(), 8, 15) },
-        { name: "ஐப்பசி", start: new Date(now.getFullYear(), 9, 18) }, // Oct 18 typically marks Aippasi start
-        { name: "கார்த்திகை", start: new Date(now.getFullYear(), 10, 16) },
-        { name: "மார்கழி", start: new Date(now.getFullYear(), 11, 15) },
-        { name: "தை", start: new Date(now.getFullYear() + 1, 0, 15) }, // Tamil year continues into next Gregorian year
-        { name: "மாசி", start: new Date(now.getFullYear() + 1, 1, 13) },
-        { name: "பங்குனி", start: new Date(now.getFullYear() + 1, 2, 14) }
+        { name: "தை", start: new Date(now.getFullYear(), 0, 15) }, // Mid-Jan to Mid-Feb
+        { name: "மாசி", start: new Date(now.getFullYear(), 1, 15) }, // Mid-Feb to Mid-Mar
+        { name: "பங்குனி", start: new Date(now.getFullYear(), 2, 15) }, // Mid-Mar to Mid-Apr
+        { name: "சித்திரை", start: new Date(now.getFullYear(), 3, 14) }, // Mid-Apr to Mid-May
+        { name: "வைகாசி", start: new Date(now.getFullYear(), 4, 15) }, // Mid-May to Mid-Jun
+        { name: "ஆனி", start: new Date(now.getFullYear(), 5, 15) }, // Mid-Jun to Mid-Jul
+        { name: "ஆடி", start: new Date(now.getFullYear(), 6, 15) }, // Mid-Jul to Mid-Aug
+        { name: "ஆவணி", start: new Date(now.getFullYear(), 7, 15) }, // Mid-Aug to Mid-Sep
+        { name: "புரட்டாசி", start: new Date(now.getFullYear(), 8, 15) }, // Mid-Sep to Mid-Oct
+        { name: "ஐப்பசி", start: new Date(now.getFullYear(), 9, 18) }, // Mid-Oct to Mid-Nov
+        { name: "கார்த்திகை", start: new Date(now.getFullYear(), 10, 16) }, // Mid-Nov to Mid-Dec
+        { name: "மார்கழி", start: new Date(now.getFullYear(), 11, 15) } // Mid-Dec to Mid-Jan
     ];
 
     // Find the current Tamil month and calculate the day within that month
@@ -88,8 +93,11 @@ function updateTimeTamil() {
     // Split time and suffix (AM/PM)
     const [time, suffix] = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }).split(" ");
 
-    // Display formatted date in Tamil
-    document.getElementById('date-time-tamil').innerHTML = `${day}, ${tamilDay} ${tamilMonth.name}, ${year} | ${time} ${suffix}`;
+    // Check if the 'date-time-tamil' element exists before updating
+    const dateTimeTamilElement = document.getElementById('date-time-tamil');
+    if (dateTimeTamilElement) {
+        dateTimeTamilElement.innerHTML = `${day}, ${tamilDay} ${tamilMonth.name}, ${year} | ${time} ${suffix}`;
+    }
 }
 
 // Update both date-times every second
