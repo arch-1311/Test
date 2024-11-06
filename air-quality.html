@@ -188,21 +188,21 @@
 
     <div class="row mt-4">
         <div class="col-md-6">
-            <div class="aqi-info">
+            <div class="aqi-info text-left">
                 <div id="aqi-details"></div>
             </div>
-            <hr>
             <!-- Add input fields for AQI and Hours Exposed -->
-            <div class="calculator text-left">
+            <!-- <div class="calculator text-left">
                 <input id="aqi" type="number" class="form-control" placeholder="Enter AQI | PM2.5 Value" oninput="restrictDigits(this, 3); calculateCigarettes()">
                 <br>
                 <input id="hours" type="number" class="form-control" placeholder="Enter Hours Exposed" oninput="restrictDigits(this, 2); calculateCigarettes()">
                 <br>
                 <div id="result" style="text-align: center; color: red;"></div>
-                <small><em>Data is calculated based on <a href="https://berkeleyearth.org/air-pollution-and-cigarette-equivalence/">Berkley’s research</a></em></small>
-            </div>                            
-            <br>
+                
+            </div>                             -->
+            <div class="text-left"><small><em>AQI to Cigarette Data is calculated based on <a href="https://berkeleyearth.org/air-pollution-and-cigarette-equivalence/">Berkley’s research</a></em></small></div><br>
         </div>
+        
         <div class="col-md-6">
             <div id="map-container"></div>
         </div>
@@ -307,57 +307,26 @@
         { aqi: 495, cigarettes: 27 },
     ];
 
-    // Function to restrict the number of digits in an input field
-    function restrictDigits(input, maxDigits) {
-        let value = input.value;
-
-        // Only allow digits and limit the length
-        if (value.length > maxDigits) {
-            input.value = value.slice(0, maxDigits);
+    // Calculate cigarette equivalent based on PM2.5 (assuming 24-hour exposure)
+    function calculateCigarettes(pm25Value) {
+        // Default to 24 hours for this calculation
+        const hours = 24;
+        
+        // Find the closest AQI value for cigarettes count
+        let cigarettes = 0;
+        for (let i = 0; i < aqiToCigaretteMap.length; i++) {
+            if (pm25Value <= aqiToCigaretteMap[i].aqi) {
+                cigarettes = aqiToCigaretteMap[i].cigarettes;
+                break;
+            }
         }
+        
+        // Multiply by the hours of exposure
+        cigarettes *= hours;
+
+        // Return the calculated cigarette count, rounded to two decimal places
+        return cigarettes.toFixed(2);
     }
-
-    function calculateCigarettes() {
-    const aqiInput = document.getElementById('aqi');
-    const hoursInput = document.getElementById('hours');
-    const resultDisplay = document.getElementById('result');
-
-    const aqi = parseInt(aqiInput.value);
-    const hours = parseFloat(hoursInput.value);
-
-    // Check if AQI or hours input is empty
-    if (isNaN(aqi) || isNaN(hours)) {
-        resultDisplay.innerHTML = "<strong>Please enter valid AQI and hours values.</strong>";
-        return;
-    }
-
-    // Check if AQI is valid
-    if (aqi > 495) {
-        resultDisplay.innerHTML = "<strong>No Research Data Found.</strong>";
-        return;
-    }
-
-    // Check if hours are valid
-    if (hours > 24) {
-        resultDisplay.innerHTML = "<strong>Invalid hour entered.</strong>";
-        return;
-    }
-
-    // Find the closest AQI value for cigarettes count
-    let cigarettes = 0;
-    for (let i = 0; i < aqiToCigaretteMap.length; i++) {
-        if (aqi <= aqiToCigaretteMap[i].aqi) {
-            cigarettes = aqiToCigaretteMap[i].cigarettes;
-            break;
-        }
-    }
-
-    // Multiply by the hours of exposure
-    cigarettes = cigarettes * hours;
-
-    // Display the calculated cigarette count
-    resultDisplay.innerHTML = `<strong>It's like you've smoked <span id="cigarettes-count">${cigarettes.toFixed(2)}</span> <i class="fas fa-smoking"></i></strong>`;
-}
 
     //aqi
     const apiKey = '9eaa5b53392b2983fdc8e5e67bc0c7fdc28e38fd';
@@ -503,6 +472,7 @@
                 <strong> <h4 style="text-decoration:underline;">${formattedCityName}</h4></strong>
                 <div class="aqi-box ${getAQIClass(aqi)}">AQI Level : ${aqi} | ${healthStatus}</div><br>
                 <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
+                <div><strong>It's like you've smoked <span style="color:red" id="cigarettes-count">${calculateCigarettes(pm25)}  <i class="fas fa-smoking"></i></span>&nbsp;&nbsp;(based on 24 hours exposure)</strong></div><br>
                 <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>
                 <div>Last updated: ${lastUpdated}</div></strong>
             `;
@@ -556,6 +526,7 @@
         <strong> <h4 style="text-decoration:underline;">${formattedCityName}</h4></strong>
         <div class="aqi-box ${getAQIClass(aqi)}">AQI Level : ${aqi} | ${healthStatus}</div><br>
         <div>PM<sub>2.5</sub>: ${pm25} µg/m³</div><br>
+        <div><strong>It's like you've smoked <span style="color:red" id="cigarettes-count">${calculateCigarettes(pm25)}  <i class="fas fa-smoking"></i></span>&nbsp;&nbsp;(based on 24 hours exposure)</strong></div><br>
         <div>PM<sub>10</sub>: ${pm10} µg/m³</div><br>
         <div>Last updated: ${lastUpdated}</div></strong>
     `;
