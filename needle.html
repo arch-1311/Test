@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5-Day Weather Forecast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        #forecast {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .forecast-item, .today-weather {
+            background: #f4f4f4;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 10px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .forecast-item h4, .today-weather h4 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .forecast-item p {
+            margin: 5px 0;
+        }
+        .weather-icon {
+            font-size: 2em;
+        }
+        .rain, .mist, .clear, .clouds {
+            animation: weather-animation 2s infinite;
+        }
+        .rain { animation-name: rain-animation; }
+        .mist { animation-name: fog-animation; }
+        .clear { animation-name: sun-animation; }
+        .clouds { animation-name: clouds-animation; }
+        
+        @keyframes rain-animation {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+        
+        @keyframes fog-animation {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+            100% { opacity: 0.3; }
+        }
+
+        @keyframes sun-animation {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes clouds-animation {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <h1>5-Day Weather Forecast</h1>
+    <label for="location">Select a Location:</label>
+    <select id="location">
+        <option value="ZWL006520" data-lat="12.993947" data-lng="80.247174">Adyar</option>
+        <option value="ZWL001210" data-lat="13.032366" data-lng="80.257625">Alwarpet</option>
+        <!-- Add other locations here -->
+    </select>
+
+    <div id="forecast"></div>
+
+    <script>
+        const apiKey = 'f00c38e0279b7bc85480c3fe775d518c';
+        const url = 'https://api.openweathermap.org/data/2.5/forecast';
+        const todayUrl = 'https://api.openweathermap.org/data/2.5/weather';
+
+        async function fetchWeatherData(lat, lng) {
+            // Get today's weather
+            const todayResponse = await fetch(`${todayUrl}?lat=${lat}&lon=${lng}&appid=${apiKey}&units=metric`);
+            const todayData = await todayResponse.json();
+
+            // Get 5-day forecast
+            const forecastResponse = await fetch(`${url}?lat=${lat}&lon=${lng}&appid=${apiKey}&units=metric`);
+            const forecastData = await forecastResponse.json();
+
+            return { todayData, forecastData };
+        }
+
+        function getWeatherIcon(weatherCode) {
+            if (weatherCode === 'Rain') return 'fas fa-cloud-showers-heavy rain';
+            if (weatherCode === 'Mist' || weatherCode === 'Fog') return 'fas fa-smog mist';
+            if (weatherCode === 'Clear') return 'fas fa-sun clear';
+            if (weatherCode === 'Clouds') return 'fas fa-cloud clouds';
+            return 'fas fa-cloud sun';
+        }
+
+        function updateUI(data, selectedOption) {
+            const { todayData, forecastData } = data;
+            let forecastHtml = '';
+
+            // Display Today's Weather
+            forecastHtml += `
+                <div class="today-weather">
+                    <h4>Today's Weather in ${selectedOption.textContent}</h4>
+                    <i class="weather-icon ${getWeatherIcon(todayData.weather[0].main)}"></i>
+                    <p>Temperature: ${todayData.main.temp}°C</p>
+                    <p>Weather: ${todayData.weather[0].description}</p>
+                    <p>Humidity: ${todayData.main.humidity}%</p>
+                    <p>Wind Speed: ${todayData.wind.speed} m/s</p>
+                </div>
+            `;
+
+            // Display 5-Day Forecast
+            forecastData.list.forEach((forecast, index) => {
+                if (index % 8 === 0) {
+                    const date = new Date(forecast.dt * 1000);
+                    forecastHtml += `
+                        <div class="forecast-item">
+                            <h4>${date.toDateString()}</h4>
+                            <i class="weather-icon ${getWeatherIcon(forecast.weather[0].main)}"></i>
+                            <p>Temperature: ${forecast.main.temp}°C</p>
+                            <p>Weather: ${forecast.weather[0].description}</p>
+                            <p>Humidity: ${forecast.main.humidity}%</p>
+                            <p>Wind Speed: ${forecast.wind.speed} m/s</p>
+                        </div>
+                    `;
+                }
+            });
+
+            document.getElementById('forecast').innerHTML = forecastHtml;
+        }
+
+        document.getElementById('location').addEventListener('change', async (event) => {
+            const selectedOption = event.target.selectedOptions[0];
+            const lat = selectedOption.getAttribute('data-lat');
+            const lng = selectedOption.getAttribute('data-lng');
+
+            const weatherData = await fetchWeatherData(lat, lng);
+            updateUI(weatherData, selectedOption);
+        });
+
+        // Initial load for default location
+        window.onload = async () => {
+            const selectedOption = document.getElementById('location').selectedOptions[0];
+            const lat = selectedOption.getAttribute('data-lat');
+            const lng = selectedOption.getAttribute('data-lng');
+            const weatherData = await fetchWeatherData(lat, lng);
+            updateUI(weatherData, selectedOption);
+        };
+    </script>
+</body>
+</html>
