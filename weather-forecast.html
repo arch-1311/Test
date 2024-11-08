@@ -37,8 +37,13 @@
                 <a href="index.html" class="btn icon-circle" aria-label="Home">
                     <i class="fas fa-home"></i>
                 </a>
-                <a href="#" class="btn icon-circle" style="white-space: nowrap;">தமிழ் பதிப்பு</i>
-                </a>
+                <!-- <a href="#" class="btn icon-circle" style="white-space: nowrap;">தமிழ் பதிப்பு</i>
+                </a> -->
+                <div>
+                    <img class="rotating-globe" src="globe.gif" 
+                         alt="rotating globe" loading="lazy" width="12" height="12" decoding="async">
+                    <span class="date-time" id="date-time"></span>
+                </div> 
                 <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
                     <i id="theme-icon" class="fas fa-moon"></i>
                 </button>
@@ -47,11 +52,7 @@
                 <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a> -->                
             </div>
         </div>
-        <div>
-            <img class="rotating-globe" src="globe.gif" 
-                 alt="rotating globe" loading="lazy" width="12" height="12" decoding="async">
-            <span class="date-time" id="date-time"></span>
-        </div> 
+        
         <hr>
         <center><strong><h4>Weather Forecast For Chennai</h4></strong>
         </center>
@@ -78,7 +79,7 @@
                 />
               </a>
             </div> -->
-            <div id="weather-light" class="tomorrow"
+            <!-- <div id="weather-light" class="tomorrow"
                 data-location-id="131517"
                 data-language="EN"
                 data-unit-system="METRIC"
@@ -95,13 +96,36 @@
                 <img
                     alt="Powered by the Tomorrow.io Weather API"
                     src="https://weather-website-client.tomorrow.io/img/powered-by.svg"
-                    width="250"
+                    width="1174"
                     height="18"
                 />
                 </a>
-            </div> 
-        <!-- Perungudi
-             <div class="tomorrow"
+            </div> -->
+                    
+                <div class="tomorrow"
+                   data-location-id="131517"
+                   data-language="EN"
+                   data-unit-system="METRIC"
+                   data-skin="light"
+                   data-widget-type="upcoming"
+                   style="padding-bottom:22px;position:relative;"
+                >
+                  <a
+                    href="https://www.tomorrow.io/weather-api/"
+                    rel="nofollow noopener noreferrer"
+                    target="_blank"
+                    style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;"
+                  >
+                    <img
+                      alt="Powered by the Tomorrow.io Weather API"
+                      src="https://weather-website-client.tomorrow.io/img/powered-by.svg"
+                      width="250"
+                      height="18"
+                    />
+                  </a>
+                </div>
+        <!-- Perungudi -->
+        <!-- <div class="tomorrow"
             data-location-id="133426"
             data-language="EN"
             data-unit-system="METRIC"
