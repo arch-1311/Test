@@ -222,8 +222,8 @@
         .rain-pluck-card {
             display: inline-block;
             background-color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 8px;
+            padding: 5px 10px;
+            border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -236,7 +236,7 @@
             color: white;
         }
 
-        .rain-pluck-card.norain {
+        .rain-pluck-card.no-rain {
             background-color: #dc5e2b; 
             color: white;
         }
@@ -506,7 +506,7 @@
         <div class="details-container">
             <div class="weather-details" id="weatherDetails">
                 <h3><span id="selectedLocality"></span></h3><hr>
-                <p id="disclaimer" style="font-size: 12px;font-style: italic;">Weather data is updated every 15mins </p>
+                <p id="disclaimer" style="font-size: 12px;font-style: italic;">Weather data is updated every 5mins </p>
                 <div id="weatherContent">Please select a locality</div>
             </div>
 
@@ -588,14 +588,6 @@
         return "Extreme Rainfall"; // for cases above 204.4 mm
     }
     
-    //map
-    const map = L.map('map').setView([13.060471, 80.255887], 13); // Default center
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19
-    }).addTo(map);
-
-    let marker;
-
     // Helper function to classify rainfall according to IMD standards
     function getRainfallCategory(rainAmount) {
         if (isNaN(rainAmount)) return "No data available";
@@ -609,7 +601,15 @@
         return "Extreme Rainfall"; // for cases above 204.4 mm
     }
 
-    function fetchWeatherData(localityId, lat, lng, localityName) {
+    // Initialize the map
+const map = L.map('map').setView([13.060471, 80.255887], 13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19
+}).addTo(map);
+
+let marker;
+
+function fetchWeatherData(localityId, lat, lng, localityName) {
     const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vR8B1XnkzVFKQVx0MOEmxmwBJLsZWLmib6VvKtVIJmHN2qglXhWa_a0mJY-1ZCNH8q8c8U6-73ftz9a/pub?gid=0&single=true&output=csv';
 
     fetch(sheetUrl)
@@ -636,10 +636,12 @@
                     const rainfallCategory = getRainfallCategory(rainAccumulation);
                     const rainIntensityStatus = parseFloat(row[rainIntensityIndex]);
 
-                    const lastFetchedDate = row[lastFetchedIndex].split(' ')[0]; // Splits at the space and takes the first part
-                    
                     // Set rain or no rain status
-                    const rainStatus = rainIntensityStatus > 0 ? 'Rain' : 'NoRain';                
+                    const rainStatus = rainIntensityStatus > 0 ? 'Rain' : 'No-Rain';
+                    const weatherIcon = rainStatus === 'Rain' 
+                                    ? '<i class="fas fa-cloud-showers-heavy"></i>' 
+                                    : '<i class="fas fa-sun"></i>';  // Use sun icon for "No-Rain"
+
 
                     // Define location for marker
                     const location = {
@@ -647,10 +649,10 @@
                         coords: [lat, lng]
                     };
 
-                    // Create the rain marker HTML (pluck card style)
+                    // Create the rain marker HTML
                     const rainMarkerHtml = `
                         <div class="rain-pluck-card ${rainStatus.toLowerCase()}" onclick="showRainInfo(${JSON.stringify(location)}, ${rainAccumulation})">
-                            <div>${rainStatus}</div>
+                            <div>${weatherIcon} ${rainStatus}</div>
                         </div>
                     `;
 
@@ -661,37 +663,28 @@
                         iconSize: [100, 60]
                     });
 
-                    // Create and add the marker to the map
-                    const marker = L.marker([lat, lng], { icon: rainIcon }).addTo(map);
-                    map.setView([lat, lng], 13); // Center the map on the selected location
+                    // Remove the old marker if it exists, then add the new one
+                    if (marker) {
+                        map.removeLayer(marker);
+                    }
+                    marker = L.marker([lat, lng], { icon: rainIcon }).addTo(map);
+                    map.setView([lat, lng], 13);
 
                     // Add click event to show detailed content with rain accumulation when clicked
                     marker.on('click', function() {
-                        // Always ensure the popup content is updated on click
-                        const popupContent = showPopupContent(rainAccumulation);
-                        
-                        // Close any existing popup and open the new one
-                        marker.closePopup();  // Close any open popups
-                        marker.bindPopup(popupContent).openPopup();
+                        showRainInfo(location, rainAccumulation);
                     });
 
-                    // Function to generate the popup content for rain accumulation
-                    function showPopupContent(rainAccumulation) {
-                        return `
-                            <p>Rain Accumulation: ${rainAccumulation} mm</p>
-                        `;
-                    }
-
-                    // Display the weather content inside the pluck-card
+                    // Update weather details in the content section
                     const weatherContent = `
-                        <div class="weather-content">
-                            <span style="margin-right: 15px;"> <i class="fas fa-thermometer-half"></i>&nbsp;&nbsp;Temperature: ${row[temperatureIndex]}°C</span><br><br>                            
-                            <span style="margin-right: 15px;"> <i class="fas fa-cloud-showers-heavy"></i>&nbsp;&nbsp;<strong> ${rainAccumulation} mm</strong> of rain has been recorded from 12:00am till now, which is classified as <strong>${rainfallCategory} <i class="fas fa-info-circle info-icon" onclick="openModal()"></i> </strong><br><br>
-                            <span style="margin-right: 15px;"> <i class="fas fa-tint"></i>&nbsp;&nbsp;Humidity: ${row[humidityIndex]}%</span><br>
-                            <span style="margin-right: 15px;"> <i class="fas fa-wind"></i>&nbsp;&nbsp;Wind Speed: ${row[windSpeedIndex]} m/s</span><br><br>
-                            <span style="margin-right: 15px;"> <i class="far fa-clock"></i>&nbsp;&nbsp;Last Updated: ${row[lastFetchedIndex]}</span>
-                        </div>
-                    `;
+                            <div class="weather-content">
+                                <span style="margin-right: 15px;"> <i class="fas fa-thermometer-half"></i>&nbsp;&nbsp;Temperature: ${row[temperatureIndex]}°C</span><br><br>                            
+                                <span style="margin-right: 15px;"> <i class="fas fa-cloud-showers-heavy"></i>&nbsp;&nbsp;<strong> ${rainAccumulation} mm</strong> of rain has been recorded from 12:00am till now, which is classified as <strong>${rainfallCategory} <i class="fas fa-info-circle info-icon" onclick="openModal()"></i> </strong><br><br>
+                                <span style="margin-right: 15px;"> <i class="fas fa-tint"></i>&nbsp;&nbsp;Humidity: ${row[humidityIndex]}%</span><br>
+                                <span style="margin-right: 15px;"> <i class="fas fa-wind"></i>&nbsp;&nbsp;Wind Speed: ${row[windSpeedIndex]} m/s</span><br><br>
+                                <span style="margin-right: 15px;"> <i class="far fa-clock"></i>&nbsp;&nbsp;Last Updated: ${row[lastFetchedIndex]}</span>
+                            </div>
+                        `;
                     document.getElementById('weatherContent').innerHTML = weatherContent;
                     document.getElementById('selectedLocality').innerText = localityName;
                     break;
@@ -720,10 +713,10 @@ function showRainInfo(location, rainAccumulation) {
         </div>
     `;
 
-    // Display the popup at the marker location
+    // Display the popup with an offset to position it above the rain status
     L.popup({ 
         closeButton: true,        
-        offset: [-20, -20]  // Offset the popup 20 pixels upwards
+        offset: [0, -25]  // Offset to position the popup above rain status
     })
         .setLatLng(location.coords)
         .setContent(popupContent)
@@ -747,6 +740,7 @@ document.getElementById('localitySelect').addEventListener('change', function ()
     }
 });
 
+
 document.addEventListener('DOMContentLoaded', function () {
     // Automatically load Nungambakkam data on page load
     const defaultOption = localitySelect.querySelector('option[value="ZWL005190"]');
@@ -754,12 +748,6 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchWeatherData(defaultOption.value, parseFloat(defaultOption.getAttribute('data-lat')), parseFloat(defaultOption.getAttribute('data-lng')), defaultOption.text);
 });
 
-    // Remove default Kilpauk selection on page load
-    window.onload = function() {
-        document.getElementById('map').style.display = 'none';
-        document.getElementById('weatherDetails').style.display = 'none';
-        document.getElementById('disclaimer').style.display = 'none';
-    };
 
     // Scroll to top function
     function scrollToTop() {
