@@ -26,13 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function enableDarkMode() {
         body.classList.add('dark-mode');
         themeIcon.classList.replace('fa-moon', 'fa-sun');
-        //bannerImage.src = 'NOCWHITEBACKGROND.png'; 
+        bannerImage.src = 'NOCWHITEBACKGROND.png';
     }
 
     function enableLightMode() {
         body.classList.remove('dark-mode');
         themeIcon.classList.replace('fa-sun', 'fa-moon');
-        //bannerImage.src = 'NOC2024bg.png';
+        bannerImage.src = 'NOC2024bg.png';
     }
 });
 
