@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const bannerImage = document.getElementById('banner-image');
-    // const weatherDark = document.getElementById('weather-dark');
-    // const weatherLight = document.getElementById('weather-light');
     const body = document.body;
 
     // Apply saved theme without default preference
@@ -28,19 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
     function enableDarkMode() {
         body.classList.add('dark-mode');
         themeIcon.classList.replace('fa-moon', 'fa-sun');
-        bannerImage.src = 'NOCWHITEBACKGROND.png';
-        // Show dark mode weather widget, hide light mode widget
-        // weatherDark.style.display = 'block';
-        // weatherLight.style.display = 'none';
+        //bannerImage.src = 'NOCWHITEBACKGROND.png'; 
     }
 
     function enableLightMode() {
         body.classList.remove('dark-mode');
         themeIcon.classList.replace('fa-sun', 'fa-moon');
-        bannerImage.src = 'NOC2024bg.png';
-        // Show light mode weather widget, hide dark mode widget
-        // weatherDark.style.display = 'none';
-        // weatherLight.style.display = 'block';
+        //bannerImage.src = 'NOC2024bg.png';
     }
 });
 
