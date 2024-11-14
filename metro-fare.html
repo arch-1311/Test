@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chennai Metro Fare Calculator</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Scroll-up button styles */
+        #scrollUpBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: none;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 999;
+        }
+    </style>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container" style="max-width: 800px;">
+        <div class="text-center">
+            <a href="index.html">
+                <img id="banner-image" src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
+            </a>
+            <div class="top-ribbon">
+                <a href="index.html" class="btn icon-circle" aria-label="Home">
+                    <i class="fas fa-home"></i>
+                </a>
+                <a href="/help-line" class="btn icon-circle" style="white-space: nowrap;">தமிழ் பதிப்பு</i>
+                </a>
+                <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i id="theme-icon" class="fas fa-moon"></i>
+                </button>
+                <!-- <a class="btn icon-circle" href="https://www.instagram.com/newsofchennai/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a class="btn icon-circle" href="https://www.facebook.com/newsofchennai" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a class="btn icon-circle" href="https://x.com/newsofchennai" target="_blank"><i class="fab fa-twitter"></i></a> -->                
+            </div>
+        </div>
+        <div>
+            <img class="rotating-globe" src="globe.gif" 
+                 alt="rotating globe" loading="lazy" width="12" height="12" decoding="async">
+            <span class="date-time" id="date-time"></span>
+        </div> 
+        <hr>
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Chennai Metro Fare Calculator</h2>
+        
+            <!-- From Station Dropdown -->
+            <div class="mb-3">
+                <label for="fromStation" class="form-label">From Station</label>
+                <select id="fromStation" class="form-select">
+                    <option value="" disabled selected>Choose a from station</option>
+                    <!-- Options for each station will be populated here -->
+                </select>
+            </div>
+        
+            <!-- To Station Dropdown -->
+            <div class="mb-3">
+                <label for="toStation" class="form-label">To Station</label>
+                <select id="toStation" class="form-select">
+                    <option value="" disabled selected>Choose a to station</option>
+                    <!-- Options for each station will be populated here -->
+                </select>
+            </div>
+        
+            <!-- Calculate Fare Button -->
+            <button id="calculateFare" class="btn btn-primary w-100 mt-3">Calculate Fare</button>
+            
+            <!-- Fare Output or Error Message -->
+            <div class="mt-5" style="padding: 10px; margin-top: 10px;" id="fareOutput"></div>
+        </div>
+        <!-- Scroll Up Button -->
+    <button id="scrollUpBtn" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    </div>
+    <script>
+    // Show scroll-up button on scroll
+    window.onscroll = function() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop >
+        100) {
+            document.getElementById('scrollUpBtn').style.display = 'block';
+        } else {
+            document.getElementById('scrollUpBtn').style.display = 'none';
+        }
+    };
+    </script>
+    <script src="script.js"></script>
+    <!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+<script>
+// Function to parse CSV data and organize it
+function parseCSV(data) {
+    const lines = data.split('\n');
+    const stations = lines[0].split(',').slice(1);
+    const fareData = {};
+
+    lines.slice(1).forEach(line => {
+        const [fromStation, ...fares] = line.split(',');
+        fares.forEach((fare, index) => {
+            if (fare) {
+                const toStation = stations[index];
+                fareData[`${fromStation}-${toStation}`] = fare;
+            }
+        });
+    });
+
+    return { stations, fareData };
+}
+
+// Fetch the CSV and populate dropdowns
+const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS0G7F_A_7UL1Vbyxl1xIBrJnXJ6gh9Bp_vSHHMWuiIJPXm6yD1eytW4wNvxeUnFQ1_CIyu4DyzH1Mz/pub?output=csv';
+fetch(csvUrl)
+    .then(response => response.text())
+    .then(data => {
+        const { stations, fareData } = parseCSV(data);
+
+        // Populate From and To Station dropdowns
+        const fromStationSelect = document.getElementById('fromStation');
+        const toStationSelect = document.getElementById('toStation');
+        
+        stations.forEach(station => {
+            const optionFrom = document.createElement('option');
+            optionFrom.value = station;
+            optionFrom.innerText = station;
+            fromStationSelect.appendChild(optionFrom);
+
+            const optionTo = document.createElement('option');
+            optionTo.value = station;
+            optionTo.innerText = station;
+            toStationSelect.appendChild(optionTo);
+        });
+
+        // Fare calculation logic
+        document.getElementById('calculateFare').addEventListener('click', () => {
+            const fromStation = fromStationSelect.value;
+            const toStation = toStationSelect.value;
+            const fareOutput = document.getElementById('fareOutput');
+
+            if (fromStation && toStation && fromStation !== toStation) {
+                const fareKey = `${fromStation}-${toStation}`;
+                const reverseFareKey = `${toStation}-${fromStation}`;
+
+                const fare = fareData[fareKey] || fareData[reverseFareKey];
+
+                if (fare) {
+                    fareOutput.style.display = 'block';
+                    fareOutput.className = 'alert alert-info';
+                    fareOutput.innerText = `The fare from ${fromStation} to ${toStation} is ₹${fare}`;
+                } else {
+                    fareOutput.style.display = 'block';
+                    fareOutput.className = 'alert alert-danger';
+                    fareOutput.innerText = "No fare data available for this route.";
+                }
+            } else {
+                fareOutput.style.display = 'block';
+                fareOutput.className = 'alert alert-danger';
+                fareOutput.innerText = "Please select valid stations.";
+            }
+        });
+    })
+    .catch(error => {
+        console.error("Error fetching the CSV data:", error);
+        const fareOutput = document.getElementById('fareOutput');
+        fareOutput.style.display = 'block';
+        fareOutput.className = 'alert alert-danger';
+        fareOutput.innerText = "There was an error loading the fare data.";
+    });
+    </script>
+    <footer class="text-center mt-3" style="font-size: 14px;">
+        <hr>
+        <p> <a href="about.html">About News of Chennai</a> | Join our <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">WhatsApp Channel</a> | Follow on <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, <a href="https://x.com/newsofchennai">Twitter</a>, <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & <a href="https://www.facebook.com/newsofchennai">Facebook</a> | Contact - newsofchennai@pm.me | <a href="credits.html">Credits & Disclaimer</a> | No ads, No Promotions</p>
+    </footer>
+</body>
+</html>
