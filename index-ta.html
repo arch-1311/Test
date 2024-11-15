@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>News of Chennai - குடிமக்கள் வளங்கள்</title>
+    <meta property="og:title" content="News of Chennai - குடிமக்கள் வளங்கள்" />
+    <meta property="og:description" content="சென்னையின் செய்திகள் தேவைப்படும் நேரங்களில் நம்பத்தகுந்த மற்றும் சரிபார்க்கப்பட்ட தகவல்களுடன் சென்னைக்கு உதவும் குடிமக்கள் சேவையாகும் | 100% உண்மை சரிபார்க்கப்பட்டது | விளம்பரம், விளம்பரங்கள் இல்லை, இணைப்புகள் இல்லை." />
+    <meta property="og:image" content="https://newsofchennai.in/Banners/about-ta.png" />
+    <meta property="og:url" content="https://newsofchennai.in/index-ta.html" />
+    <meta property="og:type" content="website" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="favicon.png" type="image/x-icon">
-    <meta name="description" content="News of Chennai is a citizen service to help Chennai with credible and verified information in times of need | 100% fact-checked | No ads, no promotions, no affiliations.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
@@ -233,7 +237,13 @@
             background-color: #EDF4FF; 
             color: #0E3272;
         }
-        
+        .leaflet-popup-content {
+            margin: 10px 20px;
+            line-height: .5;
+            font-size: 13px;
+            font-size: 1em;
+            min-height: 0px;
+        }
     </style>
     <link href="styles.css" rel="stylesheet">
 </head>
@@ -245,7 +255,7 @@
         <div class="container">
             <div class="text-center">
                 <a href="#">
-                    <img id="banner-image" src="Banners/about-ta.png" alt="Banner" class="img-fluid banner-img" />
+                    <img id="banner-image" src="NOC2024bg.png" alt="Banner" class="img-fluid banner-img" />
                 </a>
                 <!-- Top Ribbon -->
                 <div class="top-ribbon">
@@ -285,17 +295,17 @@
                                 <a href="Rain-helplines-ta.html" target="" class="btn  w-100 me-1" style="font-size: 10px; background-color: #06065D;color: white;;">
                                     <i class="fa-solid fa-cloud-rain"></i> மழை உதவி எண்கள்
                                 </a>
-                                <a href="resources-ta.html" target="" class="btn  w-100 ms-1" style="font-size: 11px; background-color: #06065D;color: white;;">
+                                <a href="rain-resources-ta.html" target="" class="btn  w-100 ms-1" style="font-size: 11px; background-color: #06065D;color: white;;">
                                     <i class="fa-solid fa-user-shield"></i> மழை ஆதாரங்கள்
                                 </a>
                             </div>
                         </div>
                         <div class="col-12 d-md-none mb-2">
                             <div class="d-flex justify-content-between">
-                                <a href="weather-forecast-ta.html" class="btn w-100" style="font-size: 14px;background-color:#06065D;color: white;">
+                                <a href="weather-forecast-ta.html" class="btn w-100" style="font-size: 11px;background-color:#06065D;color: white;">
                                 <i class="fa-solid fa-cloud-sun-rain"></i> வானிலை முன்னறிவிப்பு
                                 </a>
-                                <a href="rainfall-ta.html" class="btn w-100 ms-1" style="font-size: 14px;background-color: #06065D;color: white;">
+                                <a href="realtime-rainfall-ta.html" class="btn w-100 ms-1" style="font-size: 11px;background-color: #06065D;color: white;">
                                     <i class="fa-solid fa-cloud-showers-heavy"></i> நிகழ்நேர மழைப்பொழிவு
                                 </a>
                         </div>
@@ -309,7 +319,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-md-4 mb-2 d-none d-md-block"> <!-- For desktop view -->
-                        <a href="resources-ta.html" target="" class="btn  w-100" style="font-size: 14px; background-color: #06065D; color: white;">
+                        <a href="rain-resources-ta.html" target="" class="btn  w-100" style="font-size: 14px; background-color: #06065D; color: white;">
                             <i class="fa-solid fa-user-shield"></i> மழை ஆதாரங்கள்
                         </a>
                     </div>
@@ -319,7 +329,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-md-4 d-none d-md-block mb-2">
-                        <a href="rainfall-ta.html" class="btn w-100 ms-1" style="font-size: 14px;background-color: #06065D;color: white;">
+                        <a href="realtime-rainfall-ta.html" class="btn w-100 ms-1" style="font-size: 14px;background-color: #06065D;color: white;">
                             <i class="fa-solid fa-cloud-showers-heavy"></i> நிகழ்நேர மழைப்பொழிவு
                         </a>
                     </div>
@@ -463,14 +473,14 @@
                     <option value="ZWL008876" data-lat="13.125301" data-lng="80.069776">ஆவடி</option>
                     <option value="ZWL003387" data-lat="13.080772" data-lng="80.248018">கீழ்ப்பாக்கம்</option>
                     <option value="ZWL003452" data-lat="12.931197" data-lng="80.182327">மேடவாக்கம்</option>
-                    <option value="ZWL009897" data-lat="13.282298" data-lng="80.266616">மீஞ்சூர்</option>
+                    <!-- <option value="ZWL009897" data-lat="13.282298" data-lng="80.266616">மீஞ்சூர்</option> -->
                     <option value="ZWL005857" data-lat="13.080365" data-lng="80.175724">முகப்பேர்</option>
                     <option value="ZWL008548" data-lat="13.014886" data-lng="80.152455">முகலிவாக்கம்</option>  
                     <option value="ZWL001141" data-lat="12.841923" data-lng="80.209025">நாவலூர்</option>
                     <option value="ZWL005190" data-lat="13.060471" data-lng="80.255887">நுங்கம்பாக்கம்</option>
                     <option value="ZWL004297" data-lat="12.973055" data-lng="80.151271">பல்லாவரம்</option>
                     <option value="ZWL008996" data-lat="13.121741" data-lng="80.225058">பெரம்பூர்</option>
-                    <option value="ZWL007176" data-lat="13.052763" data-lng="80.090763">பூந்தமல்லி</option>
+                    <!-- <option value="ZWL007176" data-lat="13.052763" data-lng="80.090763">பூந்தமல்லி</option> -->
                     <option value="ZWL006053" data-lat="13.048069" data-lng="80.158163">போரூர்</option>
                     <option value="ZWL006789" data-lat="12.799983" data-lng="80.029865">பொத்தேரி</option>
                     <option value="ZWL001398" data-lat="13.191443" data-lng="80.181225">ரெட்ஹில்ஸ்</option>
@@ -548,12 +558,12 @@
         const categories = [
             { range: "0 mm", label: "மழை இல்லை" },
             { range: "0.1 - 2.4 mm", label: "மிக லேசான மழை" },
-            { range: "2.5 - 7.5 mm", label: "லேசான மழை" },
-            { range: "7.6 - 35.5 mm", label: "மிதமான மழை" },
-            { range: "35.6 - 64.4 mm", label: "சற்றே கனமான மழை" },
+            { range: "2.5 - 15.5 mm", label: "லேசான மழை" },
+            { range: "15.6 - 64.4 mm", label: "மிதமான மழை" },
+            // { range: "35.6 - 64.4 mm", label: "சற்றே கனமான மழை" },
             { range: "64.5 - 115.5 mm", label: "கன மழை" },
             { range: "115.6 - 204.4 mm", label: "மிகவும் கன மழை" },
-            { range: "204.5+ mm", label: "தீவிரமான மழை" },
+            { range: "204.5+ mm", label: "அதி கன மழை" },
         ];
 
         categories.forEach(category => {
@@ -612,11 +622,25 @@ function fetchWeatherData(localityId, lat, lng, localityName) {
                     const rainfallCategory = getRainfallCategory(rainAccumulation);
                     const rainIntensityStatus = parseFloat(row[rainIntensityIndex]);
 
+                    let rainDescription;
+                    if (rainIntensity = 0) {
+                    rainDescription === 'மழை-இல்லை';
+                    } else if (rainIntensity > 0 && rainIntensity <= 10) {
+                        rainDescription = 'மென்மையான மழை';
+                    } else if (rainIntensity <= 20) {
+                        rainDescription = 'மிதமான மழை';
+                    } else if (rainIntensity <= 30) {
+                        rainDescription = 'பலத்த மழை';
+                    } else if (rainIntensity <= 50) {
+                        rainDescription = 'மிகப்  பலத்த மழை';
+                    } else {
+                        rainDescription = 'கன மழை';
+                    }
                     // Set rain or no rain status
                     const rainStatus = rainIntensityStatus > 0 ? 'மழை' : 'மழை-இல்லை';
                     const weatherIcon = rainStatus === 'Rain' 
                                     ? '<i class="fas fa-cloud-showers-heavy"></i>' 
-                                    : '<i class="fas fa-sun"></i>';  // Use sun icon for "No-Rain"
+                                    : '';  // Use sun icon for "No-Rain"
 
 
                     // Define location for marker
@@ -627,7 +651,7 @@ function fetchWeatherData(localityId, lat, lng, localityName) {
 
                     // Create the rain marker HTML
                     const rainMarkerHtml = `
-                        <div class="rain-pluck-card ${rainStatus.toLowerCase()}" onclick="showRainInfo(${JSON.stringify(location)}, ${rainIntensity})">
+                        <div class="rain-pluck-card ${rainStatus.toLowerCase()}" onclick="showRainInfo(${JSON.stringify(location)}, ${rainIntensity},'${rainDescription}')">
                             <div>${weatherIcon} ${rainStatus}</div>
                         </div>
                     `;
@@ -646,11 +670,11 @@ function fetchWeatherData(localityId, lat, lng, localityName) {
                     marker = L.marker([lat, lng], { icon: rainIcon }).addTo(map);
                     map.setView([lat, lng], 13);
 
-                    showRainInfo(location, rainIntensity); 
+                    showRainInfo(location, rainIntensity, rainDescription); 
 
                     // Add click event to show detailed content with rain intensity when clicked
                     marker.on('click', function() {
-                        showRainInfo(location, rainIntensity);
+                        showRainInfo(location, rainIntensity, rainDescription);
                     });
 
                     // Update weather details in the content section
@@ -684,7 +708,7 @@ function fetchWeatherData(localityId, lat, lng, localityName) {
         });
 }
 
-function showRainInfo(location, rainIntensity) {
+function showRainInfo(location, rainIntensity, rainDescription) {
     if (currentPopup) {
         map.closePopup(currentPopup);
     }
@@ -693,8 +717,10 @@ function showRainInfo(location, rainIntensity) {
     setTimeout(() => {
         const popupContent = `
             <div class="popup-content">
-                <p>${location.name}</p>
+                <p><strong>${location.name}</strong></p>
                 <p>மழையின் தீவிரம்: <strong>${rainIntensity} மி.மீ</strong></p>
+                <p><strong>${rainDescription}</strong></p>
+
             </div>
         `;
 
