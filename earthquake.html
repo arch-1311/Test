@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chennai Air Quality</title>
+    <title>Chennai Earthquake</title>
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    crossorigin=""
+  />
     <style>
         /* Scroll-up button styles */
         #scrollUpBtn {
@@ -52,27 +57,116 @@
             <span class="date-time" id="date-time"></span>
         </div> 
         <hr>
-        <center><strong><h4>Helplines</h4></strong>
-        </center>
         <!-- Scroll Up Button -->
     <button id="scrollUpBtn" onclick="scrollToTop()">
         <i class="fas fa-arrow-up"></i>
     </button>
-    <iframe src="https://riseq.seismo.gov.in/riseq/earthquake" width="100%" height="600" style="border: none;">
+    <!-- <iframe src="https://riseq.seismo.gov.in/riseq/earthquake" width="100%" height="600" style="border: none;">
         Your browser does not support iframes.
-    </iframe>
-    </div>
-    <script>
-    // Show scroll-up button on scroll
-    window.onscroll = function() {
-        if (document.body.scrollTop > 100 || document.documentElement.scrollTop >
-        100) {
-            document.getElementById('scrollUpBtn').style.display = 'block';
-        } else {
-            document.getElementById('scrollUpBtn').style.display = 'none';
-        }
-    };
-    </script>
+    </iframe> -->
+    <header>
+        <h4>Earthquake Data Near Chennai</h4>
+      </header>
+    
+      <div id="earthquake-map" style="height: 500px;"></div>
+<br>
+<div id="earthquake-info">
+    <h5 id="no-earthquake-message" style="font-weight: bold; display: none; color: red;">No significant earthquake activity detected in nearby regions of Chennai</h5>
+    <hr>
+    <h5 class="text-left">Earthquake Reports as on <span id="current-date"></span></h5>
+    <table id="earthquake-table" border="1" style="width: 100%; margin-top: 20px; text-align: center;">
+        <thead>
+            <tr>
+                <th>Location</th>
+                <th>Time</th>
+                <th>Magnitude</th>
+                <th>Tsunami</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Earthquake data will be dynamically added here -->
+        </tbody>
+    </table>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+    const earthquakeTableBody = document.querySelector("#earthquake-table tbody");
+    const noEarthquakeMessage = document.getElementById("no-earthquake-message");
+    const map = L.map("earthquake-map").setView([13.0827, 80.2707], 5); // Center map on Chennai
+
+    // Initialize Leaflet Map
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {}).addTo(map);
+
+    // Set current date in the header
+    document.getElementById("current-date").innerText = new Date().toLocaleDateString();
+
+    // Nearby regions to filter
+    const nearbyRegions = ["bay of bengal", "arabian sea", "tamil nadu", "sri lanka", "andaman"];
+
+    // Fetch earthquake data from USGS API
+    const thirtyDaysAgo = new Date();
+    thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+    const startDate = thirtyDaysAgo.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+
+    const apiUrl = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=13.0827&longitude=80.2707&maxradius=180&starttime=${startDate}&limit=10`;
+
+    fetch(apiUrl)
+        .then((response) => response.json())
+        .then((data) => {
+            // Filter earthquakes based on nearby regions
+            // const earthquakes = data.features.filter((earthquake) => {
+            //     const place = earthquake.properties.place.toLowerCase();
+            //     return nearbyRegions.some((region) => place.includes(region));
+            // });
+            const earthquakes = data.features; 
+
+            earthquakeTableBody.innerHTML = ""; // Clear any previous data
+           if (earthquakes.length === 0) {
+                // Show message if no earthquake data found
+                noEarthquakeMessage.style.display = "block";
+                const row = document.createElement("tr");
+                row.innerHTML = `<td colspan="5">No recent earthquakes in the nearby regions of Chennai.</td>`;
+                earthquakeTableBody.appendChild(row);
+                return;
+            }
+
+            noEarthquakeMessage.style.display = "block"; // Hide the message if earthquakes are found
+
+            // Display earthquakes in the table
+            earthquakes.forEach((earthquake) => {
+                const { place, mag, time, tsunami, status } = earthquake.properties;
+                const [longitude, latitude] = earthquake.geometry.coordinates;
+
+                // Format the timestamp
+                const date = new Date(time).toLocaleString();
+
+                // Create a new row in the table
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${place}</td>
+                    <td>${date}</td>
+                    <td>${mag}</td>
+                    <td>${tsunami ? "Yes" : "No"}</td>
+                    <td>${status || "Reviewed"}</td>
+                `;
+                earthquakeTableBody.appendChild(row);
+
+                // Add marker to the map
+                L.marker([latitude, longitude]).addTo(map).bindPopup(`
+                    <strong>Location:</strong> ${place}<br>
+                    <strong>Magnitude:</strong> ${mag}<br>
+                    <strong>Time:</strong> ${date}
+                `);
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching earthquake data:", error);
+            alert("Failed to fetch earthquake data. Please try again later.");
+        });
+</script>
+
     <script src="script.js"></script>
     <footer class="text-center mt-3" style="font-size: 14px;">
         <hr>
