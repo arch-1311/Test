@@ -67,227 +67,150 @@
         
             <!-- From Station Dropdown -->
             <div class="mb-3 text-left">
-                <label for="fromStation" class="form-label">From Station</label>
+                <!-- <label for="fromStation" class="form-label">From Station</label> -->
                 <select id="fromStation" class="form-select">
-                    <option value="" disabled selected>Choose a from station</option>
+                    <option value="" disabled selected>From Station</option>
                 </select>
             </div>
         
             <!-- To Station Dropdown -->
             <div class="mb-3 text-left">
-                <label for="toStation" class="form-label">To Station</label>
+                <!-- <label for="toStation" class="form-label">To Station</label> -->
                 <select id="toStation" class="form-select">
-                    <option value="" disabled selected>Choose a to station</option>
+                    <option value="" disabled selected>To station</option>
                 </select>
             </div>
-        
+            
             <!-- Fare Output -->
-            <div class="mt-5" id="fareOutput" style="display: none;"></div>
-        
-            <!-- Additional Fare Information -->
-            <div class="mt-4" id="additionalInfo" style="display: none;">
-                <h5>20% Discounted Fare for Normal Class - Trip Cards</h5>
-                <div class="table-responsive">
-                    <table class="table table-bordered disc-table">
-                        <thead>
-                            <tr>
-                                <th>Fare Type</th>
-                                <th>Fare (₹)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Single Trip</td>
-                                <td id="discountedFare"></td>
-                            </tr>
-                            <tr>
-                                <td>10 Trips (30 Days)</td>
-                                <td id="tenTripsFare"></td>
-                            </tr>
-                            <tr>
-                                <td>30 Trips (90 Days)</td>
-                                <td id="thirtyTripsFare"></td>
-                            </tr>
-                            <tr>
-                                <td>60 Trips (180 Days)</td>
-                                <td id="sixtyTripsFare"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="mt-5" id="fareOutput" class="hidden"></div>
+            
+            <!-- Route Details -->
+            <div class="mt-4" id="routeDetails" class="hidden">
+                <h5>Route Details</h5>
+                <ul id="routeList" class="list-group"></ul>
             </div>
-            <hr>
-            <!-- Static Information about Chennai Metro Rail -->
-            <div class="mt-4 text-left">
-                <h5>Chennai Metro Rail Details</h5>
-                <p>
-                    Chennai Metro connects Wimco Nagar to the airport with Green and Blue
-                    lines. The fare starts from ₹10 and goes up to ₹50. Online bookings
-                    through the website or WhatsApp offer a 20% discount, making travel
-                    more economical.
-                </p>
-        
-                <h5 style="color: rgb(16, 207, 16);">Chennai Metro Green Line Station List:</h5>
-                <p>
-                    Alandur, Anna Nagar East, Anna Nagar Tower, Arumbakkam, Ashok Nagar,
-                    Egmore Metro, Ekkattuthangal, Kilpauk, Koyambedu, Nehru Park,
-                    Pachaiyappa, Puratchi Thalaivi Dr. J. Jayalalithaa CMBT Metro, Shenoy
-                    Nagar, St. Thomas Mount, Thirumangalam, Vadapalani
-                </p>
-        
-                <h5 style="color: rgb(56, 173, 245);">Chennai Metro Blue Line Station List:</h5>
-                <p>
-                    AG – DMS, Airport, Arignar Anna Alandur, Government Estate, Guindy,
-                    High Court, Kaladipet Metro, LIC, Little Mount, Mannadi, Meenambakkam,
-                    Nandanam, Nanganallur, New Washermenpet Metro, Puratchi Thalaivar Dr.
-                    M. G. Ramachandran Central Metro, Saidapet Metro, Teynampet,
-                    Thiruvotriyur Metro, Thiruvottriyur Theradi Metro, Thousand Light,
-                    Thiyagaraya College Metro, Tondiarpet Metro, Tollgate Metro,
-                    Washermenpet, Wimco Nagar Depot Station, Wimco Nagar Metro
-                </p>
-            </div>
+            <hr>            
         </div>
         <!-- Scroll Up Button -->
         <button id="scrollUpBtn" onclick="scrollToTop()">
             <i class="fas fa-arrow-up"></i>
         </button>
-
         </div>
-        <script>
-            // Show scroll-up button on scroll
-            window.onscroll = function() {
-                if (document.body.scrollTop > 100 || document.documentElement.scrollTop >
-                100) {
-                    document.getElementById('scrollUpBtn').style.display = 'block';
-                } else {
-                    document.getElementById('scrollUpBtn').style.display = 'none';
-                }
-            }; 
-            // Function to parse CSV data
-            function parseCSV(data) {
-                const lines = data.split("\n");
-                const stations = lines[0].split(",").slice(1).sort(); // Sort stations alphabetically
-                const fareData = {};
+       
         
-                lines.slice(1).forEach((line) => {
-                    const [fromStation, ...fares] = line.split(",");
-                    fares.forEach((fare, index) => {
-                        if (fare) {
-                            const toStation = stations[index];
-                            fareData[`${fromStation}-${toStation}`] = parseFloat(fare);
-                        }
-                    });
-                });
-        
-                return { stations, fareData };
-            }
-        
-            // Load CSV locally
-            const csvPath = "metro-fare/fare-chart-english.csv";
-            fetch(csvPath)
-                .then((response) => response.text())
-                .then((data) => {
-                    const { stations, fareData } = parseCSV(data);
-        
-                    const fromStationSelect = document.getElementById("fromStation");
-                    const toStationSelect = document.getElementById("toStation");
-        
-                    // Populate dropdowns
-                    stations.forEach((station) => {
-                        const option = document.createElement("option");
-                        option.value = station;
-                        option.innerText = station;
-                        fromStationSelect.appendChild(option.cloneNode(true));
-                        toStationSelect.appendChild(option);
-                    });
-        
-                    // Calculate fare
-                    function calculateFare() {
-                        const fromStation = fromStationSelect.value;
-                        const toStation = toStationSelect.value;
-                        const fareOutput = document.getElementById("fareOutput");
-                        const additionalInfo = document.getElementById("additionalInfo");
-        
-                        if (fromStation && toStation && fromStation !== toStation) {
-                            const fareKey = `${fromStation}-${toStation}`;
-                            const reverseFareKey = `${toStation}-${fromStation}`;
-                            const fare = fareData[fareKey] || fareData[reverseFareKey];
-        
-                            if (fare) {
-                                const discountedFare = (fare * 0.8).toFixed(2);
-                                fareOutput.style.display = "block";
-                                fareOutput.className = "alert alert-info";
-                                fareOutput.innerHTML = `
-                                    <h5> Fare Details </h5>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>Basic Fare</th>
-                                                    <th>Discounted Fare (20% Off)</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><strong>₹${fare}</strong></td>
-                                                    <td><strong>₹${discountedFare}</strong></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                `;
-        
-                                // Additional info
-                                document.getElementById("discountedFare").innerText = discountedFare;
-                                document.getElementById("tenTripsFare").innerText = (discountedFare * 10).toFixed(2);
-                                document.getElementById("thirtyTripsFare").innerText = (discountedFare * 30).toFixed(2);
-                                document.getElementById("sixtyTripsFare").innerText = (discountedFare * 60).toFixed(2);
-        
-                                additionalInfo.style.display = "block";
-                            } else {
-                                fareOutput.style.display = "block";
-                                fareOutput.className = "alert alert-danger";
-                                fareOutput.innerText = "No fare data available for this route.";
-                                additionalInfo.style.display = "none";
-                            }
-                        } else {
-                            fareOutput.style.display = "block";
-                            fareOutput.className = "alert alert-danger";
-                            fareOutput.innerText = "Please select valid stations.";
-                            additionalInfo.style.display = "none";
-                        }
-                    }
-        
-                    // Event listeners
-                    fromStationSelect.addEventListener("change", calculateFare);
-                    toStationSelect.addEventListener("change", calculateFare);
-                })
-                .catch((error) => {
-                    console.error("Error loading the CSV:", error);
-                    const fareOutput = document.getElementById("fareOutput");
-                    fareOutput.style.display = "block";
-                    fareOutput.className = "alert alert-danger";
-                    fareOutput.innerText = "Error loading fare data.";
-                });
-        </script>
-        
-    <script src="script.js"></script>
-    <!-- Bootstrap JS and Popper.js -->
+<script src="script.js"></script>
+<!-- Bootstrap JS and Popper.js -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
-<!-- <script>
-    // Function to parse CSV data and organize it
+
+
+<script>
+// Lines Data
+const blueLine = [
+    "Wimco Nagar Depot", "Wimco Nagar", "Thiruvottriyur", "Thiruvottriyur Theradi",
+    "Kaladipet", "Tollgate", "New Washermanpet", "Tondiarpet",
+    "Sir Theagaraya College", "Washermanpet", "Mannadi", "High Court",
+    "MGR Central (Chennai Central)", "Government Estate", "LIC",
+    "Thousand Lights", "AG DMS", "Teynampet", "Nandanam", "Saidapet",
+    "Little Mount", "Guindy", "Arignar Anna Alandur", "Nanganallur Road",
+    "Meenambakkam", "Chennai International Airport"
+];
+
+const greenLine = [
+    "MGR Central (Chennai Central)", "Egmore", "Nehru Park", "Kilpauk Medical College",
+    "Pachaiyappa College", "Shenoy Nagar", "Anna Nagar East", "Anna Nagar Tower",
+    "Thirumangalam", "Koyambedu", "CMBT", "Arumbakkam", "Vadapalani",
+    "Ashok Nagar", "Ekkattuthangal", "Arignar Anna Alandur", "St Thomas Mount"
+];
+
+const interchanges = ["MGR Central (Chennai Central)", "Arignar Anna Alandur"];
+
+/**
+ * Function to display route details in the DOM
+ * @param {string} fromStation - Starting station
+ * @param {string} toStation - Ending station
+ */
+ function displayRouteDetails(fromStation, toStation) {
+    const routeDetailsDiv = document.getElementById("routeDetails");
+    const routeList = document.getElementById("routeList");
+
+    const stationsBetween = getStationsBetweenAcrossLines(fromStation, toStation);
+
+    if (typeof stationsBetween === "string") {
+        // Error case: Invalid station selection or no valid interchange
+        routeDetailsDiv.classList.remove('hidden');
+        routeList.innerHTML = `<li class="list-group-item text-danger">${stationsBetween}</li>`;
+        return;
+    }
+
+    // Clear and populate the route list
+    routeList.innerHTML = "";
+    stationsBetween.forEach((station, index) => {
+        const li = document.createElement("li");
+        li.className = "list-group-item";
+        li.innerText = `${index + 1}. ${station}`;
+        routeList.appendChild(li);
+    });
+
+    // Show the route details div
+    routeDetailsDiv.classList.remove('hidden');
+}
+
+function getStationsBetweenAcrossLines(from, to) {
+    const fromLine = blueLine.includes(from) ? blueLine : greenLine.includes(from) ? greenLine : null;
+    const toLine = blueLine.includes(to) ? blueLine : greenLine.includes(to) ? greenLine : null;
+
+    if (!fromLine || !toLine) {
+        return "Invalid station selection.";
+    }
+
+    if (fromLine === toLine) {
+        return getStationsBetweenSameLine(fromLine, from, to);
+    }
+
+    const interchange = getOptimalInterchange(from, to);
+    if (!interchange) {
+        return "No valid interchange found.";
+    }
+
+    const firstSegment = getStationsBetweenSameLine(fromLine, from, interchange);
+    const secondSegment = getStationsBetweenSameLine(toLine, interchange, to);
+
+    return [...firstSegment, ...secondSegment.slice(1)];
+}
+
+/**
+ * Helper function to get stations between two stations on the same line.
+ */
+ function getStationsBetweenSameLine(line, from, to) {
+    const fromIndex = line.indexOf(from);
+    const toIndex = line.indexOf(to);
+    if (fromIndex === -    -1 || toIndex === -1 || fromIndex > toIndex) {
+        return "Invalid stations or order.";
+    }
+    return line.slice(fromIndex, toIndex + 1);
+}
+
+/**
+ * Helper function to find optimal interchange station.
+ */
+function getOptimalInterchange(from, to) {
+    // Check if both stations are on different lines and return the first interchange station found
+    return interchanges.find(station => blueLine.includes(station) && greenLine.includes(station));
+}
+
+// Function to parse CSV data
 function parseCSV(data) {
-    const lines = data.split('\n');
-    const stations = lines[0].split(',').slice(1).sort(); // Sort stations alphabetically
+    const lines = data.split("\n");
+    const stations = lines[0].split(",").slice(1).sort(); // Sort stations alphabetically
     const fareData = {};
 
-    lines.slice(1).forEach(line => {
-        const [fromStation, ...fares] = line.split(',');
+    lines.slice(1).forEach((line) => {
+        const [fromStation, ...fares] = line.split(",");
         fares.forEach((fare, index) => {
             if (fare) {
                 const toStation = stations[index];
-                fareData[`${fromStation}-${toStation}`] = fare;
+                fareData[`${fromStation}-${toStation}`] = parseFloat(fare);
             }
         });
     });
@@ -295,30 +218,30 @@ function parseCSV(data) {
     return { stations, fareData };
 }
 
-// Fetch the CSV and populate dropdowns
-const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS0G7F_A_7UL1Vbyxl1xIBrJnXJ6gh9Bp_vSHHMWuiIJPXm6yD1eytW4wNvxeUnFQ1_CIyu4DyzH1Mz/pub?output=csv';
-fetch(csvUrl)
-    .then(response => response.text())
-    .then(data => {
+// Load CSV locally
+const csvPath = "metro-fare/fare-chart-english.csv";
+fetch(csvPath)
+    .then((response) => response.text())
+    .then((data) => {
         const { stations, fareData } = parseCSV(data);
 
-        // Populate From and To Station dropdowns
-        const fromStationSelect = document.getElementById('fromStation');
-        const toStationSelect = document.getElementById('toStation');
-        
-        stations.forEach(station => {
-            const option = document.createElement('option');
+        const fromStationSelect = document.getElementById("fromStation");
+        const toStationSelect = document.getElementById("toStation");
+
+        // Populate dropdowns
+        stations.forEach((station) => {
+            const option = document.createElement("option");
             option.value = station;
-            option.innerText = station;
+            option.innerText = '◉' + ' ' + station;
             fromStationSelect.appendChild(option.cloneNode(true));
             toStationSelect.appendChild(option);
         });
 
-        // Fare calculation logic directly on station selection
+        // Calculate fare and display route details
         function calculateFare() {
             const fromStation = fromStationSelect.value;
             const toStation = toStationSelect.value;
-            const fareOutput = document.getElementById('fareOutput');
+            const fareOutput = document.getElementById("fareOutput");
 
             if (fromStation && toStation && fromStation !== toStation) {
                 const fareKey = `${fromStation}-${toStation}`;
@@ -326,36 +249,60 @@ fetch(csvUrl)
                 const fare = fareData[fareKey] || fareData[reverseFareKey];
 
                 if (fare) {
-                    fareOutput.style.display = 'block';
-                    fareOutput.className = 'alert alert-info';
-                    fareOutput.innerText = `The fare from ${fromStation} to ${toStation} is ₹${fare}`;
+                    const discountedFare = (fare * 0.8).toFixed(2);
+                    fareOutput.style.display = "block";
+                    fareOutput.className = "alert alert-info";
+                    fareOutput.innerHTML = `
+                        <h5> Fare Details </h5>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Basic Fare</th>
+                                        <th>Discounted Fare (20% Off)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>₹${fare}</strong></td>
+                                        <td><strong>₹${discountedFare}</strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+
+                    // Display the route details based on the selected stations
+                    displayRouteDetails(fromStation, toStation);
                 } else {
-                    fareOutput.style.display = 'block';
-                    fareOutput.className = 'alert alert-danger';
+                    fareOutput.style.display = "block";
+                    fareOutput.className = "alert alert-danger";
                     fareOutput.innerText = "No fare data available for this route.";
                 }
             } else {
-                fareOutput.style.display = 'block';
-                fareOutput.className = 'alert alert-danger';
+                fareOutput.style.display = "block";
+                fareOutput.className = "alert alert-danger";
                 fareOutput.innerText = "Please select valid stations.";
             }
         }
 
-        // Add event listeners for change in dropdown selection
-        fromStationSelect.addEventListener('change', calculateFare);
-        toStationSelect.addEventListener('change', calculateFare);
+        // Event listeners
+        fromStationSelect.addEventListener("change", calculateFare);
+        toStationSelect.addEventListener("change", calculateFare);
     })
-    .catch(error => {
-        console.error("Error fetching the CSV data:", error);
-        const fareOutput = document.getElementById('fareOutput');
-        fareOutput.style.display = 'block';
-        fareOutput.className = 'alert alert-danger';
-        fareOutput.innerText = "There was an error loading the fare data.";
+    .catch((error) => {
+        console.error("Error loading the CSV:", error);
+        const fareOutput = document.getElementById("fareOutput");
+        fareOutput.style.display = "block";
+        fareOutput.className = "alert alert-danger";
+        fareOutput.innerText = "Error loading fare data.";
     });
-</script> -->
-    <footer class="text-center mt-3" style="font-size: 14px;">
-        <hr>
-        <p> <a href="about.html">About News of Chennai</a> | Join our <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">WhatsApp Channel</a> | Follow on <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, <a href="https://x.com/newsofchennai">Twitter</a>, <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & <a href="https://www.facebook.com/newsofchennai">Facebook</a> | Contact - newsofchennai@pm.me | <a href="credits.html">Credits & Disclaimer</a> | No ads, No Promotions</p>
-    </footer>
+</script>
+
+
+<footer class="text-center mt-3" style="font-size: 14px;">
+    <hr>
+    <p> <a href="about.html">About News of Chennai</a> | Join our <a href="https://whatsapp.com/channel/0029VaAue85AzNc3O13E7Q2l">WhatsApp Channel</a> | Follow on <a href="https://www.instagram.com/newsofchennai/">Instagram</a>, <a href="https://x.com/newsofchennai">Twitter</a>, <a href="https://www.linkedin.com/company/newsofchennai/">LinkedIn</a> & <a href="https://www.facebook.com/newsofchennai">Facebook</a> | Contact - newsofchennai@pm.me | <a href="credits.html">Credits & Disclaimer</a> | No ads, No Promotions</p>
+</footer>
 </body>
 </html>
