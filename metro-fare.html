@@ -185,18 +185,38 @@ function getStationsBetweenAcrossLines(from, to) {
  function getStationsBetweenSameLine(line, from, to) {
     const fromIndex = line.indexOf(from);
     const toIndex = line.indexOf(to);
-    if (fromIndex === -    -1 || toIndex === -1 || fromIndex > toIndex) {
-        return "Invalid stations or order.";
+    
+    if (fromIndex === -1 || toIndex === -1) {
+        return "Invalid stations.";
     }
-    return line.slice(fromIndex, toIndex + 1);
+
+    // Handle forward and reverse traversal
+    if (fromIndex <= toIndex) {
+        return line.slice(fromIndex, toIndex + 1);
+    } else {
+        return line.slice(toIndex, fromIndex + 1).reverse();
+    }
 }
 
 /**
  * Helper function to find optimal interchange station.
  */
 function getOptimalInterchange(from, to) {
-    // Check if both stations are on different lines and return the first interchange station found
-    return interchanges.find(station => blueLine.includes(station) && greenLine.includes(station));
+    const interchangesWithDistances = interchanges.map(interchange => {
+        const fromLine = blueLine.includes(from) ? blueLine : greenLine;
+        const toLine = blueLine.includes(to) ? blueLine : greenLine;
+
+        const fromDistance = Math.abs(fromLine.indexOf(from) - fromLine.indexOf(interchange));
+        const toDistance = Math.abs(toLine.indexOf(interchange) - toLine.indexOf(to));
+
+        return { interchange, totalDistance: fromDistance + toDistance };
+    });
+
+    const optimalInterchange = interchangesWithDistances.reduce((min, current) => 
+        current.totalDistance < min.totalDistance ? current : min
+    );
+
+    return optimalInterchange.interchange;
 }
 
 // Function to parse CSV data
