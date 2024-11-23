@@ -3,13 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chennai Metro Fare Calculator</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" href="favicon.png" type="image/x-icon">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Metro Fare Calculator</title>
     <style>
+        /* body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        } */
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            max-width: 600px;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .input-group select {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            font-size: 16px;
+            max-width: -webkit-fill-available;
+            border-width: thick;
+        }
+        .fare-display {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: left;
+        }
+        .discounted-fare {
+            font-size: 16px;
+            color: #007bff;
+            margin-top: 10px;
+        }
+        .button-row {
+            display: flex;
+            justify-content: space-around;
+            /* margin-top: 20px; */
+        }
+        .button-row button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button-row button:hover {
+            background-color: #0056b3;
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .button-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        .fare-display table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .fare-display td {
+            padding: 8px 5px;
+        }
+
+        .fare-display td:first-child {
+            text-align: left;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .fare-display td:last-child {
+            text-align: right;
+            color: #007bff;
+        }
         /* Scroll-up button styles */
         #scrollUpBtn {
             position: fixed;
@@ -25,14 +111,6 @@
             font-size: 18px;
             z-index: 999;
         }
-        .table-bordered tr,
-        .table-bordered th,
-        .table-bordered td {
-            border: 1px solid black; /* Black border for table cells */
-        }
-        .dark-mode .disc-table  {
-            color : white;
-        }
     </style>
     <link href="styles.css" rel="stylesheet">
 </head>
@@ -46,7 +124,7 @@
                 <a href="index.html" class="btn icon-circle" aria-label="Home">
                     <i class="fas fa-home"></i>
                 </a>
-                <a href="metro-fare-ta.html" class="btn icon-circle" style="white-space: nowrap;">தமிழ் பதிப்பு</i>
+                <a href="/help-line" class="btn icon-circle" style="white-space: nowrap;">தமிழ் பதிப்பு</i>
                 </a>
                 <button class="btn icon-circle" id="theme-toggle" aria-label="Toggle Dark Mode">
                     <i id="theme-icon" class="fas fa-moon"></i>
@@ -62,263 +140,166 @@
             <span class="date-time" id="date-time"></span>
         </div> 
         <hr>
-        <div class="container mt-2">
-            <h4 class="text-center mb-4">Chennai Metro Fare Calculator</h4>
-        
-            <!-- From Station Dropdown -->
-            <div class="mb-3 text-left">
-                <!-- <label for="fromStation" class="form-label">From Station</label> -->
-                <select id="fromStation" class="form-select">
-                    <option value="" disabled selected>From Station</option>
-                </select>
-            </div>
-        
-            <!-- To Station Dropdown -->
-            <div class="mb-3 text-left">
-                <!-- <label for="toStation" class="form-label">To Station</label> -->
-                <select id="toStation" class="form-select">
-                    <option value="" disabled selected>To station</option>
-                </select>
-            </div>
-            
-            <!-- Fare Output -->
-            <div class="mt-5" id="fareOutput" class="hidden"></div>
-            
-            <!-- Route Details -->
-            <div class="mt-4" id="routeDetails" class="hidden">
-                <h5>Route Details</h5>
-                <ul id="routeList" class="list-group"></ul>
-            </div>
-            <hr>            
+        <h4 class="text-center ">Chennai Metro Fare Calculator</h4>
+    <div class="card">
+        <div class="input-group">
+            <select id="fromStation" onchange="updateFare()">
+                <option value="" disabled selected>From Station</option>
+            </select>
         </div>
-        <!-- Scroll Up Button -->
-        <button id="scrollUpBtn" onclick="scrollToTop()">
-            <i class="fas fa-arrow-up"></i>
-        </button>
+        <div class="input-group">
+            <select id="toStation" onchange="updateFare()">
+                <option value="" disabled selected>To Station</option>
+            </select>
         </div>
-       
+        <hr>
+        <div id="fareMessage" style="margin-top: 10px; font-size: 16px; color: #777;">
+            Select the stations to see fare details.
+        </div>
         
-<script src="script.js"></script>
-<!-- Bootstrap JS and Popper.js -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+        <div class="fare-display" id="fareTable" style="display: none;">
+            <table>
+                <tr>
+                    <td><strong>Fare</strong></td>
+                    <td id="fareValue">₹0</td>
+                </tr>
+                <tr>
+                    <td><strong>Discounted Fare (20% off)</strong></td>
+                    <td id="discountedFareValue">₹0</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="fare-display" id="routeDisplay"></div>
+        <div class="button-row">
+            <button onclick="resetSelection()">Reset</button>
+        </div>
+    </div>
+    <!-- Scroll Up Button -->
+    <button id="scrollUpBtn" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    </div>
+    <script>
+        // Constants for blue and green lines
+        const blueLine = [
+            "Wimco Nagar Depot Station", "Wimco Nagar", "Thiruvotriyur", "Thiruvottriyur Theradi", "Kaladipet",
+            "Tollgate", "New Washermenpet", "Tondiarpet", "Thiyagaraya College", "Washermenpet",
+            "Mannadi", "High Court", "Puratchi Thalaivar Dr.M.G.Ramachandran Central", "Government Estate", "LIC",
+            "Thousand Light", "AG - DMS", "Teynampet", "Nandanam", "Saidapet", "Little Mount",
+            "Guindy", "Arignar Anna Alandur", "Nanganallur", "Meenambakkam", "Airport"
+        ];
+        const greenLine = [
+            "Puratchi Thalaivar Dr.M.G.Ramachandran Central", "Egmore", "Nehru Park", "Kilpauk",
+            "Pachaiyappas College", "Shenoy Nagar", "Anna Nagar East", "Anna Nagar Tower",
+            "Thirumangalam", "Koyambedu", "Puratchi Thalaivi Dr.J.Jayalaithaa CMBT", "Arumbakkam", "Vadapalani", "Ashok Nagar",
+            "Ekkattuthangal", "Arignar Anna Alandur", "St. Thomas Mount"
+        ];
 
+        // Load CSV and initialize dropdowns
+        fetch('metro-fare/fare-chart-english.csv')
+            .then(response => response.text())
+            .then(data => {
+                const stations = parseCSV(data);
+                populateDropdown('fromStation', stations);
+                populateDropdown('toStation', stations);
+            })
+            .catch(error => console.error('Error loading CSV:', error));
 
-<script>
-// Lines Data
-const blueLine = [
-    "Wimco Nagar Depot", "Wimco Nagar", "Thiruvottriyur", "Thiruvottriyur Theradi",
-    "Kaladipet", "Tollgate", "New Washermanpet", "Tondiarpet",
-    "Sir Theagaraya College", "Washermanpet", "Mannadi", "High Court",
-    "MGR Central (Chennai Central)", "Government Estate", "LIC",
-    "Thousand Lights", "AG DMS", "Teynampet", "Nandanam", "Saidapet",
-    "Little Mount", "Guindy", "Arignar Anna Alandur", "Nanganallur Road",
-    "Meenambakkam", "Chennai International Airport"
-];
-
-const greenLine = [
-    "MGR Central (Chennai Central)", "Egmore", "Nehru Park", "Kilpauk Medical College",
-    "Pachaiyappa College", "Shenoy Nagar", "Anna Nagar East", "Anna Nagar Tower",
-    "Thirumangalam", "Koyambedu", "CMBT", "Arumbakkam", "Vadapalani",
-    "Ashok Nagar", "Ekkattuthangal", "Arignar Anna Alandur", "St Thomas Mount"
-];
-
-const interchanges = ["MGR Central (Chennai Central)", "Arignar Anna Alandur"];
-
-/**
- * Function to display route details in the DOM
- * @param {string} fromStation - Starting station
- * @param {string} toStation - Ending station
- */
- function displayRouteDetails(fromStation, toStation) {
-    const routeDetailsDiv = document.getElementById("routeDetails");
-    const routeList = document.getElementById("routeList");
-
-    const stationsBetween = getStationsBetweenAcrossLines(fromStation, toStation);
-
-    if (typeof stationsBetween === "string") {
-        // Error case: Invalid station selection or no valid interchange
-        routeDetailsDiv.classList.remove('hidden');
-        routeList.innerHTML = `<li class="list-group-item text-danger">${stationsBetween}</li>`;
-        return;
-    }
-
-    // Clear and populate the route list
-    routeList.innerHTML = "";
-    stationsBetween.forEach((station, index) => {
-        const li = document.createElement("li");
-        li.className = "list-group-item";
-        li.innerText = `${index + 1}. ${station}`;
-        routeList.appendChild(li);
-    });
-
-    // Show the route details div
-    routeDetailsDiv.classList.remove('hidden');
-}
-
-function getStationsBetweenAcrossLines(from, to) {
-    const fromLine = blueLine.includes(from) ? blueLine : greenLine.includes(from) ? greenLine : null;
-    const toLine = blueLine.includes(to) ? blueLine : greenLine.includes(to) ? greenLine : null;
-
-    if (!fromLine || !toLine) {
-        return "Invalid station selection.";
-    }
-
-    if (fromLine === toLine) {
-        return getStationsBetweenSameLine(fromLine, from, to);
-    }
-
-    const interchange = getOptimalInterchange(from, to);
-    if (!interchange) {
-        return "No valid interchange found.";
-    }
-
-    const firstSegment = getStationsBetweenSameLine(fromLine, from, interchange);
-    const secondSegment = getStationsBetweenSameLine(toLine, interchange, to);
-
-    return [...firstSegment, ...secondSegment.slice(1)];
-}
-
-/**
- * Helper function to get stations between two stations on the same line.
- */
- function getStationsBetweenSameLine(line, from, to) {
-    const fromIndex = line.indexOf(from);
-    const toIndex = line.indexOf(to);
-    
-    if (fromIndex === -1 || toIndex === -1) {
-        return "Invalid stations.";
-    }
-
-    // Handle forward and reverse traversal
-    if (fromIndex <= toIndex) {
-        return line.slice(fromIndex, toIndex + 1);
-    } else {
-        return line.slice(toIndex, fromIndex + 1).reverse();
-    }
-}
-
-/**
- * Helper function to find optimal interchange station.
- */
-function getOptimalInterchange(from, to) {
-    const interchangesWithDistances = interchanges.map(interchange => {
-        const fromLine = blueLine.includes(from) ? blueLine : greenLine;
-        const toLine = blueLine.includes(to) ? blueLine : greenLine;
-
-        const fromDistance = Math.abs(fromLine.indexOf(from) - fromLine.indexOf(interchange));
-        const toDistance = Math.abs(toLine.indexOf(interchange) - toLine.indexOf(to));
-
-        return { interchange, totalDistance: fromDistance + toDistance };
-    });
-
-    const optimalInterchange = interchangesWithDistances.reduce((min, current) => 
-        current.totalDistance < min.totalDistance ? current : min
-    );
-
-    return optimalInterchange.interchange;
-}
-
-// Function to parse CSV data
-function parseCSV(data) {
-    const lines = data.split("\n");
-    const stations = lines[0].split(",").slice(1).sort(); // Sort stations alphabetically
-    const fareData = {};
-
-    lines.slice(1).forEach((line) => {
-        const [fromStation, ...fares] = line.split(",");
-        fares.forEach((fare, index) => {
-            if (fare) {
-                const toStation = stations[index];
-                fareData[`${fromStation}-${toStation}`] = parseFloat(fare);
-            }
-        });
-    });
-
-    return { stations, fareData };
-}
-
-// Load CSV locally
-const csvPath = "metro-fare/fare-chart-english.csv";
-fetch(csvPath)
-    .then((response) => response.text())
-    .then((data) => {
-        const { stations, fareData } = parseCSV(data);
-
-        const fromStationSelect = document.getElementById("fromStation");
-        const toStationSelect = document.getElementById("toStation");
-
-        // Populate dropdowns
-        stations.forEach((station) => {
-            const option = document.createElement("option");
-            option.value = station;
-            option.innerText = '◉' + ' ' + station;
-            fromStationSelect.appendChild(option.cloneNode(true));
-            toStationSelect.appendChild(option);
-        });
-
-        // Calculate fare and display route details
-        function calculateFare() {
-            const fromStation = fromStationSelect.value;
-            const toStation = toStationSelect.value;
-            const fareOutput = document.getElementById("fareOutput");
-
-            if (fromStation && toStation && fromStation !== toStation) {
-                const fareKey = `${fromStation}-${toStation}`;
-                const reverseFareKey = `${toStation}-${fromStation}`;
-                const fare = fareData[fareKey] || fareData[reverseFareKey];
-
-                if (fare) {
-                    const discountedFare = (fare * 0.8).toFixed(2);
-                    fareOutput.style.display = "block";
-                    fareOutput.className = "alert alert-info";
-                    fareOutput.innerHTML = `
-                        <h5> Fare Details </h5>
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Basic Fare</th>
-                                        <th>Discounted Fare (20% Off)</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td><strong>₹${fare}</strong></td>
-                                        <td><strong>₹${discountedFare}</strong></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    `;
-
-                    // Display the route details based on the selected stations
-                    displayRouteDetails(fromStation, toStation);
-                } else {
-                    fareOutput.style.display = "block";
-                    fareOutput.className = "alert alert-danger";
-                    fareOutput.innerText = "No fare data available for this route.";
-                }
-            } else {
-                fareOutput.style.display = "block";
-                fareOutput.className = "alert alert-danger";
-                fareOutput.innerText = "Please select valid stations.";
-            }
+        // Parse CSV and extract station names
+        function parseCSV(csv) {
+            const rows = csv.split('\n');
+            const header = rows.shift().split(','); // Extract header row
+            const stations = header.slice(1).sort(); // Extract station names
+            return stations;
         }
 
-        // Event listeners
-        fromStationSelect.addEventListener("change", calculateFare);
-        toStationSelect.addEventListener("change", calculateFare);
-    })
-    .catch((error) => {
-        console.error("Error loading the CSV:", error);
-        const fareOutput = document.getElementById("fareOutput");
-        fareOutput.style.display = "block";
-        fareOutput.className = "alert alert-danger";
-        fareOutput.innerText = "Error loading fare data.";
-    });
-</script>
+        // Populate dropdown with station options
+        function populateDropdown(dropdownId, stations) {
+            const dropdown = document.getElementById(dropdownId);
+            const seenStations = new Set(); // To avoid duplicates
 
+            stations.forEach(station => {
+                if (!seenStations.has(station)) {
+                    seenStations.add(station); // Track unique stations
+
+                    const option = document.createElement('option');
+                    option.value = station;
+
+                    if (blueLine.includes(station)) {
+                        option.textContent = `🔵 ${station}`;
+                    } else if (greenLine.includes(station)) {
+                        option.textContent = `🟢 ${station}`;
+                    } else {
+                        option.textContent = station;
+                    }
+                    dropdown.appendChild(option);
+                }
+            });
+        }
+
+        
+    // Update fare dynamically
+    function updateFare() {
+        const fromStation = document.getElementById('fromStation').value;
+        const toStation = document.getElementById('toStation').value;
+
+        const fareTable = document.getElementById('fareTable');
+        const fareMessage = document.getElementById('fareMessage');
+
+        if (!fromStation || !toStation) {
+            // Show message if stations are not selected
+            fareTable.style.display = 'none';
+            fareMessage.textContent = 'Select the stations to see fare details.';
+            return;
+        }
+
+        fetch('metro-fare/fare-chart-english.csv')
+            .then(response => response.text())
+            .then(data => {
+                const rows = data.split('\n').map(row => row.split(','));
+                const header = rows[0];
+                const fromIndex = header.indexOf(fromStation);
+                const toIndex = header.indexOf(toStation);
+
+                if (fromIndex !== -1 && toIndex !== -1) {
+                    const fare = rows[toIndex][fromIndex];
+                    const discountedFare = (fare * 0.8).toFixed(2);
+
+                    document.getElementById('fareValue').textContent = `₹${fare}`;
+                    document.getElementById('discountedFareValue').textContent = `₹${discountedFare}`;
+                    fareTable.style.display = 'block'; // Show fare table
+                    fareMessage.textContent = ''; // Clear message
+                } else {
+                    fareTable.style.display = 'none';
+                    fareMessage.textContent = 'Fare details not found.';
+                }
+            })
+            .catch(error => console.error('Error fetching fare:', error));
+    }
+
+    // Reset selection
+    function resetSelection() {
+        document.getElementById('fromStation').value = '';
+        document.getElementById('toStation').value = '';
+        document.getElementById('fareValue').textContent = '₹0';
+        document.getElementById('discountedFareValue').textContent = '₹0';
+
+        // Hide fare table and show default message
+        document.getElementById('fareTable').style.display = 'none';
+        document.getElementById('fareMessage').textContent = 'Select the stations to see fare details.';
+    }
+// Show scroll-up button on scroll
+window.onscroll = function() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop >
+        100) {
+            document.getElementById('scrollUpBtn').style.display = 'block';
+        } else {
+            document.getElementById('scrollUpBtn').style.display = 'none';
+        }
+    };
+</script>
+<script src="script.js"></script>
 
 <footer class="text-center mt-3" style="font-size: 14px;">
     <hr>
