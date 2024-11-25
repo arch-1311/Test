@@ -37,7 +37,7 @@
             background-color: #fff;
             font-size: 16px;
             max-width: -webkit-fill-available;
-            border-width: thick;
+            /* border-width: thick; */
         }
         .fare-display {
             margin-top: 20px;
@@ -78,7 +78,7 @@
         .fare-display table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            /* margin-top: 10px; */
             font-size: 16px;
         }
 
@@ -140,8 +140,11 @@
             <span class="date-time" id="date-time"></span>
         </div> 
         <hr>
-        <h4 class="text-center ">Chennai Metro Fare Calculator</h4>
+        <h5 class="text-center ">Chennai Metro Fare Calculator</h5>
     <div class="card">
+        <div style="margin-top: 10px; font-size: 16px; color: #777;text-align: left;">
+            Select the stations to see fare details.
+        </div>
         <div class="input-group">
             <select id="fromStation" onchange="updateFare()">
                 <option value="" disabled selected>From Station</option>
@@ -152,10 +155,7 @@
                 <option value="" disabled selected>To Station</option>
             </select>
         </div>
-        <hr>
-        <div id="fareMessage" style="margin-top: 10px; font-size: 16px; color: #777;">
-            Select the stations to see fare details.
-        </div>
+        <hr>      
         
         <div class="fare-display" id="fareTable" style="display: none;">
             <table>
@@ -172,8 +172,13 @@
         
         <div class="fare-display" id="routeDisplay"></div>
         <div class="button-row">
-            <button onclick="resetSelection()">Reset</button>
+            <a href="https://tickets.chennaimetrorail.org/onlineticket" target="_blank">
+                <button>Buy Ticket</button>
+            </a>            
         </div>
+        <!-- <div class="button-row">
+            <button onclick="resetSelection()">Reset</button>
+        </div> -->
     </div>
     <!-- Scroll Up Button -->
     <button id="scrollUpBtn" onclick="scrollToTop()">
