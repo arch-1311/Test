@@ -302,10 +302,10 @@
                         </div>
                         <div class="col-12 d-md-none mb-2">
                             <div class="d-flex justify-content-between">
-                                <a href="weather-forecast-ta.html" class="btn w-100" style="font-size: 11px;background-color:#06065D;color: white;">
+                                <a href="weather-forecast-ta.html" class="btn w-100 me-1" style="font-size: 11px;background-color:#06065D;color: white;">
                                 <i class="fa-solid fa-cloud-sun-rain"></i> வானிலை முன்னறிவிப்பு
                                 </a>
-                                <a href="realtime-rainfall-ta.html" class="btn w-100 ms-1" style="font-size: 11px;background-color: #06065D;color: white;">
+                                <a href="realtime-rainfall-ta.html" class="btn w-100 ms-1" style="font-size: 10px;background-color: #06065D;color: white;">
                                     <i class="fa-solid fa-cloud-showers-heavy"></i> நிகழ்நேர மழைப்பொழிவு
                                 </a>
                         </div>
@@ -329,7 +329,7 @@
                         </a>
                     </div>
                     <div class="col-12 col-md-4 d-none d-md-block mb-2">
-                        <a href="realtime-rainfall-ta.html" class="btn w-100 ms-1" style="font-size: 14px;background-color: #06065D;color: white;">
+                        <a href="realtime-rainfall-ta.html" class="btn w-100 ms-1" style="font-size: 13px;background-color: #06065D;color: white;">
                             <i class="fa-solid fa-cloud-showers-heavy"></i> நிகழ்நேர மழைப்பொழிவு
                         </a>
                     </div>
@@ -347,7 +347,7 @@
                     </div>
                     
                     <!-- Mobile View: Verified Helpline and Take Action -->
-                    <!-- <div class="col-12 col-md-4 mb-2 d-md-none"> 
+                    <div class="col-12 col-md-4 mb-2 d-md-none"> 
                         <div class="d-flex justify-content-between"> 
                             <a href="help-line-ta.html" target="" class="btn  w-100 me-1" style="font-size: 10px;background-color: #A2DAE0; color: black;">
                                 <i class="fa-solid fa-phone"></i> சரியான உதவி எண்கள்
@@ -356,7 +356,7 @@
                                 <i class="fa-solid fa-location-crosshairs"></i> செயல் எடுக்கவும்
                             </a>
                         </div>
-                    </div> -->
+                    </div>
                     <!-- Mobile View: Transport and Ongoing Scams -->
                     <div class="col-12 col-md-4 mb-2 d-md-none"> <!-- Only on mobile view -->
                         <div class="d-flex justify-content-between"> <!-- Flexbox for horizontal alignment -->
@@ -369,7 +369,7 @@
                         </div>
                     </div>
                     <!-- Desktop View: Verified Helpline, Take Action, Transport, and Ongoing Scams -->
-                    <!-- <div class="col-12 col-md-4 mb-2 d-none d-md-block"> 
+                    <div class="col-12 col-md-4 mb-2 d-none d-md-block"> 
                         <a href="help-line-ta.html" target="" class="btn  w-100" style="font-size: 14px;background-color: #A2DAE0; color: black;">
                             <i class="fa-solid fa-phone"></i> சரியான உதவி எண்கள்
                         </a>
@@ -378,7 +378,7 @@
                         <a href="actions-ta.html" target="" class="btn  w-100" style="font-size: 14px;background-color: #A2DAE0; color: black;">
                             <i class="fa-solid fa-location-crosshairs"></i> செயல் எடுக்கவும்
                         </a>
-                    </div> -->
+                    </div>
                     <div class="col-12 col-md-4 mb-2 d-none d-md-block"> 
                         <a href="transport-travel-ta.html" target="" class="btn  w-100" style="font-size: 14px;background-color: #A2DAE0; color: black;">
                             <i class="fa-solid fa-compass"></i> போக்குவரத்து + பயணம்
@@ -623,17 +623,17 @@ function fetchWeatherData(localityId, lat, lng, localityName) {
                     const rainIntensityStatus = parseFloat(row[rainIntensityIndex]);
 
                     let rainDescription;
-                    if (rainIntensity = 0) {
-                    rainDescription === 'மழை-இல்லை';
+                    if (rainIntensity == 0) {
+                    rainDescription = 'மழை-இல்லை'; 
                     } else if (rainIntensity > 0 && rainIntensity <= 10) {
                         rainDescription = 'மென்மையான மழை';
-                    } else if (rainIntensity <= 20) {
+                    } else if (rainIntensity > 10.1 && rainIntensity <= 20) {
                         rainDescription = 'மிதமான மழை';
-                    } else if (rainIntensity <= 30) {
+                    } else if (rainIntensity > 20.1 && rainIntensity <= 30) {
                         rainDescription = 'பலத்த மழை';
-                    } else if (rainIntensity <= 50) {
+                    } else if (rainIntensity > 30.1 && rainIntensity <= 50) {
                         rainDescription = 'மிகப்  பலத்த மழை';
-                    } else {
+                    } else if (rainIntensity > 50.1 && rainIntensity <= 100) {
                         rainDescription = 'கன மழை';
                     }
                     // Set rain or no rain status
