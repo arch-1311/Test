@@ -351,7 +351,7 @@
         </div>
         <!-- Rotating Globe Icon with Date and Time -->
         <div>
-                <img class="rotating-globe" src="globe-black.gif" 
+                <img class="rotating-globe" src="globe.gif" 
                      alt="rotating globe" loading="lazy" width="12" height="12" decoding="async">
                 <span class="date-time" id="date-time"></span>
             </div> 
@@ -361,17 +361,24 @@
             <!-- <p style="font-size: 12px; font-weight: bold;" class="mb-4">
                 News of Chennai is a citizen service that has been functioning since 2020, providing reliable and verified information to citizens in times of need. All information is 100% verified and fact-checked.
             </p> -->
-    
+            <div class="alert" style="background-color: #e8e8e8;">
+                <p class="mb-0" style="font-size: 12px;color:black">
+                    You can access an array of services and information designed to empower you as a Chennai citizen. This includes verified helplines, actionable civic suggestions, alerts about ongoing scams, all-in-one travel and transport services, as well as real-time weather updates, comprehensive forecasts, air quality information, lake levels, and more.
+                </p>
+            </div>
             <div class="row justify-content-center">
                 <!-- Mobile view: Rain Helpline and Rain Resources in 1 row -->
                 <div style="border: 2px solid #ccc; padding-top: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; max-width: 600px; margin: 0 auto;margin-bottom:10px; font-size: 14px;" class="d-md-none">
                     <div class="col-12 d-md-none mb-2">
                         <div class="d-flex justify-content-between">
                             <a href="Rain-helplines.html" class="btn w-100 me-1" style="font-size: 12px;background-color: #06065D;color: white;">
-                                <i class="fa-solid fa-cloud-rain"></i> Rain Helplines
+                                <i class="fa-solid fa-cloud-rain"></i> Rain Helplines + Resources
                             </a>
-                            <a href="rain-resources.html" class="btn w-100 ms-1" style="font-size: 12px;background-color: #06065D;color: white;">
+                            <!-- <a href="rain-resources.html" class="btn w-100 ms-1" style="font-size: 12px;background-color: #06065D;color: white;">
                                 <i class="fa-solid fa-user-shield"></i> Rain Resources
+                            </a> -->
+                            <a href="realtime-rainfall.html" class="btn w-100 ms-1" style="font-size: 12px;background-color: #06065D;color: white;">
+                                <i class="fa-solid fa-cloud-showers-heavy"></i> Realtime Rainfall
                             </a>
                         </div>
                     </div>
@@ -387,11 +394,11 @@
                 </div> -->
                     <div class="col-12 d-md-none mb-2">
                         <div class="d-flex justify-content-between">
-                            <a href="realtime-rainfall.html" class="btn w-100 me-1" style="font-size: 12px;background-color: #06065D;color: white;">
-                                <i class="fa-solid fa-cloud-showers-heavy"></i> Realtime Rainfall
+                            <a href="weather-forecast.html" class="btn w-100 me-1" style="font-size: 12px;background-color: #06065D;color: white;">
+                                <i class="fa-solid fa-cloud-showers-heavy"></i> Weather Forecast
                             </a>
-                            <a href="weather-forecast.html" class="btn w-100 ms-1" style="font-size: 12px;background-color:#06065D;color: white;">
-                                <i class="fa-solid fa-cloud-sun-rain"></i> Weather Forecast
+                            <a href="lake-level.html" class="btn w-100 ms-1" style="font-size: 12px;background-color:#06065D;color: white;">
+                                <i class="fas fa-water"></i>  Current Lake Levels
                             </a>
                         </div>
                     </div>
@@ -404,7 +411,7 @@
                 </div>
             
                 <!-- Mobile view: Verified Helplines and Take Action in 1 row -->
-                <div class="col-12 d-md-none mb-2">
+                <!-- <div class="col-12 d-md-none mb-2">
                     <div class="d-flex justify-content-between">
                         <a href="help-line.html" class="btn w-100 me-1" style="font-size: 12px;background-color: #A2DAE0; color: black;">
                             <i class="fa-solid fa-phone"></i> Verified Helplines
@@ -413,7 +420,7 @@
                             <i class="fa-solid fa-location-crosshairs"></i> Take Action
                         </a>
                     </div>
-                </div>
+                </div> -->
 
                 <!-- Mobile view: Transport and Ongoing Scams in 1 row -->
                 <div class="col-12 d-md-none mb-2">
@@ -431,14 +438,14 @@
                 
                 <div class="col-12 col-md-4 d-none d-md-block mb-2">
                     <a href="Rain-helplines.html" class="btn w-100" style="font-size: 14px;background-color: #06065D;color: white;">
-                        <i class="fa-solid fa-cloud-rain"></i> Rain Helplines
+                        <i class="fa-solid fa-cloud-rain"></i> Rain Helplines + Resources
                     </a>
                 </div>
-                <div class="col-12 col-md-4 d-none d-md-block mb-2">
+                <!-- <div class="col-12 col-md-4 d-none d-md-block mb-2">
                     <a href="rain-resources.html" class="btn w-100" style="font-size: 14px;background-color: #06065D;color: white;">
                         <i class="fa-solid fa-user-shield"></i> Rain Resources
                     </a>
-                </div>
+                </div> -->
                 <div class="col-12 col-md-4 d-none d-md-block mb-2">
                     <a href="realtime-rainfall.html" class="btn w-100" style="font-size: 14px;background-color: #06065D;color: white;">
                         <i class="fa-solid fa-cloud-showers-heavy"></i> Realtime Rainfall
@@ -450,13 +457,18 @@
                     </a>
                 </div>
                 <div class="col-12 col-md-4 d-none d-md-block mb-2">
+                    <a href="lake-level.html" class="btn w-100" style="font-size: 14px;background-color: #06065D;color: white;">
+                        <i class="fas fa-water"></i>  Current Lake Levels
+                    </a>
+                </div>
+                <div class="col-12 col-md-4 d-none d-md-block mb-2">
                     <a href="medical-emergency.html" class="btn btn-danger w-100" style="font-size: 14px;background-color: darkred;">
                         <i class="fa-solid fa-briefcase-medical"></i> Medical Emergency
                     </a>
                 </div>
             
                 <!-- Desktop view: Verified Helplines, Take Action, Transport, Ongoing Scams in 1 row -->
-                <div class="col-12 col-md-4 d-none d-md-block mb-2">
+                <!-- <div class="col-12 col-md-4 d-none d-md-block mb-2">
                     <a href="help-line.html" class="btn w-100" style="font-size: 14px;background-color: #A2DAE0; color: black;">
                         <i class="fa-solid fa-phone"></i> Verified Helplines
                     </a>
@@ -465,7 +477,7 @@
                     <a href="actions.html" class="btn w-100" style="font-size: 14px;background-color: #A2DAE0; color: black;">
                         <i class="fa-solid fa-location-crosshairs"></i> Take Action
                     </a>
-                </div>
+                </div> -->
                 <div class="col-12 col-md-4 d-none d-md-block mb-2">
                     <a href="transport-travel.html" class="btn w-100" style="font-size: 14px;background-color: #A2DAE0; color: black;">
                         <i class="fa-solid fa-compass"></i> Transport + Travel
@@ -492,27 +504,30 @@
                     <a href="air-quality.html" class="btn btn-secondary w-100 me-1" style="font-size: 12px;">
                         <i class="fa-solid fa-smog"></i> Realtime Air Quality
                     </a>
-                    <a href="lake-level.html" class="btn btn-secondary w-100 ms-1" style="font-size: 12px;">
+                    <!-- <a href="lake-level.html" class="btn btn-secondary w-100 ms-1" style="font-size: 12px;">
                         <i class="fas fa-water"></i>  Current Lake Levels
+                    </a> -->
+                    <a href="tumblr.html" class="btn btn-secondary w-100 ms-1" style="font-size: 12px;">
+                        <i class="fa-solid fa-tower-broadcast"></i> News of Chennai Updates
                     </a>
                 </div>
             </div>
-            <div class="col-12 col-md-4 d-none d-md-block mb-2"> 
+            <div class="col-12 col-md-6 d-none d-md-block mb-2"> 
                 <a href="air-quality.html"><button class="btn btn-secondary mb-2 w-100" style="font-size: 14px; ">
                     <i class="fa-solid fa-smog"></i> Realtime Air Quality
                 </button></a>
             </div>
-            <div class="col-12 col-md-4 d-none d-md-block mb-2">
+            <!-- <div class="col-12 col-md-4 d-none d-md-block mb-2">
                 <a href="lake-level.html"><button class="btn btn-secondary mb-2 w-100" style="font-size: 14px; ">
                     <i class="fas fa-water"></i> Current Lake Levels
                 </button></a>
-            </div>
+            </div> -->
             <!-- <div class="col-12 col-md-4">
                 <button class="btn btn-secondary mb-2 w-100" onclick="window.open('https://newsofchennai.tumblr.com/', '_blank')" style="font-size: 14px; ">
                     <i class="fa-solid fa-tower-broadcast"></i> News of Chennai Updates
                 </button>
             </div> -->
-            <div class="col-12 col-md-4">
+            <div class="col-12 col-md-6 d-none d-md-block"> <!--col-md-4 changed to col-md-6-->
                 <a href="tumblr.html"><button class="btn btn-secondary mb-2 w-100" style="font-size: 14px; ">
                     <i class="fa-solid fa-tower-broadcast"></i> News of Chennai Updates
                 </button></a>
