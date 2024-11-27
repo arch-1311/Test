@@ -439,7 +439,7 @@
                 
                 <div class="col-12 col-md-4 d-none d-md-block mb-2">
                     <a href="Rain-helplines.html" class="btn w-100" style="font-size: 14px;background-color: #06065D;color: white;">
-                        <i class="fa-solid fa-cloud-rain"></i> Rain Helplines + Resources
+                        <i class="fa-solid fa-cloud-rain"></i> Rain Helplines
                     </a>
                 </div>
                 <!-- <div class="col-12 col-md-4 d-none d-md-block mb-2">
@@ -675,27 +675,14 @@
         });
     }
 
-    // Example function for categorizing rainfall amount
-    function getRainfallCategory(rainAmount) {
-        if (isNaN(rainAmount)) return "No data available";
-        if (rainAmount === 0) return "No Rain";
-        if (rainAmount >= 0.1 && rainAmount <= 2.4) return "Very Light Rain";
-        if (rainAmount >= 2.5 && rainAmount <= 7.5) return "Light Rain";
-        if (rainAmount >= 7.6 && rainAmount <= 35.5) return "Moderate Rain";
-        if (rainAmount >= 35.6 && rainAmount <= 64.4) return "Rather Heavy Rain";
-        if (rainAmount >= 64.5 && rainAmount <= 115.5) return "Heavy Rain";
-        if (rainAmount >= 115.6 && rainAmount <= 204.4) return "Very Heavy Rain";
-        return "Extreme Rainfall"; // for cases above 204.4 mm
-    }
-    
     // Helper function to classify rainfall according to IMD standards
     function getRainfallCategory(rainAmount) {
         if (isNaN(rainAmount)) return "No data available";
         if (rainAmount === 0) return "No Rain";
         if (rainAmount >= 0.1 && rainAmount <= 2.4) return "Very Light Rain";
-        if (rainAmount >= 2.5 && rainAmount <= 7.5) return "Light Rain";
-        if (rainAmount >= 7.6 && rainAmount <= 35.5) return "Moderate Rain";
-        if (rainAmount >= 35.6 && rainAmount <= 64.4) return "Rather Heavy Rain";
+        if (rainAmount >= 2.5 && rainAmount <= 15.5) return "Light Rain";
+        if (rainAmount >= 15.6 && rainAmount <= 64.4) return "Moderate Rain";
+        // if (rainAmount >= 35.6 && rainAmount <= 64.4) return "Rather Heavy Rain";
         if (rainAmount >= 64.5 && rainAmount <= 115.5) return "Heavy Rain";
         if (rainAmount >= 115.6 && rainAmount <= 204.4) return "Very Heavy Rain";
         return "Extreme Rainfall"; // for cases above 204.4 mm
