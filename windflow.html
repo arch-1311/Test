@@ -227,9 +227,9 @@
             /* display: inline-block; */
             display: ruby-text;
             background-color: #ffffff;
-            padding: 5px 10px;
+            padding: 5px 15px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
             cursor: pointer;
             transition: background-color 0.3s ease;
             
@@ -277,7 +277,7 @@
             }
         }
         @media (max-width: 480px) {
-            .rain-pluck-card.no-rain {
+            .rain-pluck-card.no-rain, .rain-pluck-card.rain, .weather-pluck-card {
                 font-size: 10px;
             }
         }
@@ -516,7 +516,7 @@
     }
 
     // Initialize the map
-    const map = L.map('map').setView([13.026018, 80.131667], 10); //avadi - 13.114656, 80.089645
+    const map = L.map('map').setView([13.0067, 80.2206], 10.5); //avadi - 13.114656, 80.089645 //t.ngr 13.0418, 80.2341 old- 13.026018, 80.131667
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19
 }).addTo(map);
@@ -707,11 +707,15 @@ function loadAllLocalities(view) {
                         : ''; //<i class="fas fa-sun"></i>
 
                         const markerHtml = view === 'rain'
-            ? `<div class="rain-pluck-card ${rainStatus.toLowerCase()}">
-                    <i class="fas fa-cloud-showers-heavy"></i> ${rainDescription}
-               </div>`
+            ? `<div class="rain-pluck-card ${rainStatus ? rainStatus.toLowerCase() : ''}">
+                ${rainDescription && rainDescription.toLowerCase() !== 'undefined' && rainDescription.toLowerCase() !== 'no rain' 
+                    ? `<i class="fas fa-cloud-showers-heavy"></i> ${rainDescription}` 
+                    : `${rainDescription}`}
+                </div>`
             : `<div class="weather-pluck-card">
-                    <i class="fa-solid fa-wind"></i> ${windDescription}
+                ${windDescription && windDescription.toLowerCase() !== 'no data' 
+                    ? `<i class="fa-solid fa-wind"></i> ${windDescription}` 
+                    : `${windDescription}`}
                </div>`;
 
         // Create the marker icon
