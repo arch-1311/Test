@@ -623,7 +623,7 @@ function loadAllLocalities(view) {
                     // Show Rain Heading
                     windHeading.classList.add('d-none');
                     rainHeading.classList.remove('d-none');
-                    loadAllLocalities('rain');
+                    loadAllLocalities('wind');
                     toggleText.textContent = "Switch to see Windflow";
                 }
             });
@@ -758,7 +758,7 @@ function loadAllLocalities(view) {
 
 // Initialize on page load
 window.onload = function() {
-    loadAllLocalities('rain');  // Call only once on page load
+    loadAllLocalities('wind');  // Call only once on page load
     // Add event listener for locality change
     document.getElementById('localitySelect').addEventListener('change', function () {
         const selectedOption = this.options[this.selectedIndex];
