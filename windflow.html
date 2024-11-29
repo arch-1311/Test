@@ -216,30 +216,39 @@
             }
         }
 
-        .dark-mode table, .dark-mode .rainfall-table th {
+        /* .dark-mode table, .dark-mode .rainfall-table th {
             background-color: black;
         }
         .dark-mode .modal-content h2 , .dark-mode .modal-content .close{
-            color: black;
+            color: white;
+        } */
+        .dark-mode table {
+            color : white;
         }
+        .dark-mode .table-striped>tbody>tr:nth-of-type(odd)>* {
+            color: white; /* Set text color to white */
+        }
+
         /* Styling for the rain status card */
-        .rain-pluck-card , .weather-pluck-card{
-            /* display: inline-block; */
-            display: ruby-text;
+        .rain-pluck-card, .weather-pluck-card {
+            display: inline-flex; /* Use inline-flex for consistent horizontal alignment */
+            align-items: center; /* Vertically center the content */
+            justify-content: center; /* Center content horizontally */
             background-color: #ffffff;
             padding: 5px 15px;
             border-radius: 10px;
-            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            
             text-align: center;
+            white-space: nowrap; /* Prevent wrapping */
+            overflow: hidden; /* Hide any overflow text */
+            transition: background-color 0.3s ease;
+            font-size: 12px; /* Set default font size */
         }
 
         .rain-pluck-card.rain {
             background-color: #EDF4FF; 
             color: #0E3272;
         }
+
         .rain-pluck-card.no-rain {
             background-color: #F5F5F5; 
             color: #0E3272;
@@ -277,7 +286,7 @@
             }
         }
         @media (max-width: 480px) {
-            .rain-pluck-card.no-rain, .rain-pluck-card.rain, .weather-pluck-card {
+            .rain-pluck-card , .weather-pluck-card {
                 font-size: 10px;
             }
         }
@@ -707,16 +716,17 @@ function loadAllLocalities(view) {
                         : ''; //<i class="fas fa-sun"></i>
 
                         const markerHtml = view === 'rain'
-            ? `<div class="rain-pluck-card ${rainStatus ? rainStatus.toLowerCase() : ''}">
-                ${rainDescription && rainDescription.toLowerCase() !== 'undefined' && rainDescription.toLowerCase() !== 'no rain' 
-                    ? `<i class="fas fa-cloud-showers-heavy"></i> ${rainDescription}` 
-                    : `${rainDescription}`}
-                </div>`
-            : `<div class="weather-pluck-card">
-                ${windDescription && windDescription.toLowerCase() !== 'no data' 
-                    ? `<i class="fa-solid fa-wind"></i> ${windDescription}` 
-                    : `${windDescription}`}
-               </div>`;
+    ? `<div class="rain-pluck-card ${rainStatus ? rainStatus.toLowerCase() : ''}">
+            ${rainDescription && rainDescription.toLowerCase() !== 'undefined' && rainDescription.toLowerCase() !== 'no rain'
+                ? `<i class="fas fa-cloud-showers-heavy" style="margin-right: 5px;"></i><span>${rainDescription}</span>`
+                : `<span>${rainDescription}</span>`}
+       </div>`
+    : `<div class="weather-pluck-card">
+            ${windDescription && windDescription.toLowerCase() !== 'no data'
+                ? `<i class="fa-solid fa-wind" style="margin-right: 5px;"></i><span>${windDescription}</span>`
+                : `<span>${windDescription}</span>`}
+       </div>`;
+
 
         // Create the marker icon
         const icon = L.divIcon({
