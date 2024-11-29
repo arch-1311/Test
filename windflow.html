@@ -525,7 +525,7 @@
     }
 
     // Initialize the map
-    const map = L.map('map').setView([13.0067, 80.2206], 10.5); //avadi - 13.114656, 80.089645 //t.ngr 13.0418, 80.2341 old- 13.026018, 80.131667
+    const map = L.map('map').setView([13.026018, 80.131667], 10); //avadi - 13.114656, 80.089645 //t.ngr 13.0418, 80.2341 guindy- 13.0067, 80.2206
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19
 }).addTo(map);
@@ -718,8 +718,8 @@ function loadAllLocalities(view) {
                         const markerHtml = view === 'rain'
     ? `<div class="rain-pluck-card ${rainStatus ? rainStatus.toLowerCase() : ''}">
             ${rainDescription && rainDescription.toLowerCase() !== 'undefined' && rainDescription.toLowerCase() !== 'no rain'
-                ? `<i class="fas fa-cloud-showers-heavy" style="margin-right: 5px;"></i><span>${rainDescription}</span>`
-                : `<span>${rainDescription}</span>`}
+                ? `<i class="fas fa-cloud-showers-heavy" style="margin-right: 5px;"></i><span>${rainStatus}</span>`
+                : `<span>${rainStatus}</span>`}
        </div>`
     : `<div class="weather-pluck-card">
             ${windDescription && windDescription.toLowerCase() !== 'no data'
@@ -741,10 +741,13 @@ function loadAllLocalities(view) {
             ? `<div class="popup-content">
                     <p><strong>${localityName}</strong></p>
                     <p>Rain Intensity: <strong>${rainIntensity} mm</strong></p>
-               </div>`
+                    <p><strong>${rainDescription}</strong></p>
+               </div>
+               `
             : `<div class="popup-content">
                     <p><strong>${localityName}</strong></p>
                     <p>Wind Speed: <strong>${windSpeed} m/s</strong></p>
+                    <p><strong>${windDescription}</strong></p>
                </div>`;
 
         marker.bindPopup(popupHtml, { offset: L.point(0, -10) });
